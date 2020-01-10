@@ -1,0 +1,30 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import TextArea from './index.js';
+import { action } from '@storybook/addon-actions';
+import { text } from '@storybook/addon-knobs';
+
+<Meta title="TextArea" component={TextArea} />
+
+# TextArea
+
+Use `TextArea` component when you need a long size text.
+
+<Preview>
+  <Story name="textarea">
+    <TextArea
+      required
+      id="ingredients"
+      label={text('TextArea Label', 'List of ingredients')}
+      placeholder={text('TextArea Placeholder', 'Insert Text')}
+      onChange={action('onChange')}
+      onBlur={action('onBlur')}
+    />
+  </Story>
+</Preview>
+
+<br /><br />
+
+#### Props definition
+
+<Props of={TextArea} />
+

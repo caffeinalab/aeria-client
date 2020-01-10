@@ -1,0 +1,46 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Input from './index.js';
+import { action } from '@storybook/addon-actions';
+import { text } from '@storybook/addon-knobs';
+
+<Meta title="Input" component={Input} />
+
+# Input
+
+Use `Input` component when you need to add some text.
+<Preview>
+  <Story name="input">
+    <Input
+      id="name"
+      name="name"
+      type="text"
+      label={text('Input Label', 'First Name')}
+      placeholder={text('Input Placeholder', 'Jhon')}
+      onChange={action('onChange')}
+      onBlur={action('onBlur')}
+    />
+  </Story>
+</Preview>
+
+<br /><br />
+
+#### Props definition
+
+<Props of={Input} />
+
+<Preview>
+  <Story name="with validation">
+    <Input
+      required
+      id="name"
+      name="name"
+      type="text"
+      error="This field is required."
+      label={text('Input Label', 'First Name')}
+      placeholder={text('Input Placeholder', 'Jhon')}
+      onChange={action('onChange')}
+      onBlur={action('onBlur')}
+    />
+  </Story>
+</Preview>
+

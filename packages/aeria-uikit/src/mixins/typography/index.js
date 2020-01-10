@@ -1,0 +1,6 @@
+export {default as headingLarge} from './heading-large'
+export {default as headingMedium} from './heading-medium'
+export {default as headingMediumBold} from './heading-medium-bold'
+export {default as headingSmall} from './heading-small'
+export {default as headingExtraSmall} from './heading-extra-small'
+export {default as defaultText} from './default-text'

@@ -1,0 +1,37 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Button } from './index.js';
+import { text, boolean } from '@storybook/addon-knobs'
+
+<Meta title="Button" component={Button} />
+
+# Button
+
+Use `Button` component wherever you need an action.
+
+<Preview>
+  <Story name="primary">
+    <Button>{ text('Label', 'Primary') }</Button>
+  </Story>
+</Preview>
+
+<br /><br />
+
+#### Props definition
+
+<Props of={Button} />
+
+#### With Icon
+
+<Preview>
+  <Story name="with icon">
+    <Button withIcon="delete">Delete</Button>
+  </Story>
+</Preview>
+
+#### Disabled
+
+<Preview>
+  <Story name="disabled">
+    <Button disabled={ boolean('Disabled', true) }>Disabled Button</Button>
+  </Story>
+</Preview>

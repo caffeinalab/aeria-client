@@ -1,0 +1,71 @@
+{
+  "name": "root",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "contributors": [
+    "Andrea 'Fiad' Fiadone <andrea.fiadone@caffeina.com> (https://github.com/fiadone)",
+    "Alberto Parziale <alberto.parziale@caffeina.com> (https://github.com/lavolpecheprogramma)"
+  ],
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-docs": "^5.2.8",
+    "@storybook/addon-knobs": "^5.2.8",
+    "@storybook/addon-viewport": "^5.2.8",
+    "@storybook/react": "^5.2.8",
+    "babel-loader": "^8.0.6",
+    "core-js": "^3.6.0",
+    "jsdoc-api": "^5.0.4",
+    "lerna": "^3.19.0",
+    "nunjucks": "^3.2.0",
+    "unminified-webpack-plugin": "^2.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "@kunukn/react-collapse": "^2.1.3",
+    "axios": "^0.19.1",
+    "lodash.isempty": "^4.4.0",
+    "moment": "^2.24.0",
+    "polished": "^3.4.1",
+    "prop-types": "^15.7.2",
+    "quill": "^1.3.7",
+    "react": "^16.12.0",
+    "react-dates": "^20.2.5",
+    "react-day-picker": "^7.3.2",
+    "react-dom": "^16.8.6",
+    "react-geocode": "^0.1.2",
+    "react-google-autocomplete": "^1.1.2",
+    "react-google-maps": "^9.4.5",
+    "react-router-dom": "^5.0.1",
+    "react-select": "^3.0.4",
+    "react-sortable-hoc": "^1.9.1",
+    "styled-components": "^4.3.2",
+    "styled-components-grid": "^2.2.2",
+    "styled-components-theme": "^1.0.5",
+    "styled-map": "^3.3.0"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap --use-workspaces",
+    "init:packages": "yarn install && yarn run bootstrap",
+    "init:examples": "cd examples && yarn install",
+    "init": "yarn run init:packages && yarn run init:examples",
+    "build:packages": "yarn run init:packages && webpack --progress",
+    "build:examples": "yarn run init:examples && cd examples && yarn run build",
+    "build:storybook": "build-storybook -o dist/storybook",
+    "build": "yarn run build:packages && yarn run build:examples && yarn run build:storybook",
+    "dev": "yarn run bootstrap && cd examples && yarn start",
+    "readme": "node ./bin/readme/generate.js",
+    "version": "yarn run build && yarn run readme",
+    "publish": "lerna publish",
+    "storybook": "NODE_ENV=development start-storybook -p 6006 -s ./stories/public"
+  }
+}

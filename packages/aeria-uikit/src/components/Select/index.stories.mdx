@@ -1,0 +1,59 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Select from './index.js';
+import { action } from '@storybook/addon-actions';
+import { text } from '@storybook/addon-knobs';
+
+<Meta title="Select" component={Select} />
+
+# Select
+
+Use `Select` component when you need to add some text.
+<Preview>
+  <Story name="select">
+    <Select
+      id="fruit"
+      name="fruit"
+      type="text"
+      label={text('Select Label', 'Pick a fruit')}
+      options={[
+        {
+          value: 'apple',
+          label: 'Apple',
+        }, {
+          value: 'orange',
+          label: 'Orange',
+        }
+      ]}
+      onChange={action('onChange')}
+    />
+  </Story>
+</Preview>
+
+<br /><br />
+
+#### Props definition
+
+<Props of={Select} />
+
+#### Multiple select
+<Preview>
+  <Story name="multiple">
+    <Select
+      multiple
+      id="vegetables"
+      name="vegetables"
+      type="text"
+      label={text('Select Label', 'Pick every vegetables')}
+      options={[
+        {
+          value: 'apple',
+          label: 'Apple',
+        }, {
+          value: 'orange',
+          label: 'Orange',
+        }
+      ]}
+      onChange={action('onChange')}
+    />
+  </Story>
+</Preview>

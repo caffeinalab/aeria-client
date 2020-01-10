@@ -1,0 +1,41 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Picture from './index.js';
+import { action } from '@storybook/addon-actions';
+import { text } from '@storybook/addon-knobs';
+
+<Meta title="Picture" component={Picture} />
+
+# Picture
+
+Use `Picture` component when you need to add some text.
+<Preview>
+  <Story name="Picture">
+    <Picture
+      id="name"
+      name="name"
+      label={text('Picture Label', 'Picture without value')}
+      onChange={action('onChange')}
+      onBlur={action('onBlur')}
+    />
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Picture with value">
+    <Picture
+      id="name1"
+      name="name1"
+      value="1"
+      url="https://source.unsplash.com/random/200x200"
+      label={text('Picture Label1', 'Picture with value')}
+      onChange={action('onChange')}
+      onBlur={action('onBlur')}
+    />
+  </Story>
+</Preview>
+
+<br /><br />
+
+#### Props definition
+
+<Props of={Picture} />

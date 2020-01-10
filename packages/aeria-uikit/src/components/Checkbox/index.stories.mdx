@@ -1,0 +1,40 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { Checkbox, CheckboxWithValidation } from './index.js';
+import { action } from '@storybook/addon-actions';
+import { text, boolean } from '@storybook/addon-knobs';
+
+<Meta title="Checkbox" component={Checkbox} />
+
+# Checkbox
+
+Use `Checkbox` component when you need a multiple selection of values.
+
+<Preview>
+  <Story name="checkbox">
+    <Checkbox
+      id="feature"
+      label={text('Label Checkbox', 'Enable feature')}
+      onChange={action('onChange')}
+    />
+  </Story>
+</Preview>
+
+<br /><br />
+
+#### Props definition
+
+<Props of={Checkbox} />
+
+#### With Validation
+
+<Preview>
+  <Story name="With Validation">
+      <CheckboxWithValidation
+        id="fail"
+        label="This checkbox is going to fail"
+        error="This field is required."
+        onChange={action('onChange')}
+      />
+  </Story>
+</Preview>
+

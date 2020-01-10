@@ -1,0 +1,26 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import DatePicker from './index.js';
+import { action } from '@storybook/addon-actions';
+import { text } from '@storybook/addon-knobs';
+
+<Meta title="DatePicker" component={DatePicker} />
+
+# DatePicker
+
+Use `DatePicker` component when you need to add some text.
+<Preview>
+  <Story name="DatePicker">
+    <DatePicker
+      id="name"
+      name="name"
+      type="text"
+      label={text('DatePicker Label', 'Date Picker')}
+    />
+  </Story>
+</Preview>
+
+<br /><br />
+
+#### Props definition
+
+<Props of={DatePicker} />

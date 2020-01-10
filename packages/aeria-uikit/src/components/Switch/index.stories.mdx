@@ -1,0 +1,40 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Switch from './index.js';
+import { action } from '@storybook/addon-actions';
+import { text, boolean } from '@storybook/addon-knobs';
+
+<Meta title="Switch" component={Switch} />
+
+# Switch
+
+Use `Switch` component when you need a boolean selection.
+
+<Preview>
+  <Story name="switch">
+    <Switch
+      id="feature"
+      label={text('Label Checkbox', 'Enable feature')}
+      onChange={action('onChange')}
+    />
+  </Story>
+</Preview>
+
+<br /><br />
+
+#### Props definition
+
+<Props of={Switch} />
+
+#### With Validation
+
+<Preview>
+  <Story name="with validation">
+      <Switch
+        id="proceed"
+        label="Enable feature to proceed"
+        error="This field is required."
+        onChange={action('onChange')}
+      />
+  </Story>
+</Preview>
+

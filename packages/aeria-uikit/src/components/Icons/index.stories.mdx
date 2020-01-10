@@ -1,0 +1,86 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Icons from './index.js';
+import { action } from '@storybook/addon-actions';
+import { text } from '@storybook/addon-knobs';
+
+<Meta title="Icons" component={Icons} />
+
+# Icons
+
+Use `Icons` to add an icon.
+<Preview>
+  <Story name="Delete">
+    <span>
+      <span>delete</span>
+      <br/>
+      <Icons icon="delete" />
+    </span>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Edit">
+    <span>
+      <span>edit</span>
+      <br/>
+      <Icons icon="edit" />
+    </span>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Add">
+    <span>
+      <span>add</span>
+      <br/>
+      <Icons icon="add" />
+    </span>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Close">
+    <span>
+      <span>close</span>
+      <br/>
+      <Icons icon="close" />
+    </span>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Back">
+    <span>
+      <span>back</span>
+      <br/>
+      <Icons icon="back" />
+    </span>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Show">
+    <span>
+      <span>show</span>
+      <br/>
+      <Icons icon="show" />
+    </span>
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Hidden">
+    <span>
+      <span>hidden</span>
+      <br/>
+      <Icons icon="hidden" />
+    </span>
+  </Story>
+</Preview>
+
+
+<br /><br />
+
+#### Props definition
+
+<Props of={Icons} />

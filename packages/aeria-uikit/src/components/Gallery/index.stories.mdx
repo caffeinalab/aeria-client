@@ -1,0 +1,37 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Gallery from './index.js';
+import { action } from '@storybook/addon-actions';
+import { text } from '@storybook/addon-knobs';
+
+<Meta title="Gallery" component={Gallery} />
+
+# Gallery
+
+Use `Gallery` component when you need to add some text.
+<Preview>
+  <Story name="Gallery">
+    <Gallery
+      id="name"
+      name="name"
+      label={text('Gallery Label', 'Gallery')}
+    />
+  </Story>
+</Preview>
+
+<Preview>
+  <Story name="Gallery With image">
+      <Gallery
+        id="name"
+        name="name"
+        type="text"
+        label={text('Gallery Label2', 'Gallery with image')}
+        children={[{value:"0", url: "https://source.unsplash.com/random/200x200"}]}
+      />
+  </Story>
+</Preview>
+
+<br /><br />
+
+#### Props definition
+
+<Props of={Gallery} />
