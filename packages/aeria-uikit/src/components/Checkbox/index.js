@@ -58,7 +58,7 @@ class Checkbox extends PureComponent {
     const {id, label} = this.props
 
     return (
-      <StyledWrapper htmlFor={name}>
+      <StyledWrapper htmlFor={id}>
         <StyledCheck
           {...this.props}
           id={id}
