@@ -1,0 +1,12 @@
+{
+  "name": "@aeria/core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "contributors": [],
+  "license": "MIT"
+}
