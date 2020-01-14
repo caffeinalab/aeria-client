@@ -67,7 +67,7 @@ class Checkbox extends PureComponent {
           onChange={this.onChange}
         />
         <StyledIndicator name={id} />
-        <span style={{marginLeft: '8px'}}>{label}</span>
+        <span style={{marginLeft: '8px', cursor: 'pointer'}}>{label}</span>
       </StyledWrapper>
     )
   }
