@@ -2,15 +2,18 @@ import React, {PureComponent, Fragment} from 'react'
 import PropTypes from 'prop-types'
 import { arrayMove } from 'react-sortable-hoc'
 
-import withLabel from '~/hoc/withLabel'
-import withValidation from '~/hoc/withValidation'
-import Button from '~/components/Button'
-import Thumbnail from '~/components/Thumbnail'
+import withLabel from '../../hoc/withLabel'
+import withValidation from '../../hoc/withValidation'
+import Sortable from '../Sortable'
+import Button from '../Button'
+import Thumbnail from '../Thumbnail'
+import DragHandle from '../DragHandle'
+import StyledPicture from './StyledPicture'
 
-import SortableComponent from '~/utils/sortable-component'
 
 import StyledContainer from './StyledContainer'
 import StyledContainerButton from './StyledContainerButton'
+
 @withLabel
 @withValidation
 class Gallery extends PureComponent {
@@ -47,12 +50,7 @@ class Gallery extends PureComponent {
     /**
      * A string with the error if occurs.
      */
-    error: PropTypes.string,
-
-    /**
-     * The current index on the form.
-     */
-    index: PropTypes.number.isRequired,
+    error: PropTypes.string
   }
 
   openUploader = (indexImg) => {
@@ -130,6 +128,22 @@ class Gallery extends PureComponent {
     this.deletePicture(event)
   }
 
+  renderChild = (element, index) => (
+    <StyledPicture>
+      <DragHandle />
+      <Thumbnail
+        editable
+        deletable
+        index={index}
+        id={element.value}
+        url={element.url}
+        name={`${this.props.id}-${index}-picture`}
+        onEdit={this.onEdit}
+        onDelete={this.onDelete}
+      />
+    </StyledPicture>
+  )
+
   render() {
     const {id, value, error, children = [], ctaLabel = 'Add media'} = this.props
 
@@ -142,29 +156,12 @@ class Gallery extends PureComponent {
           readOnly
         />
         <StyledContainer error={error}>
-          <SortableComponent
+          <Sortable
             type="grid"
-            useDragHandle={false}
-            onSortEnd={this.onSortEnd}
-          >
-            <div>
-              {
-                children.map((element, key) => (
-                  <Thumbnail
-                    editable
-                    deletable
-                    key={key}
-                    index={key}
-                    id={element.value}
-                    url={element.url}
-                    name={`${id}-${key}-picture`}
-                    onEdit={this.onEdit}
-                    onDelete={this.onDelete}
-                  />
-                ))
-              }
-            </div>
-          </SortableComponent>
+            useDragHandle
+            renderChild={this.renderChild}
+            children={children}
+          />
           <StyledContainerButton>
             <Button onClick={this.openUploader}>
               {ctaLabel}

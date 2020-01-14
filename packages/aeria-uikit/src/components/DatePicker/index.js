@@ -4,9 +4,10 @@ import PropTypes from 'prop-types'
 import DayPicker from 'react-day-picker'
 import 'react-day-picker/lib/style.css'
 
-import withLabel from '~/hoc/withLabel'
-import withValidation from '~/hoc/withValidation'
-import StyledDatePicker from '~/components/DatePicker/StyledDatePicker'
+import withLabel from '../../hoc/withLabel'
+import withValidation from '../../hoc/withValidation'
+
+import StyledDatePicker from './StyledDatePicker'
 
 const formatDate = date => date.toISOString().substring(0, 10)
 @withLabel

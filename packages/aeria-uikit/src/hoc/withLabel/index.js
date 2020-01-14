@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Label from '~/components/Label'
+import Label from '../../components/Label'
 import StyledHeader from './StyledHeader'
 import StyledContent from './StyledContent'
 

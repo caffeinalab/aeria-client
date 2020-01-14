@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import styledMap from 'styled-map'
 import {rem} from 'polished'
 
-import {headingExtraSmall} from '~/mixins/typography'
+import {headingExtraSmall} from '../../mixins/typography'
 
 const Note = styled.span`
     ${headingExtraSmall}

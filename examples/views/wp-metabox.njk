@@ -1,0 +1,38 @@
+{% set title = 'Aeria Wordpress!' %}
+{% set pageCtrl = 'wp-metabox' %}
+
+{% extends 'templates/_default.njk' %}
+
+{% block main %}
+  <div id="aeriaApp-Metaexample"></div>
+  <script>
+    window.aeriaTheme = [
+      "#413256",
+      "#523f6d",
+      "#a3b745",
+      "#d46f15"
+    ]
+
+    window.aeriaMetaboxes = [
+      {
+        "title": "Metaexample",
+        "id": "Metaexample",
+        "post_type": [
+          "post",
+          "news"
+        ],
+        "context": "normal",
+        "fields": [
+          {
+            "type": "text",
+            "id": "input-text",
+            "label": "input-text",
+            "description": "description",
+            "size": "half",
+            "placeholder": "placeholder"
+          }
+        ]
+      }
+    ]
+  </script>
+{% endblock %}

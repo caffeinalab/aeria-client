@@ -1,3 +1,5 @@
 export { default as Context } from './src/components/Context'
 export { default as FieldsManager } from './src/components/FieldsManager'
 export { default as Module } from './src/components/Module'
+export { default as FieldGroup } from './src/components/FieldGroup'
+export { default as getTheme } from './src/utils/get-theme'

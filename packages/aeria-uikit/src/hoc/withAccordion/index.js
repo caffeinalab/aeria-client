@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Collapse from '@kunukn/react-collapse'
 
-import Label from '~/components/Label'
+import Label from '../../components/Label'
 import StyledHeader from './StyledHeader'
 import StyledContent from './StyledContent'
 import StyledSeparator from './StyledSeparator'

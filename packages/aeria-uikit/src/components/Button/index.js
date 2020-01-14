@@ -1,7 +1,7 @@
 import React, { memo, Children } from 'react'
 import PropTypes from 'prop-types'
 
-import Icon from '~/components/Icons'
+import Icon from '../Icons'
 import StyledButton from './StyledButton'
 
 const Button = (props) => (
@@ -17,7 +17,6 @@ const Button = (props) => (
         />
       )
     }
-    &nbsp;
     {
       Children.toArray(props.children)
     }
@@ -37,7 +36,7 @@ Button.propTypes = {
     PropTypes.element,
     PropTypes.node,
     PropTypes.string,
-  ]).isRequired,
+  ]),
 
   /**
    * If true will remove padding around the `Button` component.

@@ -4,35 +4,15 @@ import { withKnobs } from '@storybook/addon-knobs'
 import { ThemeProvider } from 'styled-components'
 
 import {GlobalStyles} from '../packages/aeria-uikit'
+import {getTheme} from '../packages/aeria-core'
 
 addDecorator(s => (
-  <ThemeProvider theme={{
-    breakpoints: {
-      lg: 1200
-    },
-    palette: {
-      primary: 'DodgerBlue',
-      primaryBg: 'DodgerBlue',
-      primaryLight: 'deepskyblue',
-      primaryDark: 'navy',
-
-      secondary: 'palevioletred',
-      secondaryLight: 'palevioletred',
-      secondaryLighter: 'palevioletred',
-
-      errorMain: '#B31F19',
-      errorBg: '#FFEBEB',
-
-      backgroundLight: '#EEF6F9',
-      borderLight: '#C6E1ED',
-
-      greyLight: '#E0E0E0',
-      grey: '#CFCFCF',
-
-      white: '#FFFFFF',
-      black: '#404040'
-    }
-  }}>
+  <ThemeProvider theme={getTheme([
+    "#413256",
+    "#523f6d",
+    "#a3b745",
+    "#d46f15"
+  ])}>
     <>
       <GlobalStyles />
       {s()}

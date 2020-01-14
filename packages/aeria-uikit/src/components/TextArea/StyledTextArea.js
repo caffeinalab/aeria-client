@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import {rem} from 'polished'
 
-import {solidBorder} from '~/mixins/borders'
-import {headingMedium} from '~/mixins/typography'
+import {solidBorder} from '../../mixins/borders'
+import {headingMedium} from '../../mixins/typography'
 
 export default styled.textarea`
   ${headingMedium}

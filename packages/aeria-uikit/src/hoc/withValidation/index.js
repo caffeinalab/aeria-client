@@ -1,18 +1,18 @@
 import React, {PureComponent, Fragment} from 'react'
 
-import Note from '~/components/Note'
+import Note from '../../components/Note'
 
-import Validator from '~/utils/validator'
+import Validator from '../../utils/validator'
 
 export default function withValidation(WrappedComponent) {
   return class extends PureComponent {
     checkErrors = _ => {
       if (!this.validatorHelper) {
-        this.validatorHelper = new Validator(this.props.options)
+        this.validatorHelper = new Validator(this.props)
       }
-      this.validatorHelper.validate((this.props.options.value || this.props.options.defaultValue))
+      this.validatorHelper.validate((this.props.value || this.props.defaultValue))
         .then(error => {
-          this.props.onChange({ error }, this.props.index)
+          this.props.onChange({ error })
         })
     }
 

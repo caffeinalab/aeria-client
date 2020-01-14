@@ -12,7 +12,7 @@ const StyledPicture = styled.div`
 
 	width: ${props => SIZES[props.size]};
 	height: ${props => SIZES[props.size]};
-	margin: ${rem('10px')};
+	/* margin: ${rem('10px')}; */
 
 	overflow: hidden;
 	border: 1px solid ${props => props.theme.palette.greyLight};

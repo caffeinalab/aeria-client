@@ -2,7 +2,7 @@ import styled, {css} from 'styled-components'
 import Select from 'react-select'
 import Async from 'react-select/async'
 
-import { solidBorder} from '~/mixins/borders'
+import { solidBorder} from '../../mixins/borders'
 
 const commonStyle = css`
   .AeriaSelect__control {

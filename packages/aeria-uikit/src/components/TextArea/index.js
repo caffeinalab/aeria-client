@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 import StyledTextArea from './StyledTextArea'
 
-import withLabel from '~/hoc/withLabel'
-import withValidation from '~/hoc/withValidation'
+import withLabel from '../../hoc/withLabel'
+import withValidation from '../../hoc/withValidation'
 
 @withLabel
 @withValidation

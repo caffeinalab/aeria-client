@@ -15,7 +15,7 @@ module.exports = {
   output: {
     path: packagesPath,
     filename: '[name]/dist/index.min.js',
-    library: 'MyLibrary',
+    library: 'aeria',
     libraryTarget: 'umd'
   },
   module: {

@@ -1,13 +1,13 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 
-import Button from '~/components/Button'
-import Thumbnail from '~/components/Thumbnail'
+import Button from '../Button'
+import Thumbnail from '../Thumbnail'
 
 import StyledContainer from './StyledContainer'
 
-import withLabel from '~/hoc/withLabel'
-import withValidation from '~/hoc/withValidation'
+import withLabel from '../../hoc/withLabel'
+import withValidation from '../../hoc/withValidation'
 
 @withLabel
 @withValidation

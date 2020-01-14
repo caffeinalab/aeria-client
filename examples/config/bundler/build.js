@@ -19,8 +19,23 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-proposal-class-properties']
+            presets: [
+              ['@babel/env', {
+                'useBuiltIns': 'usage',
+                'corejs': 3
+              }],
+              ['@babel/preset-react']
+            ],
+            plugins: [
+              'babel-plugin-styled-components',
+              [
+                '@babel/plugin-proposal-decorators', {
+                  legacy: true
+                }
+              ],
+              '@babel/plugin-proposal-class-properties',
+              '@babel/plugin-syntax-dynamic-import'
+            ]
           }
         }
       },
