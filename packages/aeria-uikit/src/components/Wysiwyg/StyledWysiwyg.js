@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { solidBorder } from '~/mixins/borders'
+import { solidBorder } from '../../mixins/borders'
 
 export default styled.div`
   ${solidBorder}

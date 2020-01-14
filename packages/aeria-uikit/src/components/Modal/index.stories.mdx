@@ -1,0 +1,35 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Modal from './index.js';
+import Button from '../Button';
+
+import { action } from '@storybook/addon-actions';
+import { text } from '@storybook/addon-knobs';
+const ModalTrigger = ({label, onClick}) => (
+  <Button onClick={onClick}>
+    {label}
+  </Button>
+)
+
+<Meta title="uikit/Modal" component={Modal} />
+
+# Modal
+
+Use `Modal` component to open a modal with custom content.
+<Preview>
+  <Story name="Modal">
+    <Modal
+      role="modal"
+      ariaLabel="Modal label"
+      triggerComponent={ModalTrigger}
+      triggerLabel={'Read more'}
+    >
+      <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium voluptates numquam dolorem dolorum quas quos, placeat libero tempore facilis, similique temporibus recusandae repellendus provident, vitae unde. Odio corrupti aspernatur minima! </span>
+    </Modal>
+  </Story>
+</Preview>
+
+<br /><br />
+
+#### Props definition
+
+<Props of={Modal} />

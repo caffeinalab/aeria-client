@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {rem} from 'polished'
 
-import {headingSmall} from '~/mixins/typography'
+import {headingSmall} from '../../mixins/typography'
 
 const StyledLabel = styled.label`
   ${headingSmall}

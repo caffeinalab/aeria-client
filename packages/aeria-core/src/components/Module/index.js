@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Provider, FieldsManager } from '@aeria/core'
+import { Provider } from '../Context'
+import FieldsManager from '../FieldsManager'
+import getTheme from '../../utils/get-theme'
 
 const Module = ({ sectionTypes = [], theme, children }) => {
   const components = FieldsManager.getAll()
@@ -11,8 +13,7 @@ const Module = ({ sectionTypes = [], theme, children }) => {
   useEffect(() => {
     FieldsManager.addListener(handleComponentsUpdate)
   }, [])
-
-  return <Provider config={state} theme={theme}>{children}</Provider>
+  return <Provider config={state} theme={getTheme(theme)}>{children}</Provider>
 }
 
 export default Module

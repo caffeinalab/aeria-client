@@ -5,8 +5,8 @@ import 'quill/dist/quill.snow.css'
 
 import StyledWysiwyg from './StyledWysiwyg'
 
-import withLabel from '~/hoc/withLabel'
-import withValidation from '~/hoc/withValidation'
+import withLabel from '../../hoc/withLabel'
+import withValidation from '../../hoc/withValidation'
 
 @withLabel
 @withValidation

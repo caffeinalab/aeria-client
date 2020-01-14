@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import StyledWrapper from '~/components/Picture/StyledWrapper'
 
-import {dashedBorder} from '~/mixins/borders'
+import StyledWrapper from '../Picture/StyledWrapper'
+import {dashedBorder} from '../../mixins/borders'
 
 const StyledContainer = styled(StyledWrapper)`
   ${dashedBorder}

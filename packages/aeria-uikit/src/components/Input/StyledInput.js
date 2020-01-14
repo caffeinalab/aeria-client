@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import {rem, lighten} from 'polished'
 
-import {headingLarge} from '~/mixins/typography'
-import {solidBorder} from '~/mixins/borders'
+import {headingLarge} from '../../mixins/typography'
+import {solidBorder} from '../../mixins/borders'
 
 const StyledInput = styled.input`
   input[type]&{

@@ -1,5 +1,5 @@
 import isEmpty from 'lodash.isempty'
-import fetchData from '~/utils/fetch-data'
+import fetchData from './fetch-data'
 
 export default class Validator {
   constructor(options) {

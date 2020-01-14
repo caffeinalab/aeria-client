@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import {rem} from 'polished'
 
-import {solidBorder} from '~/mixins/borders'
-import {defaultText} from '~/mixins/typography'
+import {solidBorder} from '../../mixins/borders'
+import {defaultText} from '../../mixins/typography'
 
 const StyledTooltip = styled.span`
   ${solidBorder}

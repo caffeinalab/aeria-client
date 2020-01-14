@@ -4,10 +4,10 @@ import throttle from 'lodash.throttle'
 
 import { StyledSelect, StyledAsync } from './StyledSelect'
 
-import withLabel from '~/hoc/withLabel'
-import withValidation from '~/hoc/withValidation'
+import withLabel from '../../hoc/withLabel'
+import withValidation from '../../hoc/withValidation'
 
-import fetchData from '~/utils/fetch-data'
+import fetchData from '../../utils/fetch-data'
 
 /*
   needle // ricerca

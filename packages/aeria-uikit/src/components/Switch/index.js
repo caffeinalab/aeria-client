@@ -6,8 +6,8 @@ import StyledIndicator from './StyledIndicator'
 import StyledWrapper from './StyledWrapper'
 import StyledLabel from './StyledLabel'
 
-import withLabel from '~/hoc/withLabel'
-import withValidation from '~/hoc/withValidation'
+import withLabel from '../../hoc/withLabel'
+import withValidation from '../../hoc/withValidation'
 
 const TRUE_VALUES = ['true', true, 1, '1']
 const VALID_VALUES = ['true', true, 1, '1', 'false', false, 0, '0']

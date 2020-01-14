@@ -6,7 +6,7 @@ import StyledIndicator from './StyledIndicator'
 import StyledWrapper from './StyledWrapper'
 
 // import withLabel from '~/hoc/withLabel'
-import withValidation from '~/hoc/withValidation'
+import withValidation from '../../hoc/withValidation'
 
 class Checkbox extends PureComponent {
   static propTypes = {

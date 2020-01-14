@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import {rem} from 'polished'
-import {solidBorder} from '~/mixins/borders'
+import {solidBorder} from '../../mixins/borders'
 
 const indicatorSize = 25
 const paddingSize = 3
