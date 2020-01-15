@@ -12,8 +12,9 @@ const RepeaterRow = (props) => (
     <DragHandle />
     <StyledContainerInput>
       <FieldGroup
-        fields={props.fields}
         id={props.id}
+        index={props.index}
+        fields={props.fields}
         onChange={props.onChange}
       />
     </StyledContainerInput>

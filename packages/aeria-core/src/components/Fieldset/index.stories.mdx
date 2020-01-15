@@ -1,0 +1,35 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Fieldset from './index.js';
+import { action } from '@storybook/addon-actions';
+import { text, boolean } from '@storybook/addon-knobs';
+
+<Meta title="core/Fieldset" component={Fieldset} />
+
+# Fieldset
+
+Use `Fieldset` component when you need a multiple selection of values.
+
+<Story name="Fieldset">
+    <Fieldset
+      id="feature"
+      label={text('Label Fieldset', 'Enable feature')}
+      description={text('Description Fieldset', 'Enable feature')}
+      fields={[{
+        type: "text",
+        id: "input-text",
+        label: "Nome dell'amministratore",
+        description: "description",
+        size: "half",
+        placeholder: "placeholder",
+        required: true
+      }]}
+      onChange={action('onChange')}
+    />
+</Story>
+
+<br /><br />
+
+#### Props definition
+
+<Props of={Fieldset} />
+

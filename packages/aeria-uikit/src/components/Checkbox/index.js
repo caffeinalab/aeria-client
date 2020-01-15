@@ -40,14 +40,9 @@ class Checkbox extends PureComponent {
     error: PropTypes.string,
 
     /**
-     * The current index on the form.
-     */
-    index: PropTypes.number.isRequired,
-
-    /**
      * Callback function invoked when the value of the <input> has been changed.
      */
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
   }
 
   onChange = ({target}) => {
