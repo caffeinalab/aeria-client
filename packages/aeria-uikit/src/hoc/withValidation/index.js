@@ -6,18 +6,28 @@ import Validator from '../../utils/validator'
 
 export default function withValidation(WrappedComponent) {
   return class extends PureComponent {
-    checkErrors = _ => {
+    constructor(props) {
+      super(props)
+
+      this.state = {
+        error: false
+      }
+    }
+
+    checkErrors = ({value}) => {
       if (!this.validatorHelper) {
         this.validatorHelper = new Validator(this.props)
       }
-      this.validatorHelper.validate((this.props.value || this.props.defaultValue))
+      this.validatorHelper.validate((value))
         .then(error => {
-          this.props.onChange({ error })
+          this.setState({ error }, () => {
+            this.props.onChange && this.props.onChange({ error }, this.props.index)
+          })
         })
     }
 
-    handleBlur = _ => {
-      this.checkErrors()
+    onBlur = ({target}) => {
+      this.checkErrors(target)
     }
 
     render() {
@@ -25,17 +35,17 @@ export default function withValidation(WrappedComponent) {
         <Fragment>
           <WrappedComponent
             {...this.props}
-            validation={this.props.error}
-            handleBlur={this.handleBlur}
+            validation={this.state.error}
+            onBlur={this.onBlur}
             checkErrors={this.checkErrors}
           />
           {
-            this.props.error && (
+            this.state.error && (
               <Note
                 error
                 position="left"
               >
-                {this.props.error}
+                {this.state.error}
               </Note>
             )
           }

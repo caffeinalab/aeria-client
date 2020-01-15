@@ -38,11 +38,20 @@ class Repeater extends PureComponent {
     })
   }
 
+  onChildChange = (childState, index) => {
+    const children = klona(this.state.children)
+    children[index] = childState
+    this.setState({children}, () => {
+      this.props.onChange && this.props.onChange(this.state, this.props.index)
+    })
+  }
+
   renderChild = (element, index) => (
     <RepeaterRow
       index={index}
       id={`${this.props.id}-${index}`}
       fields={element}
+      onChange={this.onChildChange}
       onDeleteButton={this.removeChild}
     />
   )

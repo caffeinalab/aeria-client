@@ -1,0 +1,29 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import {Provider} from '../Context';
+import Sections from './index.js';
+import { action } from '@storybook/addon-actions';
+import { text, boolean } from '@storybook/addon-knobs';
+
+<Meta title="core/Sections" component={Sections} />
+
+
+# Sections
+
+Use `Sections` component when you need a multiple selection of values.
+
+<Story name="Sections">
+    <Sections
+      id="feature"
+      label={text('Label Sections', 'Enable feature')}
+      description={text('Description Sections', 'Enable feature')}
+      accepts={['counters', 'image', 'list']}
+      onChange={action('onChange')}
+    />
+</Story>
+
+<br /><br />
+
+#### Props definition
+
+<Props of={Sections} />
+

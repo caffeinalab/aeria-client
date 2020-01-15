@@ -6,9 +6,8 @@ const Context = createContext()
 class Provider extends PureComponent {
   render() {
     const { config, theme, children } = this.props
-
     return (
-      <Context.Provider value={config}>
+      <Context.Provider value={{...config}}>
         <ThemeProvider theme={theme}>
           {children}
         </ThemeProvider>

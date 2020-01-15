@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import klona from 'klona'
+
 import Grid from 'styled-components-grid'
 
 import FieldsManager from '../FieldsManager'
@@ -15,14 +17,9 @@ const sizeAliases = {
 class FieldGroup extends PureComponent {
   static propTypes = {
     /**
-     * Specifies a unique id for the <input> element.
+     * Specifies the id prepended to input children's id.
      */
     id: PropTypes.string.isRequired,
-
-    /**
-     * Defines a label for the <input> element.
-     */
-    label: PropTypes.string,
 
     /**
      * Defines the fields of this group.
@@ -36,6 +33,15 @@ class FieldGroup extends PureComponent {
     return {
       lg: sizeAliases[cleanSize] || 1
     }
+  }
+
+  onChildChange = (childState, index) => {
+    if (!this.props.onChange) {
+      return
+    }
+    const fields = klona(this.props.fields)
+    fields[index] = {...fields[index], ...childState}
+    this.props.onChange(fields, this.props.index)
   }
 
   render() {
@@ -77,7 +83,7 @@ class FieldGroup extends PureComponent {
               {...field}
               index={key}
               id={`${this.props.id}-${field.id}`}
-              onChange={this.props.onChange}
+              onChange={this.onChildChange}
               dependsOnField={dependsOnField}
             />
           </Grid.Unit>
