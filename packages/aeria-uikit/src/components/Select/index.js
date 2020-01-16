@@ -51,12 +51,18 @@ class Select extends PureComponent {
     required: PropTypes.bool,
 
     /**
-     * Secifies a short hint that describes the expected value of the <input> field.
+     * Specifies a short hint that describes the expected value of the <input> field.
      */
     placeholder: PropTypes.string,
 
+    /**
+     * Specifies a loading message
+     */
     loadingMessage: PropTypes.string,
 
+    /**
+     * Specifies a no options available message
+     */
     noOptionsMessage: PropTypes.string,
 
     /**
@@ -78,11 +84,6 @@ class Select extends PureComponent {
      * A string with the error if occurs.
      */
     error: PropTypes.string,
-
-    /**
-     * The current index on the form.
-     */
-    index: PropTypes.number,
   }
 
   static defaultProps = {
@@ -135,14 +136,13 @@ class Select extends PureComponent {
 
       callback && callback(data)
 
-      this.props.onChange({ options: data }, this.props.index)
+      this.props.onChange({ ...this.props, options: data })
     })
   }
 
   onChange = value => {
     if (!value) {
-      const nullValue = this.props.multiple ? [] : ''
-      this.props.onChange({ value: nullValue }, this.props.index)
+      this.props.onChange({ ...this.props, value: this.props.multiple ? [] : '' })
     } else {
       if (this.props.multiple) {
         this.onChangeMultiple(value)
@@ -153,7 +153,7 @@ class Select extends PureComponent {
   }
 
   onChangeSingle = ({ value }) => {
-    this.props.onChange({ value }, this.props.index)
+    this.props.onChange({ ...this.props, value })
   }
 
   onChangeMultiple = values => {
@@ -162,12 +162,12 @@ class Select extends PureComponent {
     ))
 
     this.props.onChange({
+      ...this.props,
       value: value.join(',')
-    }, this.props.index)
+    })
   }
 
   getSelectedValues() {
-    console.log(this.props.multiple)
     if (this.props.multiple) {
       return this.getMultipleValue()
     }
@@ -186,8 +186,8 @@ class Select extends PureComponent {
     const values = Array.isArray(value) ? value : value.split(',')
     const stringValues = values.map(v => `${v}`)
 
-    return this.props.options.filter(({ value }) => (
-      stringValues.includes(`${value}`)
+    return this.props.options.filter(({ v }) => (
+      stringValues.includes(`${v}`)
     ))
   }
 

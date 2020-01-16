@@ -53,11 +53,6 @@ class Picture extends PureComponent {
      * A string with the error if occurs.
      */
     error: PropTypes.string,
-
-    /**
-     * The current index on the form.
-     */
-    index: PropTypes.number,
   }
 
   static defaultProps = {
@@ -95,6 +90,7 @@ class Picture extends PureComponent {
       const attachment = this.frame.state().get('selection').first().toJSON()
 
       this.props.onChange({
+        ...this.props,
         value: attachment.id,
         url: attachment.url
       }, index)
@@ -106,6 +102,7 @@ class Picture extends PureComponent {
 
   deletePicture = () => {
     this.props.onChange({
+      ...this.props,
       value: null
     }, this.props.index)
   }

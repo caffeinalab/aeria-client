@@ -48,16 +48,12 @@ class DateRangePicker extends PureComponent {
   constructor(props) {
     super(props)
 
-    if (props.value) {
-      this.state.from = new Date(props.options.value[0])
-      this.state.to = new Date(props.options.value[1])
+    this.state = {
+      value: props.value || [],
+      from: props.value ? new Date(props.value[0]) : undefined,
+      to: props.value ? new Date(props.value[1]) : undefined,
+      enteredTo: undefined
     }
-  }
-
-  state = {
-    from: void 0,
-    to: void 0,
-    enteredTo: void 0
   }
 
   isSelectingFirstDay(from, to, day) {
@@ -79,36 +75,33 @@ class DateRangePicker extends PureComponent {
         from: day,
         to: null,
         enteredTo: null,
-      })
+      }, this.triggerChange)
     } else {
       this.setState({
+        value: [formatDate(from), formatDate(day)],
         to: day,
         enteredTo: day,
-      })
-      const {index} = this.props
-      if (this.props.onChange) {
-        this.props.onChange({
-          value: [formatDate(from), formatDate(day)]
-        }, index)
-      }
+      }, this.triggerChange)
     }
   }
 
   onDayMouseEnter = (day) => {
     const { from, to } = this.state
     if (!this.isSelectingFirstDay(from, to, day)) {
-      this.setState({
-        enteredTo: day,
-      })
+      this.setState({ enteredTo: day }, this.triggerChange)
     }
   }
 
   onResetClick = _ => {
-    this.setState({from: void 0, to: void 0})
+    this.setState({from: void 0, to: void 0}, this.triggerChange)
   }
 
   onInputChange = e => {
     e.preventDefault()
+  }
+
+  triggerChange = () => {
+    this.props.onChange && this.props.onChange({...this.props, ...this.state})
   }
 
   render() {

@@ -127,7 +127,7 @@ class Input extends PureComponent {
   }
 
   onChange = ({ target }) => {
-    this.props.onChange && this.props.onChange({value: target.value}, this.props.index)
+    this.props.onChange && this.props.onChange({...this.props, value: target.value})
   }
 
   render() {

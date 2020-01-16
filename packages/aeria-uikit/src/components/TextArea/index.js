@@ -40,18 +40,13 @@ class Textarea extends PureComponent {
     error: PropTypes.string,
 
     /**
-     * The current index on the form.
-     */
-    index: PropTypes.number.isRequired,
-
-    /**
      * Callback function invoked when the value of the <textarea> has been changed.
      */
     onChange: PropTypes.func.isRequired,
   }
 
   onChange = ({ target }) => {
-    this.props.onChange && this.props.onChange(target.value, this.props.index)
+    this.props.onChange && this.props.onChange({...this.props, value: target.value})
   }
 
   onBlur = event => {
