@@ -28,7 +28,7 @@ const SectionHeader = props => {
     let value = defaultValue
     props.fields.some(f => {
       if (f.id === inputId) {
-        value = f.value || f.defaultValue
+        value = f.value || f.defaultValue || defaultValue
         return true
       }
       return false
@@ -36,7 +36,7 @@ const SectionHeader = props => {
     return value
   }
 
-  let title = props.title
+  let title = props.title || ''
   let label = props.label || props.type
 
   if (titleAs) {

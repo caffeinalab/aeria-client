@@ -3,7 +3,7 @@ import {rem} from 'polished'
 
 const StyledRow = styled.div`
   flex-grow: 1;
-  padding: ${rem('10px')};
+  padding: 0 ${rem('10px')} ${rem('10px')};
 `
 
 export default StyledRow
