@@ -17,39 +17,28 @@ export default class Section extends Component {
   }
 
   onChangeTitle = ({target}) =>{
-    this.setState({title: target.value }, () => {
-      this.props.onChange && this.props.onChange({
-        title: this.state.title
-      }, this.props.index)
-    })
+    this.setState({title: target.value }, this.triggerChange)
   }
 
   onToggleDraftButton = () => {
-    this.setState({isDraft: !this.state.isDraft }, () => {
-      this.props.onChange && this.props.onChange({
-        isDraft: this.state.isDraft
-      }, this.props.index)
-    })
+    this.setState({isDraft: !this.state.isDraft }, this.triggerChange)
   }
 
   onAccordionButton = () =>{
-    this.setState({accordionState: !this.state.accordionState }, () => {
-      this.props.onChange && this.props.onChange({
-        accordionState: this.state.accordionState
-      }, this.props.index)
-    })
+    this.setState({accordionState: !this.state.accordionState }, this.triggerChange)
   }
 
   onDeleteButton = () => {
     this.props.onDeleteButton(this.props.index)
   }
 
+  triggerChange = () => {
+    this.props.onChange && this.props.onChange({...this.props, ...this.state})
+  }
+
   render() {
     const { fields = [] } = this.props
-    const {
-      accordionState = this.defaultAccordionState,
-      isDraft = this.defaultDraftState
-    } = this.state
+    const { accordionState, isDraft } = this.state
 
     return (
       <StyledSection>
@@ -67,7 +56,8 @@ export default class Section extends Component {
             <FieldGroup
               fields={fields}
               id={this.props.id}
-              // onChange={this.onChangeChild}
+              index={this.props.index}
+              onChange={this.props.onChange}
             />
           </StyledContainer>
         </Collapse>

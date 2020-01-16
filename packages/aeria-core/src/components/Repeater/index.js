@@ -21,9 +21,7 @@ class Repeater extends PureComponent {
     const value = this.state.value + 1
     const children = klona(this.state.children)
     children.push(klona(this.props.fields))
-    this.setState({value, children}, () => {
-      this.props.onChange && this.props.onChange(this.state)
-    })
+    this.setState({value, children}, this.triggerChange)
   }
 
   removeChild = (index) => {
@@ -33,17 +31,17 @@ class Repeater extends PureComponent {
       return acc
     }, [])
 
-    this.setState({value, children}, () => {
-      this.props.onChange && this.props.onChange(this.state)
-    })
+    this.setState({value, children}, this.triggerChange)
   }
 
-  onChildChange = (childState, index) => {
+  onChildChange = (childState) => {
     const children = klona(this.state.children)
-    children[index] = childState
-    this.setState({children}, () => {
-      this.props.onChange && this.props.onChange(this.state, this.props.index)
-    })
+    children[childState.index] = childState.fields
+    this.setState({children}, this.triggerChange)
+  }
+
+  triggerChange = () => {
+    this.props.onChange && this.props.onChange({...this.props, ...this.state})
   }
 
   renderChild = (element, index) => (

@@ -19,9 +19,7 @@ class Sections extends PureComponent {
     const value = this.state.value + 1
     const children = klona(this.state.children)
     children.push(e)
-    this.setState({value, children}, () => {
-      this.props.onChange && this.props.onChange(this.state)
-    })
+    this.setState({value, children}, this.triggerChange)
   }
 
   removeChild = (index) => {
@@ -31,9 +29,17 @@ class Sections extends PureComponent {
       return acc
     }, [])
 
-    this.setState({value, children}, () => {
-      this.props.onChange && this.props.onChange(this.state)
-    })
+    this.setState({value, children}, this.triggerChange)
+  }
+
+  onChildChange = (childState) => {
+    const children = klona(this.state.children)
+    children[childState.index].fields = childState.fields
+    this.setState({children}, this.triggerChange)
+  }
+
+  triggerChange = () => {
+    this.props.onChange && this.props.onChange({...this.props, ...this.state})
   }
 
   renderChild = (element, index) => (
@@ -41,6 +47,7 @@ class Sections extends PureComponent {
       {...element}
       index={index}
       id={`${this.props.id}-${index}`}
+      onChange={this.onChildChange}
       onDeleteButton={this.removeChild}
     />
   )

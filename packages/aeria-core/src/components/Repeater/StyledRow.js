@@ -13,7 +13,7 @@ const StyledRow = styled.div`
   &:nth-child(even){
     background-color: ${props => props.theme.palette.white};
   }
-  margin: ${rem('10px')} 0;
+  margin: ${rem('10px')} 0 ${rem('10px')};
   padding-left: ${rem('10px')};
   user-select: none;
   justify-content: space-between;

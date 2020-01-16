@@ -6,14 +6,17 @@ import {
   Select,
   Picture,
   Gallery,
-  Repeater,
   Switch,
-  Sections,
-  Fieldset,
   DatePicker,
   DateRangePicker,
   // Maps
 } from '@aeria/uikit'
+
+import {
+  Fieldset,
+  Repeater,
+  Sections
+} from '@aeria/core'
 
 export default {
   metaboxes: window.aeriaMetaboxes,
