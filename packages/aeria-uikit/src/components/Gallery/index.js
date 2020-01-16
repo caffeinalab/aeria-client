@@ -93,6 +93,7 @@ class Gallery extends PureComponent {
 
       const childrenWithAttachments = [...children, ...attachments]
       this.props.onChange({
+        ...this.props,
         value: childrenWithAttachments.length,
         children: childrenWithAttachments,
       }, index)
@@ -106,6 +107,7 @@ class Gallery extends PureComponent {
     const children = Array.from(this.props.options.children)
     children.splice(index, 1)
     this.props.onChange({
+      ...this.props,
       value: children.length,
       children: children,
     }, this.props.index)
@@ -126,6 +128,10 @@ class Gallery extends PureComponent {
 
   onDelete = event => {
     this.deletePicture(event)
+  }
+
+  triggerChange = () => {
+    this.props.onChange && this.props.onChange({...this.props, ...this.state})
   }
 
   renderChild = (element, index) => (

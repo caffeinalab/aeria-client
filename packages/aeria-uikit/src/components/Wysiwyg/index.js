@@ -23,14 +23,9 @@ class Wysiwyg extends PureComponent {
     id: PropTypes.string,
 
     /**
-     * The current index on the form.
-     */
-    index: PropTypes.number.isRequired,
-
-    /**
      * Callback function invoked when the value of the wysiwyg has been changed.
      */
-    onChange: PropTypes.func.isRequired,
+    onChange: PropTypes.func,
 
     /**
      * Specifies the value of the wysiwyg field.
@@ -73,7 +68,7 @@ class Wysiwyg extends PureComponent {
 
   constructor(props) {
     super(props)
-    this.state = { value: props.value || props.defaultValue }
+    this.state = { value: props.value || props.defaultValue || '' }
     this.quillRef = createRef()
   }
 
@@ -85,17 +80,17 @@ class Wysiwyg extends PureComponent {
       }
     })
 
-    this.quill.on('editor-change', this.handleChange)
+    this.quill.on('editor-change', this.onChange)
     this.quill.root.innerHTML = this.state.value || ''
   }
 
   componentWillUnmount() {
-    this.quill.off('editor-change', this.handleChange)
+    this.quill.off('editor-change', this.onChange)
   }
 
-  handleChange = () => {
+  onChange = () => {
     this.setState({ value: this.quill.root.innerHTML }, () => {
-      this.props.onChange && this.props.onChange({ value: this.state.value }, this.props.index)
+      this.props.onChange && this.props.onChange({ ...this.props, value: this.state.value })
     })
   }
 
