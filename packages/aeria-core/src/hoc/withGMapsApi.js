@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react'
+import React, {useEffect, useState} from 'react'
 
 let LoadPromise
 
@@ -20,20 +20,16 @@ function loadGMapsApi(apiKey) {
   return LoadPromise
 }
 
-const AsyncComponent = async({Component, apiKey, ...props}) => {
-  if (!apiKey) {
-    return <p>Google Maps Api key is not found. Check it in Aeria Settings.</p>
-  }
-  await loadGMapsApi(apiKey)
-  return (
-    <Component {...props} />
-  )
-}
-
 export default function withGMapsApi(WrappedComponent) {
-  return (props) => (
-    <Suspense fallback={<p>Loading..</p>}>
-      <AsyncComponent Component={WrappedComponent} {...props} />
-    </Suspense>
-  )
+  return ({apiKey, ...props}) => {
+    if (!apiKey) {
+      return <p>Google Maps Api key is not found. Check it in Aeria Settings.</p>
+    }
+    const [apiLoaded, setApiLoaded] = useState(false)
+    useEffect(()=> {
+      loadGMapsApi(apiKey).then(() => setApiLoaded(true))
+    }, [])
+
+    return apiLoaded ? <WrappedComponent {...props} /> : <p>Loading..</p>
+  }
 }

@@ -13,25 +13,12 @@ Use `Maps` component when you need a multiple selection of values.
     <Maps
       apiKey={text('ApiKey', '')}
       id="feature"
-      label={''}
+      label={'Map'}
+      secondaryLabels={{
+        autocomplete: 'Indirizzo',
+        addressComponents: 'Dettagli'
+      }}
       description={text('Description Maps', 'Enable feature')}
-      fields={[{
-        type: "text",
-        id: "input-text",
-        label: "Name",
-        description: "description",
-        size: "half",
-        placeholder: "placeholder",
-        required: true
-      },{
-        type: "text",
-        id: "input-text",
-        label: "Surname",
-        description: "description",
-        size: "half",
-        placeholder: "placeholder",
-        required: true
-      }]}
       index={0}
       onChange={action('onChange')}
     />
