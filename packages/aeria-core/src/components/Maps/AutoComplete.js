@@ -1,10 +1,14 @@
-import React, {PureComponent} from 'react'
-import Input from '@aeria/uikit'
-
+import React, {PureComponent, createRef} from 'react'
+import {withLabel, StyledInput} from '@aeria/uikit'
+@withLabel
 class AutoComplete extends PureComponent {
-  onInputRef = (ref) =>{
-    this.ref = ref
-    this.autocomplete = new google.maps.places.Autocomplete(ref, {types: ['geocode']})
+  constructor(props) {
+    super(props)
+
+    this.ref = createRef()
+  }
+  componentDidMount() {
+    this.autocomplete = new google.maps.places.Autocomplete(this.ref.current, {types: ['geocode']})
 
     // Avoid paying for data that you don't need by restricting the set of
     // place fields that are returned to just the address components.
@@ -17,9 +21,9 @@ class AutoComplete extends PureComponent {
 
   onPlaceSelected = () => {
     const place = this.autocomplete.getPlace()
-    this.props.onChange({
+    this.props.onPlaceChange({
       place,
-      autocomplete: this.ref.value,
+      autocomplete: this.ref.current.value,
       position: {
         lat: place.geometry.location.lat(),
         lng: place.geometry.location.lng()
@@ -28,13 +32,12 @@ class AutoComplete extends PureComponent {
   }
 
   render() {
+    const {id, value} = this.props
     return (
-      <Input
+      <StyledInput
+        id={id}
+        ref={this.ref}
         type={'text'}
-        id={this.props.id}
-        name={this.props.id}
-        ref={this.onInputRef}
-        defaultValue={this.props.defaultValue}
       />
     )
   }

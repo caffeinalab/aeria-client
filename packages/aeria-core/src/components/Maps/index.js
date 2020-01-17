@@ -1,19 +1,22 @@
 import React, {PureComponent, Fragment} from 'react'
 import klona from 'klona'
-import { withLabel } from '@aeria/uikit'
+import { withAccordion } from '@aeria/uikit'
 import withGMapsApi from '../../hoc/withGMapsApi'
+
 import Map from './Map'
 import AutoComplete from './AutoComplete'
+import AddressComponents from './AddressComponents'
 
-@withLabel
+@withAccordion
 @withGMapsApi
 class Maps extends PureComponent {
   constructor(props) {
     super(props)
+    const {value = {}, defaultValue = {}} = props
     this.state = {
       position: {
-        lat: props.lat,
-        lng: props.lng
+        lat: value.lat || defaultValue.lat || 44.80148500000001,
+        lng: value.lng || defaultValue.lng || 10.327903600000013,
       }
     }
   }
@@ -28,6 +31,7 @@ class Maps extends PureComponent {
   }
 
   onPlaceChange = (data) => {
+    debugger
     this.setState({...data}, this.triggerChange)
   }
 
@@ -36,8 +40,8 @@ class Maps extends PureComponent {
   }
 
   render() {
-    const { id } = this.props
-    const { position } = this.state
+    const { id, secondaryLabels = {}} = this.props
+    const { position, place } = this.state
 
     return <Fragment>
       <Map
@@ -45,10 +49,18 @@ class Maps extends PureComponent {
         onMarkerDragEnd={this.onMarkerDragEnd}
       />
       <AutoComplete
+        label={secondaryLabels.autocomplete}
         id={`${id}-autocomplete`}
         onPlaceChange={this.onPlaceChange}
       />
 
+      <AddressComponents
+        lat={position.lat}
+        lng={position.lng}
+        // address={place.}
+        place={place}
+        label={secondaryLabels.addressComponents}
+      />
     </Fragment>
   }
 }

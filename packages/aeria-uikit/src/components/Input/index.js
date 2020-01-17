@@ -131,12 +131,13 @@ class Input extends PureComponent {
   }
 
   render() {
-    const {id, value, ...htmlAttributes} = this.props
+    const {id, value, controlled = false, ...htmlAttributes} = this.props
 
     return (
       <StyledInput
         id={id}
-        defaultValue={value}
+        value={controlled ? value : undefined}
+        defaultValue={!controlled ? value : undefined}
         {...htmlAttributes}
         onBlur={this.props.onBlur}
         onChange={this.onChange}
