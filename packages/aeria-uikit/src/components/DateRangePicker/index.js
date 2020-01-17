@@ -101,13 +101,13 @@ class DateRangePicker extends PureComponent {
   }
 
   triggerChange = () => {
-    this.props.onChange && this.props.onChange({...this.props, ...this.state})
+    this.props.onChange && this.props.onChange(this.state, this.props)
   }
 
   render() {
-    const {id, value = [], error} = this.props
+    const {id, error} = this.props
 
-    const { from, to, enteredTo } = this.state
+    const { value, from, to, enteredTo } = this.state
     const modifiers = { start: from, end: enteredTo || to }
     const disabledDays = { before: this.state.from }
     const selectedDays = [from, { from, to: enteredTo || to }]

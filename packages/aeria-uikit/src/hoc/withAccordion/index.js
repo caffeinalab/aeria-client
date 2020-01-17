@@ -23,7 +23,7 @@ export default function withAccordion(WrappedField) {
       }, () => {
         this.props.onChange && this.props.onChange({
           isOpen: this.state.isOpen
-        }, this.props.index)
+        }, this.props)
       })
     }
 

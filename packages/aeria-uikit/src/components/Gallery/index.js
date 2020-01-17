@@ -1,6 +1,6 @@
 import React, {PureComponent, Fragment} from 'react'
 import PropTypes from 'prop-types'
-import { arrayMove } from 'react-sortable-hoc'
+import klona from 'klona'
 
 import withLabel from '../../hoc/withLabel'
 import withValidation from '../../hoc/withValidation'
@@ -53,85 +53,40 @@ class Gallery extends PureComponent {
     error: PropTypes.string
   }
 
-  openUploader = (indexImg) => {
-    const {options, index} = this.props
-    const {label, children = []} = options
+  constructor(props) {
+    super(props)
 
-    // If the media frame already exists, reopen it.
-    if (this.frame) {
-      this.frame.open()
-      return
+    this.state = {
+      value: this.props.value || 0,
+      children: this.props.children || []
     }
-
-    if (!window.wp || !window.wp.media) {
-      throw new Error('wp.media doesn\'t exixt!')
-    }
-
-    // Create a new media frame
-    this.frame = window.wp.media({
-      title: `${label}`,
-      multiple: true // Set to true to allow multiple files to be selected
-    })
-
-    this.frame.on('open', () =>{
-      const selection = this.frame.state().get('selection')
-      this.props.options.children.forEach(child => {
-        selection.add(wp.media.attachment(child.value))
-      })
-    })
-
-    // When an image is selected in the media frame...
-    this.frame.on('select', () => {
-      const {models} = this.frame.state().get('selection')
-      const attachments = models.map(element => {
-        const attachment = element.toJSON()
-        return {
-          value: attachment.id,
-          url: attachment.url,
-        }
-      })
-
-      const childrenWithAttachments = [...children, ...attachments]
-      this.props.onChange({
-        ...this.props,
-        value: childrenWithAttachments.length,
-        children: childrenWithAttachments,
-      }, index)
-    })
-
-    // Finally, open the modal on click
-    this.frame.open()
   }
 
-  deletePicture(index) {
-    const children = Array.from(this.props.options.children)
-    children.splice(index, 1)
-    this.props.onChange({
-      ...this.props,
-      value: children.length,
-      children: children,
-    }, this.props.index)
+  onEdit = () => {
+    this.props.onEdit && this.props.onEdit(this.state, this.onDataChange)
   }
 
-  onSortEnd = ({oldIndex, newIndex}) => {
-    const children = Array.from(this.props.options.children)
-    this.props.onChange({
-      value: {
-        children: arrayMove(children, oldIndex, newIndex)
-      }
-    }, this.props.index)
+  onButton = () => {
+    this.props.onButton && this.props.onButton(this.state, this.onDataChange)
   }
 
-  onEdit = event => {
-    this.openUploader(event)
-  }
-
-  onDelete = event => {
-    this.deletePicture(event)
+  onDataChange(data) {
+    this.setState({ ...data }, this.triggerChange)
   }
 
   triggerChange = () => {
-    this.props.onChange && this.props.onChange({...this.props, ...this.state})
+    this.props.onChange && this.props.onChange(this.state, this.props)
+  }
+
+  removeChild = elementProps => {
+    const {index} = elementProps
+    const value = this.state.value - 1
+    const children = this.state.children.reduce((acc, c, i) => {
+      i !== index && acc.push(klona(c))
+      return acc
+    }, [])
+
+    this.onDataChange({value, children})
   }
 
   renderChild = (element, index) => (
@@ -141,17 +96,18 @@ class Gallery extends PureComponent {
         editable
         deletable
         index={index}
-        id={element.value}
+        value={element.value}
         url={element.url}
-        name={`${this.props.id}-${index}-picture`}
+        id={`${this.props.id}-${index}-picture`}
         onEdit={this.onEdit}
-        onDelete={this.onDelete}
+        onDelete={this.removeChild}
       />
     </StyledPicture>
   )
 
   render() {
-    const {id, value, error, children = [], ctaLabel = 'Add media'} = this.props
+    const {id, error, ctaLabel = 'Add media'} = this.props
+    const {value, children} = this.state
 
     return (
       <Fragment>
@@ -169,7 +125,7 @@ class Gallery extends PureComponent {
             children={children}
           />
           <StyledContainerButton>
-            <Button onClick={this.openUploader}>
+            <Button onClick={this.onButton}>
               {ctaLabel}
             </Button>
           </StyledContainerButton>

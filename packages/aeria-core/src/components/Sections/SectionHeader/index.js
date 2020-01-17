@@ -98,4 +98,4 @@ const SectionHeader = props => {
   )
 }
 
-export default memo(SectionHeader)
+export default SectionHeader
