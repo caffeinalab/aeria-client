@@ -21,7 +21,7 @@ export default function withValidation(WrappedComponent) {
       this.validatorHelper.validate((value))
         .then(error => {
           this.setState({ error }, () => {
-            this.props.onChange && this.props.onChange({ error }, this.props.index)
+            this.props.onChange && this.props.onChange({ error }, this.props)
           })
         })
     }

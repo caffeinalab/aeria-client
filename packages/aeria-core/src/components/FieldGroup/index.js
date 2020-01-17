@@ -35,12 +35,12 @@ class FieldGroup extends PureComponent {
     }
   }
 
-  onChildChange = (childState, index) => {
+  onChildChange = (childState, childProps) => {
     if (!this.props.onChange) {
       return
     }
     const fields = klona(this.props.fields)
-    fields[index] = {...fields[index], ...childState}
+    fields[childProps.index] = {...fields[childProps.index], ...childState}
     this.props.onChange({...this.props, fields})
   }
 

@@ -101,6 +101,9 @@ class Select extends PureComponent {
     super(props)
 
     this.loadOptions = throttle(this.loadOptions, THROTTLE_TIME)
+    this.state = {
+      value: this.props.value || this.props.defaultValue
+    }
   }
 
   loadOptions = (s, callback) => {
@@ -109,86 +112,63 @@ class Select extends PureComponent {
     }
 
     const {ajax, dependsOn, dependsOnField = false} = this.props
-    const params = {
-      ...ajax,
-      sender: 'SelectOptions',
-      s
-    }
-
-    const {
-      endpoint = '/wp-json/aeria/search'
-    } = ajax
+    const { endpoint = '/wp-json/aeria/search' } = ajax
+    const params = { ...ajax, sender: 'SelectOptions', s }
 
     if (dependsOn && dependsOnField) {
       params[dependsOn.key] = dependsOnField.value || dependsOnField.defaultValue
     }
 
-    this.lastFetch = fetchData(endpoint, {
-      ...ajax,
-      sender: 'SelectOptions',
-      s
-    })
+    this.lastFetch = fetchData(endpoint, params)
+      .then(data => {
+        data.forEach(option => {
+          option.value = String(option.value)
+        })
 
-    this.lastFetch.then(data => {
-      data.forEach(option => {
-        option.value = String(option.value)
+        callback && callback(data)
+        this.props.onChange({ options: data })
       })
-
-      callback && callback(data)
-
-      this.props.onChange({ ...this.props, options: data })
-    })
-  }
-
-  onChange = value => {
-    if (!value) {
-      this.props.onChange({ ...this.props, value: this.props.multiple ? [] : '' })
-    } else {
-      if (this.props.multiple) {
-        this.onChangeMultiple(value)
-      } else {
-        this.onChangeSingle(value)
-      }
-    }
-  }
-
-  onChangeSingle = ({ value }) => {
-    this.props.onChange({ ...this.props, value })
-  }
-
-  onChangeMultiple = values => {
-    const value = values.map(item => (
-      item.value
-    ))
-
-    this.props.onChange({
-      ...this.props,
-      value: value.join(',')
-    })
   }
 
   getSelectedValues() {
-    if (this.props.multiple) {
-      return this.getMultipleValue()
-    }
-    return this.getSingleValue()
+    return this.props.multiple ? this.getMultipleValue() : this.getSingleValue()
   }
 
   getSingleValue() {
     return this.props.options.find(({ value }) => (
-      `${value}` === `${this.props.value || this.props.defaultValue}`
+      `${value}` === `${this.state.value || this.state.defaultValue}`
     ))
   }
 
   getMultipleValue() {
-    const value = this.props.value || this.props.defaultValue
-
+    const {value} = this.state
     const values = Array.isArray(value) ? value : value.split(',')
     const stringValues = values.map(v => `${v}`)
 
     return this.props.options.filter(({ v }) => (
       stringValues.includes(`${v}`)
     ))
+  }
+
+  onChange = value => {
+    if (!value) {
+      this.props.onChange({ value: this.props.multiple ? [] : '' })
+    } else {
+      this.props.multiple ? this.onChangeMultiple(value) : this.onDataChange(value)
+    }
+  }
+
+  onChangeMultiple = values => {
+    const value = values.map(item => item.value)
+    this.onDataChange({ value: value.join(',') })
+  }
+
+  onDataChange(data) {
+    this.setState({ ...data }, this.triggerChange)
+  }
+
+  triggerChange = () => {
+    this.props.onChange && this.props.onChange(this.state, this.props)
   }
 
   render() {

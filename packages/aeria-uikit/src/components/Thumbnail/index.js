@@ -46,7 +46,7 @@ class Thumbnail extends Component {
   }
 
   render() {
-    const {name, index,  id, url, size, editable, deletable, expandable} = this.props
+    const { id, value, url, size, editable, deletable, expandable} = this.props
 
     return (
       <StyledPicture
@@ -58,16 +58,17 @@ class Thumbnail extends Component {
       >
         <input
           type="hidden"
-          name={`${name}`}
-          value={id}
+          id={id}
+          name={id}
+          value={value}
           readOnly
         />
         <StyledOverlay
           tabIndex="0"
           show={(deletable || editable || expandable) && this.state.show}
         >
-          {deletable && <StyledAction type="button" onClick={() => this.props.onDelete(index)}>Delete</StyledAction>}
-          {editable && <StyledAction type="button" onClick={() => this.props.onEdit(index)}>Edit</StyledAction>}
+          {deletable && <StyledAction type="button" onClick={() => this.props.onDelete(this.props)}>Delete</StyledAction>}
+          {editable && <StyledAction type="button" onClick={() => this.props.onEdit(this.props)}>Edit</StyledAction>}
         </StyledOverlay>
         <StyledImage img={url} />
       </StyledPicture>

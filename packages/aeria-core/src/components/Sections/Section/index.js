@@ -33,7 +33,7 @@ export default class Section extends Component {
   }
 
   triggerChange = () => {
-    this.props.onChange && this.props.onChange({...this.props, ...this.state})
+    this.props.onChange && this.props.onChange(this.state, this.props)
   }
 
   render() {

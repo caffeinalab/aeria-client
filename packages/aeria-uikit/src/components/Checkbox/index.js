@@ -46,7 +46,7 @@ class Checkbox extends PureComponent {
   }
 
   onChange = ({ target }) => {
-    this.props.onChange && this.props.onChange({...this.props, value: target.checked})
+    this.props.onChange && this.props.onChange({value: target.checked}, this.props)
   }
 
   render() {

@@ -50,7 +50,7 @@ class DatePicker extends PureComponent {
   }
 
   onChange = (date) => {
-    this.props.onChange && this.props.onChange({...this.props, value: formatDate(date)})
+    this.props.onChange && this.props.onChange({value: formatDate(date)}, this.props)
   }
 
   render() {

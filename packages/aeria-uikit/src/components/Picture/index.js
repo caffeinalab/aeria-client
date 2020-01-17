@@ -59,64 +59,37 @@ class Picture extends PureComponent {
     ctaLabel: 'Add Media'
   }
 
-  openUploader = (event) => {
-    const {options, index} = this.props
-    const {label} = options
-    // If the media frame already exists, reopen it.
-    if (this.frame) {
-      this.frame.open()
-      return
+  constructor(props) {
+    super(props)
+    this.state = {
+      value: this.props.value || null,
+      url: this.props.url || this.props.value || null
     }
-
-    if (!window.wp || !window.wp.media) {
-      throw new Error('wp.media doesn\'t exixt!')
-    }
-
-    // Create a new media frame
-    this.frame = window.wp.media({
-      title: `${label}`,
-      multiple: false // Set to true to allow multiple files to be selected
-    })
-
-    this.frame.on('open', () =>{
-      const {value, defaultValue} = this.props.options
-      const selection = this.frame.state().get('selection')
-      selection.add(wp.media.attachment(value !== undefined ? value : defaultValue))
-    })
-
-    // When an image is selected in the media frame...
-    this.frame.on('select', () => {
-      // Get media attachment details from the frame state
-      const attachment = this.frame.state().get('selection').first().toJSON()
-
-      this.props.onChange({
-        ...this.props,
-        value: attachment.id,
-        url: attachment.url
-      }, index)
-    })
-
-    // Finally, open the modal on click
-    this.frame.open()
   }
 
-  deletePicture = () => {
-    this.props.onChange({
-      ...this.props,
-      value: null
-    }, this.props.index)
+  onEdit = e => {
+    this.props.onEdit && this.props.onEdit(e, this.onDataChange)
   }
 
-  onEdit = event => {
-    this.openUploader(event)
+  onDelete = () => {
+    this.onDataChange({ value: null, url: null })
   }
 
-  onDelete = event => {
-    this.deletePicture(event)
+  onButton = e => {
+    this.props.onButton && this.props.onButton(e, this.onDataChange)
+  }
+
+  onDataChange(data) {
+    this.setState({ ...data }, this.triggerChange)
+  }
+
+  triggerChange = () => {
+    this.props.onChange && this.props.onChange(this.state, this.props)
   }
 
   render() {
-    const {id, value, url, error, ctaLabel} = this.props
+    const {id, error, ctaLabel} = this.props
+    const {value, url} = this.state
 
     return (
       <StyledContainer error={error}>
@@ -126,14 +99,14 @@ class Picture extends PureComponent {
               editable
               deletable
               expandable
-              id={value}
-              url={url || value}
-              name={id}
+              id={id}
+              url={url}
+              value={value}
               onEdit={this.onEdit}
               onDelete={this.onDelete}
             />
           ) : (
-            <Button onClick={(e) => this.openUploader(e)}>
+            <Button onClick={this.onButton}>
               {ctaLabel}
             </Button>
           )

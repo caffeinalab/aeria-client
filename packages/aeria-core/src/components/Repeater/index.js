@@ -41,7 +41,7 @@ class Repeater extends PureComponent {
   }
 
   triggerChange = () => {
-    this.props.onChange && this.props.onChange({...this.props, ...this.state})
+    this.props.onChange && this.props.onChange(this.state, this.props)
   }
 
   renderChild = (element, index) => (
