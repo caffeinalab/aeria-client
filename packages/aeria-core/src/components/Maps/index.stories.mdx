@@ -1,0 +1,45 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import Maps from './index.js';
+import { action } from '@storybook/addon-actions';
+import { text, boolean } from '@storybook/addon-knobs';
+
+<Meta title="core/Maps" component={Maps} />
+
+# Maps
+
+Use `Maps` component when you need a multiple selection of values.
+
+<Story name="Maps">
+    <Maps
+      apiKey={text('ApiKey', '')}
+      id="feature"
+      label={''}
+      description={text('Description Maps', 'Enable feature')}
+      fields={[{
+        type: "text",
+        id: "input-text",
+        label: "Name",
+        description: "description",
+        size: "half",
+        placeholder: "placeholder",
+        required: true
+      },{
+        type: "text",
+        id: "input-text",
+        label: "Surname",
+        description: "description",
+        size: "half",
+        placeholder: "placeholder",
+        required: true
+      }]}
+      index={0}
+      onChange={action('onChange')}
+    />
+</Story>
+
+<br /><br />
+
+#### Props definition
+
+<Props of={Maps} />
+

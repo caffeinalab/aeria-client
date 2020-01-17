@@ -1823,6 +1823,22 @@
     react-lifecycles-compat "^3.0.4"
     warning "^3.0.0"
 
+"@react-google-maps/api@^1.8.2":
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/@react-google-maps/api/-/api-1.8.2.tgz#cde0d4beb03c0ea58cd2e768a69437752c048ede"
+  dependencies:
+    "@react-google-maps/infobox" "1.8.2"
+    "@react-google-maps/marker-clusterer" "1.8.2"
+    invariant "2.2.4"
+
+"@react-google-maps/infobox@1.8.2":
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/@react-google-maps/infobox/-/infobox-1.8.2.tgz#da2cab6331fbdcb5580e64262befa88c55f4c7a4"
+
+"@react-google-maps/marker-clusterer@1.8.2":
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/@react-google-maps/marker-clusterer/-/marker-clusterer-1.8.2.tgz#ff556e1d9f34d5270b008d010e9f2e037409c623"
+
 "@storybook/addon-actions@^5.2.8":
   version "5.2.8"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-5.2.8.tgz#f63c6e1afb59e94ca1ebc776b7cad9b815e7419e"
@@ -5999,7 +6015,7 @@ interpret@1.2.0, interpret@^1.0.0, interpret@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.2.0.tgz#d5061a6224be58e8083985f5014d844359576296"
 
-invariant@^2.2.1, invariant@^2.2.2, invariant@^2.2.3, invariant@^2.2.4:
+invariant@2.2.4, invariant@^2.2.1, invariant@^2.2.2, invariant@^2.2.3, invariant@^2.2.4:
   version "2.2.4"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   dependencies:
