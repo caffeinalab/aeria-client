@@ -21,6 +21,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules\/(?!(swiper|dom7|@okiba)\/).*/,
         use: {
@@ -43,7 +47,8 @@ module.exports = {
                     ]
                   }
                 }
-              ]
+              ],
+
             ],
             plugins: ['@babel/plugin-proposal-class-properties']
           }
