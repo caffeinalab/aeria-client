@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {rem} from 'polished'
 
-import {dashedBorder} from '~/mixins/borders'
+import {dashedBorder} from '../../mixins/borders'
 
 const StyledInfo = styled.div`
   ${dashedBorder}

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {rem} from 'polished'
 
-import buttonMixin from '../../mixins/button'
+import {buttonMixin} from '../../mixins/button'
 import {headingSmall} from '../../mixins/typography'
 
 export default styled.button`

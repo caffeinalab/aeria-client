@@ -8,17 +8,17 @@ import FieldGroup from '../FieldGroup'
 class Fieldset extends PureComponent {
   static propTypes = {
     /**
-     * Specifies a unique id for the <input> element.
+     * Specifies a unique id for the `<input>` element.
      */
     id: PropTypes.string.isRequired,
 
     /**
-     * Defines a label for the <input> element.
+     * Defines a label for the `<input>` element.
      */
     label: PropTypes.string,
 
     /**
-     * Defines a description for the <input> element.
+     * Defines a description for the `<input>` element.
      */
     description: PropTypes.string,
 

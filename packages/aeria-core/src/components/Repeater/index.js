@@ -1,4 +1,5 @@
 import React, {PureComponent, Fragment} from 'react'
+import PropTypes from 'prop-types'
 import klona from 'klona'
 import { Button, Sortable, withLabel } from '@aeria/uikit'
 
@@ -8,6 +9,28 @@ import StyledContainerButton from './StyledContainerButton'
 
 @withLabel
 class Repeater extends PureComponent {
+  static propTypes = {
+    /**
+     * Specifies a unique id for the `<input>` element.
+     */
+    id: PropTypes.string.isRequired,
+
+    /**
+     * Defines a label for the `<input>` element.
+     */
+    label: PropTypes.string,
+
+    /**
+     * Defines a description for the `<input>` element.
+     */
+    description: PropTypes.string,
+
+    /**
+     * Defines the fields of this group.
+     */
+    fields: PropTypes.arrayOf(PropTypes.object),
+  }
+
   constructor(props) {
     super(props)
 

@@ -1,6 +1,5 @@
 import styled from 'styled-components'
-
-import {dashedBorder} from '~/mixins/borders'
+import {dashedBorder} from '@aeria/uikit'
 
 const StyledContainerButton = styled.div`
   ${dashedBorder}

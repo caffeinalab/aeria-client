@@ -15,12 +15,12 @@ const formatDate = date => date.toISOString().substring(0, 10)
 class DateRangePicker extends PureComponent {
   static propTypes = {
     /**
-     * Specifies a unique id for the <input> element.
+     * Specifies a unique id for the `<input>` element.
      */
     id: PropTypes.string.isRequired,
 
     /**
-     * Defines a label for the <input> element.
+     * Defines a label for the `<input>` element.
      */
     label: PropTypes.string,
 
@@ -40,7 +40,7 @@ class DateRangePicker extends PureComponent {
     index: PropTypes.number,
 
     /**
-     * Callback function invoked when the value of the <input> has been changed.
+     * Callback function invoked when the value of the `<input>` has been changed.
      */
     onChange: PropTypes.func
   }

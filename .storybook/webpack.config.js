@@ -29,8 +29,5 @@ module.exports = async ({ config, mode }) => {
   //   enforce: 'pre',
   // })
 
-  config.resolve.alias['@'] = path.resolve(__dirname, '../packages/aeria-uikit/src')
-  config.resolve.alias['~'] = path.resolve(__dirname, '../packages/aeria-uikit/src')
-
   return config
 };

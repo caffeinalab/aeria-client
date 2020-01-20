@@ -12,7 +12,7 @@ import AddressComponents from './AddressComponents'
 class Maps extends PureComponent {
   static propTypes = {
     /**
-     * Specifies a unique id for the <input> element.
+     * Specifies a unique id for the `<input>` element.
      */
     id: PropTypes.string.isRequired,
 
@@ -37,7 +37,7 @@ class Maps extends PureComponent {
     },
 
     /**
-     * Defines a description for the <input> element.
+     * Defines a description for the `<input>` element.
      */
     description: PropTypes.string,
 

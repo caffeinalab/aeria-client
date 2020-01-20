@@ -19,6 +19,22 @@ export { default as Switch } from './src/components/Switch'
 export { default as TextArea } from './src/components/TextArea'
 export { default as Thumbnail } from './src/components/Thumbnail'
 export { default as Wysiwyg } from './src/components/Wysiwyg'
+// HOC
 export { default as withLabel } from './src/hoc/withLabel'
 export { default as withAccordion } from './src/hoc/withAccordion'
 export { default as withValidation } from './src/hoc/withValidation'
+// MIXINS
+export { buttonMixin } from './src/mixins/button'
+export {
+  headingLarge,
+  headingMedium,
+  headingMediumBold,
+  headingSmall,
+  headingExtraSmall,
+  defaultText
+} from './src/mixins/typography'
+export {
+  solidBorder,
+  dottedBorder,
+  dashedBorder
+} from './src/mixins/borders'

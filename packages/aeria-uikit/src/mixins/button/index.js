@@ -1,6 +1,6 @@
 import {css} from 'styled-components'
 
-const buttonMixin = css`
+export const buttonMixin = css`
   overflow: visible;
 
   width: auto;
@@ -19,5 +19,3 @@ const buttonMixin = css`
   -moz-osx-font-smoothing: inherit;
   -webkit-appearance: none;
 `
-
-export default buttonMixin

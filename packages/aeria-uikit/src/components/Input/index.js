@@ -11,17 +11,17 @@ import withValidation from '../../hoc/withValidation'
 class Input extends PureComponent {
   static propTypes = {
     /**
-     * Specifies a unique id for the <input> element.
+     * Specifies a unique id for the `<input>` element.
      */
     id: PropTypes.string.isRequired,
 
     /**
-     * Defines a label for the <input> element.
+     * Defines a label for the `<input>` element.
      */
     label: PropTypes.string.isRequired,
 
     /**
-     * Specifies the value of the <input> element.
+     * Specifies the value of the `<input>` element.
      */
     value: PropTypes.oneOfType([
       PropTypes.string,
@@ -30,7 +30,7 @@ class Input extends PureComponent {
     ]),
 
     /**
-     * Specifies the initial value of the <input> element.
+     * Specifies the initial value of the `<input>` element.
      */
     defaultValue: PropTypes.oneOfType([
       PropTypes.string,
@@ -39,7 +39,7 @@ class Input extends PureComponent {
     ]),
 
     /**
-     * Describes the different input types for the <input> element.
+     * Describes the different input types for the `<input>` element.
      */
     type: PropTypes.oneOf([
       'text',
@@ -51,17 +51,17 @@ class Input extends PureComponent {
     ]).isRequired,
 
     /**
-     * Specifies the maximum number of characters allowed in the <input> element.
+     * Specifies the maximum number of characters allowed in the `<input>` element.
      */
     maxlength: PropTypes.number,
 
     /**
-     * Specifies the minimum number of characters allowed in the <input> element.
+     * Specifies the minimum number of characters allowed in the `<input>` element.
      */
     minlength: PropTypes.number,
 
     /**
-     * Specifies a regular expression that the <input> element's value is checked against on form submission.
+     * Specifies a regular expression that the `<input>` element's value is checked against on form submission.
      */
     pattern: PropTypes.string,
 
@@ -71,42 +71,42 @@ class Input extends PureComponent {
     spellcheck: PropTypes.bool,
 
     /**
-     * Specifies that the user is allowed to enter more than one value in the <input> element.
+     * Specifies that the user is allowed to enter more than one value in the `<input>` element.
      */
     multiple: PropTypes.bool,
 
     /**
-     * Specifies the interval between legal numbers in the <input> element.
+     * Specifies the interval between legal numbers in the `<input>` element.
      */
     step: PropTypes.number,
 
     /**
-     * Specifies the maximum value for the <input> element.
+     * Specifies the maximum value for the `<input>` element.
      */
     max: PropTypes.number,
 
     /**
-     * Specifies the minimum value for the <input> element.
+     * Specifies the minimum value for the `<input>` element.
      */
     min: PropTypes.number,
 
     /**
-     * Specifies that the <input> field must be filled out before submitting the form.
+     * Specifies that the `<input>` field must be filled out before submitting the form.
      */
     required: PropTypes.bool,
 
     /**
-     * Specifies that the <input> field is read-only.
+     * Specifies that the `<input>` field is read-only.
      */
     readOnly: PropTypes.bool,
 
     /**
-     * Specifies that the <input> field is disabled.
+     * Specifies that the `<input>` field is disabled.
      */
     disabled: PropTypes.bool,
 
     /**
-     * Secifies a short hint that describes the expected value of the <input> field.
+     * Secifies a short hint that describes the expected value of the `<input>` field.
      */
     placeholder: PropTypes.string,
 
@@ -121,7 +121,7 @@ class Input extends PureComponent {
     index: PropTypes.number,
 
     /**
-     * Callback function invoked when the value of the <input> has been changed.
+     * Callback function invoked when the value of the `<input>` has been changed.
      */
     onChange: PropTypes.func.isRequired,
   }
