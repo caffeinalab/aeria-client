@@ -6,7 +6,7 @@ export default function Map({position, onMarkerDragEnd}) {
     <GoogleMap
       zoom={18}
       center={position}
-      mapContainerStyle={{ height: '400px' }}
+      mapContainerStyle={{ height: '400px', margin: '0.625rem' }}
     >
       <Marker
         position={position}
