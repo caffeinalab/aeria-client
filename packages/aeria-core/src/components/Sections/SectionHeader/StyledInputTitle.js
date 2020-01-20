@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {headingLarge} from '~/mixins/typography'
+import {headingLarge} from '@aeria/uikit'
 
 const StyledInputTitle = styled.input`
   input[type="text"]&{

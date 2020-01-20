@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import {rem} from 'polished'
 
-import buttonMixin from '~/mixins/button'
-import {solidBorder} from '~/mixins/borders'
+import {buttonMixin} from '../../mixins/button'
+import {solidBorder} from '../../mixins/borders'
 
 export default styled.button`
   ${buttonMixin};

@@ -19,12 +19,12 @@ import StyledContainerButton from './StyledContainerButton'
 class Gallery extends PureComponent {
   static propTypes = {
     /**
-     * Specifies a unique id for the <input> element.
+     * Specifies a unique id for the `<input>` element.
      */
     id: PropTypes.string.isRequired,
 
     /**
-     * Specifies the value of the <input> element.
+     * Specifies the value of the `<input>` element.
      */
     value: PropTypes.oneOfType([
       PropTypes.string,
@@ -38,7 +38,7 @@ class Gallery extends PureComponent {
     children: PropTypes.array,
 
     /**
-     * Defines a label for the <input> element.
+     * Defines a label for the `<input>` element.
      */
     label: PropTypes.string,
 

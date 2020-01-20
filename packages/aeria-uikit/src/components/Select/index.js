@@ -27,17 +27,17 @@ const THROTTLE_TIME = 1000
 class Select extends PureComponent {
   static propTypes = {
     /**
-     * Specifies a unique id for the <input> element.
+     * Specifies a unique id for the `<select>` element.
      */
     id: PropTypes.string.isRequired,
 
     /**
-     * Defines a label for the <input> element.
+     * Defines a label for the `<select>` element.
      */
     label: PropTypes.string.isRequired,
 
     /**
-     * Specifies the value of the <select> element.
+     * Specifies the value of the `<select>` element.
      */
     value: PropTypes.oneOfType([
       PropTypes.string,
@@ -46,12 +46,12 @@ class Select extends PureComponent {
     ]),
 
     /**
-     * Specifies that the <select> field must be filled out before submitting the form.
+     * Specifies that the `<select>` field must be filled out before submitting the form.
      */
     required: PropTypes.bool,
 
     /**
-     * Specifies a short hint that describes the expected value of the <input> field.
+     * Specifies a short hint that describes the expected value of the `<input>` field.
      */
     placeholder: PropTypes.string,
 
@@ -66,7 +66,7 @@ class Select extends PureComponent {
     noOptionsMessage: PropTypes.string,
 
     /**
-     * Specifies that the user is allowed to enter more than one value in the <select> element.
+     * Specifies that the user is allowed to enter more than one value in the `<select>` element.
      */
     multiple: PropTypes.bool,
 
@@ -76,7 +76,7 @@ class Select extends PureComponent {
     delimiter: PropTypes.string,
 
     /**
-     * Specifies that the <select> field is disabled.
+     * Specifies that the `<select>` field is disabled.
      */
     isDisabled: PropTypes.bool,
 

@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import {rem} from 'polished'
-
-import {headingLarge} from '~/mixins/typography'
+import {headingLarge} from '@aeria/uikit'
 
 const StyledInfo = styled.div`
   position: relative;

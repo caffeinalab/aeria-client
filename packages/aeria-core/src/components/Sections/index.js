@@ -1,4 +1,5 @@
 import React, {PureComponent, Fragment} from 'react'
+import PropTypes from 'prop-types'
 import klona from 'klona'
 import { Sortable, withLabel } from '@aeria/uikit'
 import StyledContainerList from './StyledContainerList'
@@ -7,6 +8,28 @@ import Section from './Section'
 
 @withLabel
 class Sections extends PureComponent {
+  static propTypes = {
+    /**
+     * Specifies a unique id for the `<input>` element.
+     */
+    id: PropTypes.string.isRequired,
+
+    /**
+     * Defines a label for the `<input>` element.
+     */
+    label: PropTypes.string,
+
+    /**
+     * Defines a description for the `<input>` element.
+     */
+    description: PropTypes.string,
+
+    /**
+     * Defines the section type allowed.
+     */
+    accepts: PropTypes.arrayOf(PropTypes.string),
+  }
+
   constructor(props) {
     super(props)
     this.state = {

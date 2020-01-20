@@ -1,6 +1,6 @@
 import React from 'react'
-// import fieldValidable from '~/components/FieldValidable'
-// import isReactComponent from '~/utils/is-react-component'
+// import fieldValidable from '../components/FieldValidable'
+// import isReactComponent from '../../utils/is-react-component'
 
 const fallbackElement = _ => <div>Field type error</div>
 

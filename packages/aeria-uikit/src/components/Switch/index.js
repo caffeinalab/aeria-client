@@ -17,22 +17,22 @@ const VALID_VALUES = ['true', true, 1, '1', 'false', false, 0, '0']
 class Switch extends PureComponent {
   static propTypes = {
     /**
-     * Specifies a unique id for the <input> element.
+     * Specifies a unique id for the `<input>` element.
      */
     id: PropTypes.string.isRequired,
 
     /**
-     * Defines a label for the <input> element.
+     * Defines a label for the `<input>` element.
      */
     label: PropTypes.string.isRequired,
 
     /**
-     * Specifies the value of the <input> element.
+     * Specifies the value of the `<input>` element.
      */
     value: PropTypes.oneOf(VALID_VALUES),
 
     /**
-     * Specifies the initial value of the <input> element.
+     * Specifies the initial value of the `<input>` element.
      */
     defaultValue: PropTypes.oneOf(VALID_VALUES),
 
@@ -42,7 +42,7 @@ class Switch extends PureComponent {
     error: PropTypes.string,
 
     /**
-     * Callback function invoked when the value of the <input> has been changed.
+     * Callback function invoked when the value of the `<input>` has been changed.
      */
     onChange: PropTypes.func,
   }

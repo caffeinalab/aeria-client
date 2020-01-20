@@ -11,17 +11,17 @@ import withValidation from '../../hoc/withValidation'
 class Checkbox extends PureComponent {
   static propTypes = {
     /**
-     * Specifies a unique id for the <input> element.
+     * Specifies a unique id for the `<input>` element.
      */
     id: PropTypes.string.isRequired,
 
     /**
-     * Defines a label for the <input> element.
+     * Defines a label for the `<input>` element.
      */
     label: PropTypes.string.isRequired,
 
     /**
-     * Specifies the value of the <input> element.
+     * Specifies the value of the `<input>` element.
      */
     value: PropTypes.oneOfType([
       PropTypes.string,
@@ -40,7 +40,7 @@ class Checkbox extends PureComponent {
     error: PropTypes.string,
 
     /**
-     * Callback function invoked when the value of the <input> has been changed.
+     * Callback function invoked when the value of the `<input>` has been changed.
      */
     onChange: PropTypes.func,
   }

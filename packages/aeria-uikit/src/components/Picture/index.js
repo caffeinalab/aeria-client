@@ -14,12 +14,12 @@ import withValidation from '../../hoc/withValidation'
 class Picture extends PureComponent {
   static propTypes = {
     /**
-     * Specifies a unique id for the <input> element.
+     * Specifies a unique id for the `<input>` element.
      */
     id: PropTypes.string.isRequired,
 
     /**
-     * Specifies the value of the <input> element.
+     * Specifies the value of the `<input>` element.
      */
     value: PropTypes.oneOfType([
       PropTypes.string,
@@ -27,7 +27,7 @@ class Picture extends PureComponent {
     ]),
 
     /**
-     * Specifies the initial value of the <input> element.
+     * Specifies the initial value of the `<input>` element.
      */
     defaultValue: PropTypes.oneOfType([
       PropTypes.string,
@@ -40,7 +40,7 @@ class Picture extends PureComponent {
     url: PropTypes.string,
 
     /**
-     * Defines a label for the <input> element.
+     * Defines a label for the `<input>` element.
      */
     label: PropTypes.string,
 

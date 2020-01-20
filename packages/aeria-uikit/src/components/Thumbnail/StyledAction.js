@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import buttonMixin from '../../mixins/button'
+import {buttonMixin} from '../../mixins/button'
 import {headingSmall} from '../../mixins/typography'
 
 const StyledAction = styled.button`

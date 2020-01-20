@@ -15,17 +15,17 @@ const formatDate = date => date.toISOString().substring(0, 10)
 class DatePicker extends PureComponent {
   static propTypes = {
     /**
-     * Specifies a unique id for the <input> element.
+     * Specifies a unique id for the `<input>` element.
      */
     id: PropTypes.string.isRequired,
 
     /**
-     * Defines a label for the <input> element.
+     * Defines a label for the `<input>` element.
      */
     label: PropTypes.string,
 
     /**
-     * Specifies the value of the <input> element.
+     * Specifies the value of the `<input>` element.
      */
     value: PropTypes.string,
 
@@ -40,7 +40,7 @@ class DatePicker extends PureComponent {
     index: PropTypes.number,
 
     /**
-     * Callback function invoked when the value of the <input> has been changed.
+     * Callback function invoked when the value of the `<input>` has been changed.
      */
     onChange: PropTypes.func,
   }

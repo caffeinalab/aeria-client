@@ -30,7 +30,7 @@ class Textarea extends PureComponent {
     ]),
 
     /**
-     * Specifies the initial value of the <input> element.
+     * Specifies the initial value of the `<input>` element.
      */
     defaultValue: PropTypes.bool,
 
