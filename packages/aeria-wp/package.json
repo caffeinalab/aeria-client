@@ -8,5 +8,6 @@
   "keywords": [],
   "author": "",
   "contributors": [],
-  "license": "MIT"
+  "license": "MIT",
+  "private": true
 }
