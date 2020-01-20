@@ -25,7 +25,7 @@ class DateRangePicker extends PureComponent {
     label: PropTypes.string,
 
     /**
-     * Specifies the values of the <input>s element.
+     * Specifies the values of the `<input>`s element.
      */
     value: PropTypes.arrayOf(PropTypes.string),
 
@@ -33,11 +33,6 @@ class DateRangePicker extends PureComponent {
      * A string with the error if occurs.
      */
     error: PropTypes.string,
-
-    /**
-     * The current index on the form.
-     */
-    index: PropTypes.number,
 
     /**
      * Callback function invoked when the value of the `<input>` has been changed.
