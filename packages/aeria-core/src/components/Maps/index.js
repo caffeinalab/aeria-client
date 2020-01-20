@@ -41,6 +41,12 @@ class Maps extends PureComponent {
      */
     description: PropTypes.string,
 
+
+    /**
+     * Defines an Api key of Google Map to render the map and the autocomplete input
+     */
+    apiKey: PropTypes.string,
+
     /**
      * Defines the value object
      */
