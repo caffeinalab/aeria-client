@@ -27,32 +27,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules\/(?!(swiper|dom7|@okiba)\/).*/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              [
-                '@babel/preset-env',
-                {
-                  useBuiltIns: 'usage',
-                  corejs: '3',
-                  targets: {
-                    browsers: [
-                      'last 3 Safari major versions',
-                      'last 3 iOS major versions',
-                      'last 3 Chrome major versions',
-                      'last 3 Firefox major versions',
-                      'last 3 Edge major versions',
-                      'Explorer 11'
-                    ]
-                  }
-                }
-              ],
-
-            ],
-            plugins: ['@babel/plugin-proposal-class-properties']
-          }
-        }
+        use: ['babel-loader']
       }
     ]
   },
