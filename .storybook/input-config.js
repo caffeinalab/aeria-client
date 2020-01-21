@@ -9,21 +9,16 @@ import {
   Switch,
   DatePicker,
   DateRangePicker,
-  // Maps
 } from '@aeria/uikit'
 
 import {
+  Maps,
   Fieldset,
   Repeater,
   Sections
 } from '@aeria/core'
 
 export default {
-  metaboxes: window.aeriaMetaboxes,
-  module: {
-    sectionTypes: window.aeriaSections || [],
-    theme: window.aeriaTheme
-  },
   uikit: {
     'text': Input,
     'number': Input,

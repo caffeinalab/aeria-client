@@ -4,7 +4,7 @@ import { withKnobs } from '@storybook/addon-knobs'
 
 import {GlobalStyles} from '../packages/aeria-uikit'
 import {getTheme, Provider, FieldsManager} from '../packages/aeria-core'
-import config from '../examples/src/config/wp'
+import config from './input-config'
 
 FieldsManager.use(config.uikit)
 
