@@ -11,13 +11,19 @@ export default class Section extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      title: this.props.title || '',
+      fields: this.props.fields || [],
       isDraft: this.props.isDraft || false,
-      accordionState: this.props.accordionState || true
+      accordionState: this.props.accordionState || true,
     }
   }
 
   onChangeTitle = ({target}) =>{
     this.setState({title: target.value }, this.triggerChange)
+  }
+
+  onChangeFields = ({fields}) => {
+    this.setState({fields: fields }, this.triggerChange)
   }
 
   onToggleDraftButton = () => {
@@ -37,8 +43,7 @@ export default class Section extends Component {
   }
 
   render() {
-    const { fields = [] } = this.props
-    const { accordionState, isDraft } = this.state
+    const { accordionState, isDraft, fields } = this.state
 
     return (
       <StyledSection>
@@ -57,7 +62,7 @@ export default class Section extends Component {
               fields={fields}
               id={this.props.id}
               index={this.props.index}
-              onChange={this.props.onChange}
+              onChange={this.onChangeFields}
             />
           </StyledContainer>
         </Collapse>

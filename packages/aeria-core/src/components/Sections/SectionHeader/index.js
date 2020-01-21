@@ -1,4 +1,4 @@
-import React, {memo} from 'react'
+import React from 'react'
 
 import {Icons, DragHandle} from '@aeria/uikit'
 
@@ -36,7 +36,7 @@ const SectionHeader = props => {
     return value
   }
 
-  let title = props.title || ''
+  let title = props.title
   let label = props.label || props.type
 
   if (titleAs) {

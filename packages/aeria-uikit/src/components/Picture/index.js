@@ -68,7 +68,7 @@ class Picture extends PureComponent {
   }
 
   onEdit = e => {
-    this.props.onEdit && this.props.onEdit(e, this.onDataChange)
+    this.props.onEdit && this.props.onEdit(e, this.state, this.onDataChange)
   }
 
   onDelete = () => {
@@ -76,7 +76,7 @@ class Picture extends PureComponent {
   }
 
   onButton = e => {
-    this.props.onButton && this.props.onButton(e, this.onDataChange)
+    this.props.onButton && this.props.onButton(e, this.state, this.onDataChange)
   }
 
   onDataChange(data) {

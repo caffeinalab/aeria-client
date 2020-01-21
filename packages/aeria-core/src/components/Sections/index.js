@@ -33,14 +33,15 @@ class Sections extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      value: props.value || 0,
+      value: props.value || [],
       children: props.children || []
     }
   }
 
   addChild = (e) => {
-    const value = this.state.value + 1
+    const value = klona(this.state.value)
     const children = klona(this.state.children)
+    value.push(e.id)
     children.push(e)
     this.setState({value, children}, this.triggerChange)
   }
@@ -55,9 +56,9 @@ class Sections extends PureComponent {
     this.setState({value, children}, this.triggerChange)
   }
 
-  onChildChange = (childState) => {
+  onChildChange = (childState, childProps) => {
     const children = klona(this.state.children)
-    children[childState.index].fields = childState.fields
+    children[childProps.index] = { ...children[childProps.index], ...childState }
     this.setState({children}, this.triggerChange)
   }
 
@@ -78,13 +79,14 @@ class Sections extends PureComponent {
   render() {
     const {id} = this.props
     const {value, children} = this.state
+    const inputValue = value && typeof value === 'object' ? value.join(',') : value
 
     return (
       <Fragment>
         <input
           type="hidden"
           name={id}
-          value={value}
+          value={inputValue}
           readOnly
         />
         <StyledContainerList>

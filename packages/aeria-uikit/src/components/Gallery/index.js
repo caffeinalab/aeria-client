@@ -62,12 +62,12 @@ class Gallery extends PureComponent {
     }
   }
 
-  onEdit = () => {
-    this.props.onEdit && this.props.onEdit(this.state, this.onDataChange)
+  onEdit = e => {
+    this.props.onEdit && this.props.onEdit(e, this.state, this.onDataChange)
   }
 
-  onButton = () => {
-    this.props.onButton && this.props.onButton(this.state, this.onDataChange)
+  onButton = e => {
+    this.props.onButton && this.props.onButton(e, this.state, this.onDataChange)
   }
 
   onDataChange(data) {

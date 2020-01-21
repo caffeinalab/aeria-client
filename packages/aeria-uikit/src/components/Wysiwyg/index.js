@@ -90,7 +90,7 @@ class Wysiwyg extends PureComponent {
 
   onChange = () => {
     this.setState({ value: this.quill.root.innerHTML }, () => {
-      this.props.onChange && this.props.onChange({ ...this.props, value: this.state.value })
+      this.props.onChange && this.props.onChange({value: this.state.value}, this.props)
     })
   }
 

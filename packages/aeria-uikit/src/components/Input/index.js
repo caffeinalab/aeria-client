@@ -136,6 +136,7 @@ class Input extends PureComponent {
     return (
       <StyledInput
         id={id}
+        name={id}
         value={controlled ? value : undefined}
         defaultValue={!controlled ? value : undefined}
         {...htmlAttributes}
