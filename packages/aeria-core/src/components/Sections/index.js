@@ -47,7 +47,7 @@ class Sections extends PureComponent {
   }
 
   removeChild = (index) => {
-    const value = this.state.value - 1
+    const value = klona(this.state.value).splice(index, 1)
     const children = this.state.children.reduce((acc, c, i) => {
       i !== index && acc.push(klona(c))
       return acc
