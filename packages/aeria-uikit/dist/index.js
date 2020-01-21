@@ -17711,16 +17711,16 @@ function withAccordion(WrappedField) {
 
       withAccordion_defineProperty(withAccordion_assertThisInitialized(_this), "onAccordionButton", function () {
         _this.setState({
-          isOpen: !_this.state.isOpen
+          accordionState: !_this.state.accordionState
         }, function () {
           _this.props.onChange && _this.props.onChange({
-            isOpen: _this.state.isOpen
+            accordionState: _this.state.accordionState
           }, _this.props);
         });
       });
 
       _this.state = {
-        isOpen: props.isOpen !== undefined ? props.isOpen : true
+        accordionState: props.accordionState !== undefined ? props.accordionState : true
       };
       return _this;
     }
@@ -17732,11 +17732,16 @@ function withAccordion(WrappedField) {
           style: {
             padding: '0.625rem'
           }
-        }, react_default.a.createElement(withAccordion_StyledHeader, null, react_default.a.createElement(components_Label, this.props), react_default.a.createElement(withAccordion_StyledSeparator, null), react_default.a.createElement(withAccordion_StyledAccordionButton, {
+        }, react_default.a.createElement("input", {
+          type: "hidden",
+          name: "".concat(this.props.id, "-accordion-state"),
+          value: this.state.accordionState,
+          readOnly: true
+        }), react_default.a.createElement(withAccordion_StyledHeader, null, react_default.a.createElement(components_Label, this.props), react_default.a.createElement(withAccordion_StyledSeparator, null), react_default.a.createElement(withAccordion_StyledAccordionButton, {
           onClick: this.onAccordionButton,
-          accordionState: this.state.isOpen
+          accordionState: this.state.accordionState
         })), react_default.a.createElement(Collapse_umd_default.a, {
-          isOpen: this.state.isOpen,
+          isOpen: this.state.accordionState,
           transition: "height 300ms cubic-bezier(.4, 0, .2, 1)"
         }, react_default.a.createElement(withAccordion_StyledContent, null, react_default.a.createElement(WrappedField, this.props))));
       }

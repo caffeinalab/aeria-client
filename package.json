@@ -69,7 +69,7 @@
     "build:storybook": "build-storybook -o docs",
     "build": "yarn run build:packages && yarn run build:storybook",
     "dev": "yarn run bootstrap && yarn storybook",
-    "version": "yarn run build",
+    "version": "yarn run build:packages",
     "publish": "lerna publish",
     "storybook": "NODE_ENV=development start-storybook -p 6006 -s ./stories/public"
   }
