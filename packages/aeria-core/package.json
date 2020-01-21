@@ -11,5 +11,22 @@
     "Andrea 'Fiad' Fiadone <andrea.fiadone@caffeina.com> (https://github.com/fiadone)",
     "Alberto Parziale <alberto.parziale@caffeina.com> (https://github.com/lavolpecheprogramma)"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "gitHead": "7121c3eadd159af4b311b81eb86a2a0979f83762",
+  "dependencies": {
+    "@kunukn/react-collapse": "^2.2.7",
+    "@react-google-maps/api": "^1.8.2",
+    "array-move": "^2.2.1",
+    "klona": "^1.1.1",
+    "polished": "^3.4.2",
+    "prop-types": "^15.7.2",
+    "styled-components": "^5.0.0",
+    "styled-components-grid": "^2.2.2",
+    "styled-components-theme": "^1.0.5",
+    "styled-map": "^3.3.0"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
 }
