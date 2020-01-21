@@ -43,10 +43,12 @@ class AutoComplete extends PureComponent {
   }
 
   render() {
-    const { id } = this.props
+    const { id, value } = this.props
     return (
       <StyledInput
         id={id}
+        name={id}
+        defaultValue={value}
         ref={this.ref}
         type={'text'}
       />

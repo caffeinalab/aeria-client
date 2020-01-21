@@ -24,7 +24,7 @@ class Maps extends PureComponent {
     /**
      * Defines the labels for all subinputs.
      */
-    secondaryLabels: {
+    secondaryLabels: PropTypes.shape({
       address: PropTypes.string,
       lat: PropTypes.string,
       lng: PropTypes.string,
@@ -34,7 +34,7 @@ class Maps extends PureComponent {
       route: PropTypes.string,
       streetNumber: PropTypes.string,
       postalCode: PropTypes.string
-    },
+    }),
 
     /**
      * Defines a description for the `<input>` element.
@@ -147,8 +147,8 @@ class Maps extends PureComponent {
 
   render() {
     const { id, secondaryLabels} = this.props
-    const { lat, lng } = this.state
-    debugger
+    const { lat, lng, address } = this.state
+
     return (
       <Fragment>
         <Map
@@ -156,8 +156,9 @@ class Maps extends PureComponent {
           onMarkerDragEnd={this.onMarkerDragEnd}
         />
         <AutoComplete
-          label={secondaryLabels.address}
           id={`${id}-address`}
+          label={secondaryLabels.address}
+          value={address}
           onPlaceChange={this.onPlaceChange}
         />
         <AddressComponents

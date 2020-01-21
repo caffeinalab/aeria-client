@@ -13,16 +13,16 @@ export default function withAccordion(WrappedField) {
       super(props)
 
       this.state = {
-        isOpen: props.isOpen !== undefined ? props.isOpen : true
+        accordionState: props.accordionState !== undefined ? props.accordionState : true
       }
     }
 
     onAccordionButton = () =>{
       this.setState({
-        isOpen: !this.state.isOpen
+        accordionState: !this.state.accordionState
       }, () => {
         this.props.onChange && this.props.onChange({
-          isOpen: this.state.isOpen
+          accordionState: this.state.accordionState
         }, this.props)
       })
     }
@@ -30,15 +30,21 @@ export default function withAccordion(WrappedField) {
     render() {
       return (
         <div style={{padding: '0.625rem'}}>
+          <input
+            type="hidden"
+            name={`${this.props.id}-accordion-state`}
+            value={this.state.accordionState}
+            readOnly
+          />
           <StyledHeader>
             <Label {...this.props} />
             <StyledSeparator />
             <StyledAccordionButton
               onClick={this.onAccordionButton}
-              accordionState={this.state.isOpen}
+              accordionState={this.state.accordionState}
             />
           </StyledHeader>
-          <Collapse isOpen={this.state.isOpen} transition="height 300ms cubic-bezier(.4, 0, .2, 1)">
+          <Collapse isOpen={this.state.accordionState} transition="height 300ms cubic-bezier(.4, 0, .2, 1)">
             <StyledContent>
               <WrappedField {...this.props} />
             </StyledContent>
