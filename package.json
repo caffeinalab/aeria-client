@@ -69,8 +69,7 @@
     "build:storybook": "build-storybook -o docs",
     "build": "yarn run build:packages && yarn run build:storybook",
     "dev": "yarn run bootstrap && yarn storybook",
-    "readme": "node ./bin/readme/generate.js",
-    "version": "yarn run build && yarn run readme",
+    "version": "yarn run build",
     "publish": "lerna publish",
     "storybook": "NODE_ENV=development start-storybook -p 6006 -s ./stories/public"
   }

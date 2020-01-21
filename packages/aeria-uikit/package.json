@@ -1,12 +1,15 @@
 {
   "name": "@aeria/uikit",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
   "module": "index.js",
   "scripts": {},
   "keywords": [],
   "author": "",
-  "contributors": [],
-  "license": "MIT"
+  "contributors": [
+    "Andrea 'Fiad' Fiadone <andrea.fiadone@caffeina.com> (https://github.com/fiadone)",
+    "Alberto Parziale <alberto.parziale@caffeina.com> (https://github.com/lavolpecheprogramma)"
+  ],
+  "license": "MIT",
 }
