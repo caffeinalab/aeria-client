@@ -43,6 +43,7 @@ class Select extends PureComponent {
       PropTypes.string,
       PropTypes.number,
       PropTypes.bool,
+      PropTypes.array,
     ]),
 
     /**
@@ -91,7 +92,6 @@ class Select extends PureComponent {
     classNamePrefix: 'AeriaSelect',
     multiple: false,
     dependsOnField: false,
-    defaultValue: '',
     delimiter: ',',
     loadingMessage: 'Looking for results...',
     noOptionsMessage: 'No result found',
@@ -102,7 +102,8 @@ class Select extends PureComponent {
 
     this.loadOptions = throttle(this.loadOptions, THROTTLE_TIME)
     this.state = {
-      value: this.props.value || this.props.defaultValue
+      value: this.props.value || this.props.defaultValue || (this.props.multiple ? [] : ''),
+      options: this.props.options || []
     }
   }
 
@@ -126,16 +127,18 @@ class Select extends PureComponent {
         })
 
         callback && callback(data)
-        this.props.onChange({ options: data })
+        this.onDataChange({ options: data })
       })
   }
-
+  noOptionsMessage= () => {
+    return this.props.noOptionsMessage
+  }
   getSelectedValues() {
     return this.props.multiple ? this.getMultipleValue() : this.getSingleValue()
   }
 
   getSingleValue() {
-    return this.props.options.find(({ value }) => (
+    return this.state.options.find(({ value }) => (
       `${value}` === `${this.state.value || this.state.defaultValue}`
     ))
   }
@@ -145,16 +148,16 @@ class Select extends PureComponent {
     const values = Array.isArray(value) ? value : value.split(',')
     const stringValues = values.map(v => `${v}`)
 
-    return this.props.options.filter(({ v }) => (
-      stringValues.includes(`${v}`)
+    return this.state.options.filter(({ value }) => (
+      stringValues.includes(`${value}`)
     ))
   }
 
   onChange = value => {
     if (!value) {
-      this.props.onChange({ value: this.props.multiple ? [] : '' })
+      this.onDataChange({ value: this.props.multiple ? [] : '' })
     } else {
-      this.props.multiple ? this.onChangeMultiple(value) : this.onDataChange(value)
+      this.props.multiple ? this.onChangeMultiple(value) : this.onDataChange({value: value.value})
     }
   }
 
@@ -182,7 +185,8 @@ class Select extends PureComponent {
           defaultOptions
           name={id}
           isMulti={multiple}
-          defaultValue={value}
+          value={value}
+          noOptionsMessage={this.noOptionsMessage}
           onChange={this.onChange}
           loadOptions={this.loadOptions}
         />
@@ -193,7 +197,8 @@ class Select extends PureComponent {
         {...props}
         name={id}
         isMulti={multiple}
-        defaultValue={value}
+        value={value}
+        noOptionsMessage={this.noOptionsMessage}
         onChange={this.onChange}
       />
     )

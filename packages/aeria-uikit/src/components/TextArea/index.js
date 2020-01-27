@@ -11,17 +11,17 @@ import withValidation from '../../hoc/withValidation'
 class Textarea extends PureComponent {
   static propTypes = {
     /**
-     * Specifies a unique id for the `<textarea>` element.
+     * Specifies a unique id for the <textarea> element.
      */
     id: PropTypes.string.isRequired,
 
     /**
-     * Defines a label for the `<textarea>` element.
+     * Defines a label for the <textarea> element.
      */
     label: PropTypes.string.isRequired,
 
     /**
-     * Specifies the value of the `<textarea>` element.
+     * Specifies the value of the <textarea> element.
      */
     value: PropTypes.oneOfType([
       PropTypes.string,
@@ -30,7 +30,7 @@ class Textarea extends PureComponent {
     ]),
 
     /**
-     * Specifies the initial value of the `<textarea>` element.
+     * Specifies the initial value of the `<input>` element.
      */
     defaultValue: PropTypes.bool,
 
@@ -40,7 +40,7 @@ class Textarea extends PureComponent {
     error: PropTypes.string,
 
     /**
-     * Callback function invoked when the value of the `<textarea>` has been changed.
+     * Callback function invoked when the value of the <textarea> has been changed.
      */
     onChange: PropTypes.func.isRequired,
   }
@@ -59,6 +59,7 @@ class Textarea extends PureComponent {
     return (
       <StyledTextArea
         id={id}
+        name={id}
         {...htmlAttributes}
         onBlur={this.onBlur}
         onChange={this.onChange}

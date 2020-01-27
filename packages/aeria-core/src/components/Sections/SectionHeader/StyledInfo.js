@@ -11,7 +11,7 @@ const StyledInfo = styled.div`
 
   max-width: 100%;
 
-  padding: ${rem('6px')} 0;
+  padding: ${rem('2px')} 0;
 
   strong {
     padding-right: ${rem('10px')};

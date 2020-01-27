@@ -5,6 +5,8 @@ import {dashedBorder} from '@aeria/uikit'
 const StyledContainerButton = styled.div`
   ${dashedBorder}
   border-top: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
   width: 100%;
   display: flex;
   padding: ${rem('20px')};

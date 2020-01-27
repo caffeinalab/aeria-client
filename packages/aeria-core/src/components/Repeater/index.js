@@ -1,7 +1,7 @@
 import React, {PureComponent, Fragment} from 'react'
 import PropTypes from 'prop-types'
 import klona from 'klona'
-import { Button, Sortable, withLabel } from '@aeria/uikit'
+import { Button, Sortable, withLabel, Info } from '@aeria/uikit'
 
 import RepeaterRow from './RepeaterRow'
 import StyledContainerContent from './StyledContainerContent'
@@ -26,35 +26,87 @@ class Repeater extends PureComponent {
     description: PropTypes.string,
 
     /**
+     * Defines the minimum children size.
+     */
+    min: PropTypes.number,
+
+
+    /**
+     * Defines the maximum children size.
+     */
+    max: PropTypes.number,
+
+    /**
      * Defines the fields of this group.
      */
     fields: PropTypes.arrayOf(PropTypes.object),
+
+    /**
+     * Defines the extra labels.
+     */
+    secondaryLabels: PropTypes.shape({
+      minError: PropTypes.string,
+      maxError: PropTypes.string
+    }),
+  }
+
+  static defaultProps = {
+    value: 0,
+    children: [],
+    min: 0,
+    max: Infinity,
+    secondaryLabels: {
+      minError: 'You have reached the minimum size',
+      maxError: 'You have reached the maximum size'
+    }
   }
 
   constructor(props) {
     super(props)
+    const children = this.getInitialChildren(props)
 
     this.state = {
-      value: props.value || 0,
-      children: props.children || []
+      value: children.length,
+      children
     }
+  }
+
+  getInitialChildren({ fields, children, min, max }) {
+    let ensuredChildren = klona(children)
+    for (let i = ensuredChildren.length; i < min; i++) {
+      ensuredChildren.push(klona(fields))
+    }
+
+    if (max < ensuredChildren.length) {
+      ensuredChildren = ensuredChildren.slice(max - 1, ensuredChildren.length - 1)
+    }
+    return ensuredChildren
   }
 
   addChild = () => {
     const value = this.state.value + 1
+    if (value > this.props.max) {
+      this.setState({sizeError: this.props.secondaryLabels.maxError}, this.triggerChange)
+      return
+    }
     const children = klona(this.state.children)
     children.push(klona(this.props.fields))
-    this.setState({value, children}, this.triggerChange)
+    this.setState({value, children, sizeError: undefined}, this.triggerChange)
   }
 
   removeChild = (index) => {
     const value = this.state.value - 1
+
+    if (value < this.props.min) {
+      this.setState({sizeError: this.props.secondaryLabels.minError}, this.triggerChange)
+      return
+    }
     const children = this.state.children.reduce((acc, c, i) => {
       i !== index && acc.push(klona(c))
       return acc
     }, [])
 
-    this.setState({value, children}, this.triggerChange)
+    this.setState({value, children, sizeError: undefined}, this.triggerChange)
   }
 
   onChildChange = (childState) => {
@@ -95,6 +147,7 @@ class Repeater extends PureComponent {
           children={children}
         />
       </StyledContainerContent>
+      {this.state.sizeError && <Info type="error">{this.state.sizeError}</Info>}
       <StyledContainerButton>
         <Button
           withIcon="add"

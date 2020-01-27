@@ -15,7 +15,6 @@ const SectionHeader = props => {
     titleAs = false,
     labelAs = false,
     titleHidden = false,
-    sectionIsDraft,
     accordionState,
     isDraft,
     onChangeTitle,
@@ -36,7 +35,7 @@ const SectionHeader = props => {
     return value
   }
 
-  let title = props.title
+  let title = props.title || ''
   let label = props.label || props.type
 
   if (titleAs) {
@@ -85,7 +84,7 @@ const SectionHeader = props => {
 
       <StyledWrapperCta>
         <StyledCta onClick={onToggleDraftButton} >
-          <Icons icon={ sectionIsDraft ? 'hidden' : 'show'} />
+          <Icons icon={ isDraft ? 'hidden' : 'show'} />
         </StyledCta>
         <StyledCta onClick={onAccordionButton} >
           <Icons icon="edit" />

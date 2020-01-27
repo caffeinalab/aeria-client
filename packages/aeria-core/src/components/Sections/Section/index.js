@@ -27,7 +27,7 @@ export default class Section extends Component {
   }
 
   onToggleDraftButton = () => {
-    this.setState({isDraft: !this.state.isDraft }, this.triggerChange)
+    this.setState({isDraft: !this.state.isDraft, accordionState: !!this.state.isDraft }, this.triggerChange)
   }
 
   onAccordionButton = () =>{
@@ -56,7 +56,7 @@ export default class Section extends Component {
           onAccordionButton={this.onAccordionButton}
           onDeleteButton={this.onDeleteButton}
         />
-        <Collapse isOpen={accordionState} transition="height 300ms cubic-bezier(.4, 0, .2, 1)">
+        <Collapse overflowOnExpanded isOpen={accordionState} transition="height 300ms cubic-bezier(.4, 0, .2, 1)">
           <StyledContainer>
             <FieldGroup
               fields={fields}

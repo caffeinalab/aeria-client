@@ -15,6 +15,8 @@ export default styled(StyledWrapper)`
   .DayPicker-Day {
     width: ${rem('40px')};
     height: ${rem('40px')};
+
+    padding: 0;
   }
 
   .DayPicker-Day.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside),

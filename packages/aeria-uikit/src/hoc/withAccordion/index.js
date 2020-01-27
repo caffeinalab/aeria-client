@@ -44,7 +44,7 @@ export default function withAccordion(WrappedField) {
               accordionState={this.state.accordionState}
             />
           </StyledHeader>
-          <Collapse isOpen={this.state.accordionState} transition="height 300ms cubic-bezier(.4, 0, .2, 1)">
+          <Collapse overflowOnExpanded isOpen={this.state.accordionState} transition="height 300ms cubic-bezier(.4, 0, .2, 1)">
             <StyledContent>
               <WrappedField {...this.props} />
             </StyledContent>

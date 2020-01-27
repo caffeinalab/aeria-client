@@ -19,6 +19,11 @@ class AutoComplete extends PureComponent {
 
   componentDidMount() {
     this.autocomplete = new google.maps.places.Autocomplete(this.ref.current, {types: ['geocode']})
+    google.maps.event.addDomListener(this.ref.current, 'keydown', function(event) {
+      if (event.keyCode === 13) {
+        event.preventDefault()
+      }
+    })
     this.autocomplete.setFields(['address_component', 'formatted_address', 'geometry'])
     this.autocomplete.addListener('place_changed', this.onPlaceSelected)
   }

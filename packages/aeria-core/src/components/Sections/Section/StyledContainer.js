@@ -8,4 +8,5 @@ export default styled.div`
   padding-left: ${rem('10px')};
   padding-right: ${rem('10px')};
   padding-bottom: ${rem('10px')};
+  margin-bottom: ${rem('10px')};
 `

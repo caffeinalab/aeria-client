@@ -15,7 +15,8 @@ const StyledInfo = styled.div`
 	margin: 0 ${rem('10px')} ${rem('20px')} 0;
 
 	font-size: 1rem;
-
+	border-color: ${props => props.type === 'error'	?
+    props.theme.palette.errorMain : props.theme.palette.primaryLight};
 	background: ${props => props.type === 'error'	?
     props.theme.palette.errorBg : props.theme.palette.primaryLight};
 	color: ${props => props.type === 'error'	?

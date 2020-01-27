@@ -70,7 +70,7 @@ class Gallery extends PureComponent {
     this.props.onButton && this.props.onButton(e, this.state, this.onDataChange)
   }
 
-  onDataChange(data) {
+  onDataChange = (data) => {
     this.setState({ ...data }, this.triggerChange)
   }
 
