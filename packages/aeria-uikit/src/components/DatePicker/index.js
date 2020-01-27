@@ -48,15 +48,16 @@ class DatePicker extends PureComponent {
   onChange = (date) => {
     this.setState({value: formatDate(date)}, () => {
       this.props.onChange && this.props.onChange(this.state, this.props)
+      this.props.onBlur && this.props.onBlur({target: {value: this.state.value}}, this.props)
     })
   }
 
   render() {
-    const {id, error } = this.props
+    const {id, validation, error } = this.props
     const {value} = this.state
 
     return (
-      <StyledDatePicker error={error}>
+      <StyledDatePicker validation={validation} error={error}>
         <input type="hidden" hidden name={id} value={value || ''} readOnly/>
         <DayPicker
           onDayClick={this.onChange}

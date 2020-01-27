@@ -85,14 +85,15 @@ class Picture extends PureComponent {
 
   triggerChange = () => {
     this.props.onChange && this.props.onChange(this.state, this.props)
+    this.props.onBlur && this.props.onBlur({target: {value: this.state.value}}, this.props)
   }
 
   render() {
-    const {id, error, ctaLabel} = this.props
+    const {id, validation, error, ctaLabel} = this.props
     const {value, url} = this.state
 
     return (
-      <StyledContainer error={error}>
+      <StyledContainer validation={validation} error={error}>
         {
           value ? (
             <Thumbnail

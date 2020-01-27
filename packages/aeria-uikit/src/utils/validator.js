@@ -18,7 +18,8 @@ export default class Validator {
     const validation = {
       status: false,
     }
-    if (!value || isEmpty(value)) {
+
+    if (!value || (typeof value === 'object' && isEmpty(value)) || (typeof value !== 'object' && isEmpty(`${value}`))) {
       validation.status = true
       validation.message = 'Il campo deve essere compilato'
     }

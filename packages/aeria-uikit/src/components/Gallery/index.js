@@ -53,12 +53,16 @@ class Gallery extends PureComponent {
     error: PropTypes.string
   }
 
+  static defaultProps = {
+    children: []
+  }
+
   constructor(props) {
     super(props)
 
     this.state = {
-      value: this.props.value || 0,
-      children: this.props.children || []
+      value: this.props.value || this.props.children.length,
+      children: this.props.children
     }
   }
 
@@ -76,6 +80,7 @@ class Gallery extends PureComponent {
 
   triggerChange = () => {
     this.props.onChange && this.props.onChange(this.state, this.props)
+    this.props.onBlur && this.props.onBlur({target: {value: this.state.value}}, this.props)
   }
 
   removeChild = elementProps => {
@@ -106,7 +111,7 @@ class Gallery extends PureComponent {
   )
 
   render() {
-    const {id, error, ctaLabel = 'Add media'} = this.props
+    const {id, validation, error, ctaLabel = 'Add media'} = this.props
     const {value, children} = this.state
 
     return (
@@ -117,7 +122,7 @@ class Gallery extends PureComponent {
           value={value}
           readOnly
         />
-        <StyledContainer error={error}>
+        <StyledContainer validation={validation} error={error}>
           <Sortable
             type="grid"
             useDragHandle

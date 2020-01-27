@@ -97,10 +97,11 @@ class DateRangePicker extends PureComponent {
 
   triggerChange = () => {
     this.props.onChange && this.props.onChange(this.state, this.props)
+    this.props.onBlur && this.props.onBlur({target: {value: this.state.value}}, this.props)
   }
 
   render() {
-    const {id, error} = this.props
+    const {id, validation, error} = this.props
 
     const { value, from, to, enteredTo } = this.state
     const modifiers = { start: from, end: enteredTo || to }
@@ -108,7 +109,7 @@ class DateRangePicker extends PureComponent {
     const selectedDays = [from, { from, to: enteredTo || to }]
 
     return (
-      <StyledDateRangePicker error={error}>
+      <StyledDateRangePicker validation={validation} error={error}>
         <input type="hidden" hidden name={`${id}-from`} value={value[0] || ''} readOnly/>
         <input type="hidden" hidden name={`${id}-to`} value={value[1] || ''} readOnly/>
         <DayPicker

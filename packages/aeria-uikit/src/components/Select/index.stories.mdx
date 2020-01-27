@@ -24,6 +24,8 @@ Use `Select` component when you need to add some text.
           label: 'Orange',
         }
       ]}
+      required
+      requiredError="blabla"
       onChange={action('onChange')}
     />
   </Story>
@@ -40,6 +42,7 @@ Use `Select` component when you need to add some text.
   <Story name="multiple">
     <Select
       multiple
+      max={1}
       id="vegetables"
       name="vegetables"
       type="text"
@@ -53,6 +56,7 @@ Use `Select` component when you need to add some text.
           label: 'Orange',
         }
       ]}
+      required
       onChange={action('onChange')}
     />
   </Story>

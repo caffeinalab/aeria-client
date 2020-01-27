@@ -8,30 +8,37 @@ import StyledSection from './StyledSection'
 import StyledContainer from './StyledContainer'
 
 export default class Section extends Component {
+  static defaultProps = {
+    title: '',
+    fields: [],
+    isDraft: false,
+    accordionState: true
+  }
+
   constructor(props) {
     super(props)
     this.state = {
-      title: this.props.title || '',
-      fields: this.props.fields || [],
-      isDraft: this.props.isDraft || false,
-      accordionState: this.props.accordionState || true,
+      title: this.props.title,
+      fields: this.props.fields,
+      isDraft: this.props.isDraft,
+      accordionState: this.props.accordionState,
     }
   }
 
   onChangeTitle = ({target}) =>{
-    this.setState({title: target.value }, this.triggerChange)
+    this.setState({ title: target.value }, this.triggerChange)
   }
 
   onChangeFields = ({fields}) => {
-    this.setState({fields: fields }, this.triggerChange)
+    this.setState({ fields: fields }, this.triggerChange)
   }
 
   onToggleDraftButton = () => {
-    this.setState({isDraft: !this.state.isDraft, accordionState: !!this.state.isDraft }, this.triggerChange)
+    this.setState({ isDraft: !this.state.isDraft, accordionState: !!this.state.isDraft }, this.triggerChange)
   }
 
   onAccordionButton = () =>{
-    this.setState({accordionState: !this.state.accordionState }, this.triggerChange)
+    this.setState({ accordionState: !this.state.accordionState }, this.triggerChange)
   }
 
   onDeleteButton = () => {

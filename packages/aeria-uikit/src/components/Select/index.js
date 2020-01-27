@@ -85,16 +85,28 @@ class Select extends PureComponent {
      * A string with the error if occurs.
      */
     error: PropTypes.string,
+
+    /**
+     * Defines the maximum children size.
+     */
+    max: PropTypes.number,
+
+    /**
+     * Defines the maximum children size.
+     */
+    maxError: PropTypes.string
   }
 
   static defaultProps = {
     className: 'AeriaSelect__container',
     classNamePrefix: 'AeriaSelect',
+    max: Infinity,
     multiple: false,
     dependsOnField: false,
     delimiter: ',',
     loadingMessage: 'Looking for results...',
     noOptionsMessage: 'No result found',
+    maxErrorMessage: 'You have reached the maximum size',
   }
 
   constructor(props) {
@@ -130,9 +142,14 @@ class Select extends PureComponent {
         this.onDataChange({ options: data })
       })
   }
-  noOptionsMessage= () => {
-    return this.props.noOptionsMessage
+  noOptionsMessage = () => {
+    const { multiple, max } = this.props
+    const value = this.getSelectedValues()
+    const maxReached = multiple && value.length >= max
+
+    return maxReached ? this.props.noOptionsMessage : this.props.maxErrorMessage
   }
+
   getSelectedValues() {
     return this.props.multiple ? this.getMultipleValue() : this.getSingleValue()
   }
@@ -172,11 +189,14 @@ class Select extends PureComponent {
 
   triggerChange = () => {
     this.props.onChange && this.props.onChange(this.state, this.props)
+    this.props.onBlur && this.props.onBlur({target: {value: this.state.value}}, this.props)
   }
 
   render() {
-    const { id, multiple, ...props } = this.props
+    const { id, multiple, max, ...props } = this.props
+    const { options } = this.state
     const value = this.getSelectedValues()
+    const maxReached = multiple && value.length >= max
 
     if (this.props.ajax) {
       return (
@@ -188,18 +208,21 @@ class Select extends PureComponent {
           value={value}
           noOptionsMessage={this.noOptionsMessage}
           onChange={this.onChange}
-          loadOptions={this.loadOptions}
+          onBlur={this.triggerChange}
+          loadOptions={maxReached ? () => [] : this.loadOptions}
         />
       )
     }
     return (
       <StyledSelect
         {...props}
+        options={maxReached ? [] : options}
         name={id}
         isMulti={multiple}
         value={value}
         noOptionsMessage={this.noOptionsMessage}
         onChange={this.onChange}
+        onBlur={this.triggerChange}
       />
     )
   }
