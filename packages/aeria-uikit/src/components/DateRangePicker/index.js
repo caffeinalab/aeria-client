@@ -43,7 +43,6 @@ class DateRangePicker extends PureComponent {
 
   constructor(props) {
     super(props)
-
     this.state = {
       value: props.value || [],
       from: props.value ? new Date(props.value[0]) : undefined,

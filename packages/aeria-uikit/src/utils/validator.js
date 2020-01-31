@@ -19,7 +19,11 @@ export default class Validator {
       status: false,
     }
 
-    if (!value || (typeof value === 'object' && isEmpty(value)) || (typeof value !== 'object' && isEmpty(`${value}`))) {
+    if (!value
+      || (typeof value === 'object' && isEmpty(value))
+      || (typeof value !== 'object' && isEmpty(`${value}`))
+      || (Array.isArray(value) && value.every(v => v == undefined))
+    ) {
       validation.status = true
       validation.message = 'Il campo deve essere compilato'
     }
