@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
+import klona from 'klona'
 
 import DayPicker from 'react-day-picker'
 import 'react-day-picker/lib/style.css'
@@ -46,10 +47,16 @@ class DatePicker extends PureComponent {
   }
 
   onChange = (date) => {
-    this.setState({value: formatDate(date)}, () => {
-      this.props.onChange && this.props.onChange(this.state, this.props)
-      this.props.onBlur && this.props.onBlur({target: {value: this.state.value}}, this.props)
-    })
+    this.setState({value: formatDate(date)}, this.triggerChange)
+  }
+
+  triggerChange = () => {
+    this.props.onChange && this.props.onChange(klona(this.state), klona(this.props))
+    this.triggerBlur()
+  }
+
+  triggerBlur = () => {
+    this.props.onBlur && this.props.onBlur({target: {value: this.state.value}}, klona(this.props))
   }
 
   render() {
@@ -57,7 +64,13 @@ class DatePicker extends PureComponent {
     const {value} = this.state
 
     return (
-      <StyledDatePicker validation={validation} error={error}>
+      <StyledDatePicker
+        id={`${id}-focus`}
+        error={error}
+        tabIndex={-1}
+        validation={validation}
+        onBlur={this.triggerBlur}
+      >
         <input type="hidden" hidden id={id} name={id} value={value || ''} readOnly/>
         <DayPicker
           onDayClick={this.onChange}

@@ -10,7 +10,7 @@ export default function withValidation(WrappedComponent) {
       super(props)
 
       this.state = {
-        error: false
+        error: props.error
       }
     }
 

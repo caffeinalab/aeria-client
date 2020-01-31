@@ -1,4 +1,4 @@
-import React, { PureComponent, Fragment } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import throttle from 'lodash.throttle'
 
@@ -132,7 +132,7 @@ class Select extends PureComponent {
       params[dependsOn.key] = dependsOnField.value || dependsOnField.defaultValue
     }
 
-    this.lastFetch = fetchData(endpoint, params)
+    this.lastFetch = fetchData(endpoint, {params})
       .then(data => {
         data.forEach(option => {
           option.value = String(option.value)
@@ -142,6 +142,11 @@ class Select extends PureComponent {
         this.onDataChange({ options: data })
       })
   }
+
+  loadingMessage = () => {
+    return this.props.loadingMessage
+  }
+
   noOptionsMessage = () => {
     const { multiple, max } = this.props
     const value = this.getSelectedValues()
@@ -189,6 +194,9 @@ class Select extends PureComponent {
 
   triggerChange = () => {
     this.props.onChange && this.props.onChange(this.state, this.props)
+  }
+
+  triggerBlur = () => {
     this.props.onBlur && this.props.onBlur({target: {value: this.state.value}}, this.props)
   }
 
@@ -202,7 +210,7 @@ class Select extends PureComponent {
       <div
         id={`${id}-focus`}
         tabIndex={1}
-        onBlur={this.triggerChange}>
+        onBlur={this.triggerBlur}>
         {
           this.props.ajax
             ? <StyledAsync
@@ -211,6 +219,7 @@ class Select extends PureComponent {
               name={id}
               isMulti={multiple}
               value={value}
+              loadingMessage={this.loadingMessage}
               noOptionsMessage={this.noOptionsMessage}
               onChange={this.onChange}
               onBlur={this.triggerChange}

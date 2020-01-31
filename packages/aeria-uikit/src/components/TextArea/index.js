@@ -58,9 +58,9 @@ class Textarea extends PureComponent {
 
     return (
       <StyledTextArea
+        {...htmlAttributes}
         id={id}
         name={id}
-        {...htmlAttributes}
         onBlur={this.onBlur}
         onChange={this.onChange}
       />

@@ -110,7 +110,7 @@ class Wysiwyg extends PureComponent {
       <StyledWysiwyg
         validation={validation}
         id={`${id}-focus`}
-        tabIndex={0}
+        tabIndex={-1}
         onBlur={this.onBlur}
       >
         <div ref={this.quillRef} />

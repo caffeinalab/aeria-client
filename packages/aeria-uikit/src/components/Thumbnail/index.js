@@ -64,7 +64,7 @@ class Thumbnail extends Component {
           readOnly
         />
         <StyledOverlay
-          tabIndex="0"
+          tabIndex={-1}
           show={(deletable || editable || expandable) && this.state.show}
         >
           {deletable && <StyledAction type="button" onClick={() => this.props.onDelete(this.props)}>Delete</StyledAction>}

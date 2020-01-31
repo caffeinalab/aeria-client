@@ -54,6 +54,7 @@ class Switch extends PureComponent {
 
   onChange = ({target}) => {
     this.props.onChange && this.props.onChange({value: target.checked}, this.props)
+    this.props.onBlur && this.props.onBlur({target: {value: target.checked}}, this.props)
   }
 
   onBlur = () =>{
@@ -68,7 +69,7 @@ class Switch extends PureComponent {
     return (
       <StyledWrapper
         id={`${id}-focus`}
-        tabIndex={0}
+        tabIndex={-1}
         onBlur={this.onBlur}>
         <StyledCheck
           {...this.props}

@@ -63,7 +63,7 @@ class Gallery extends PureComponent {
 
     this.state = {
       value: this.props.value || this.props.children.length,
-      children: this.props.children
+      children: klona(this.props.children)
     }
 
     this.state.children.forEach(child => {child._key = uuid()})
@@ -82,8 +82,12 @@ class Gallery extends PureComponent {
   }
 
   triggerChange = () => {
-    this.props.onChange && this.props.onChange(this.state, this.props)
-    this.props.onBlur && this.props.onBlur({target: {value: this.state.value}}, this.props)
+    this.props.onChange && this.props.onChange(klona(this.state), klona(this.props))
+    this.triggerBlur()
+  }
+
+  triggerBlur = () => {
+    this.props.onBlur && this.props.onBlur({target: {value: this.state.value}}, klona(this.props))
   }
 
   removeChild = elementProps => {
@@ -118,7 +122,13 @@ class Gallery extends PureComponent {
     const {value, children} = this.state
 
     return (
-      <Fragment>
+      <StyledContainer
+        id={`${id}-focus`}
+        error={error}
+        tabIndex={-1}
+        validation={validation}
+        onBlur={this.triggerBlur}
+      >
         <input
           type="hidden"
           id={id}
@@ -126,20 +136,18 @@ class Gallery extends PureComponent {
           value={value}
           readOnly
         />
-        <StyledContainer validation={validation} error={error}>
-          <Sortable
-            type="grid"
-            useDragHandle
-            renderChild={this.renderChild}
-            children={children}
-          />
-          <StyledContainerButton>
-            <Button onClick={this.onButton}>
-              {ctaLabel}
-            </Button>
-          </StyledContainerButton>
-        </StyledContainer>
-      </Fragment>
+        <Sortable
+          type="grid"
+          useDragHandle
+          renderChild={this.renderChild}
+          children={children}
+        />
+        <StyledContainerButton>
+          <Button onClick={this.onButton}>
+            {ctaLabel}
+          </Button>
+        </StyledContainerButton>
+      </StyledContainer>
     )
   }
 }

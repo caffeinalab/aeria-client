@@ -85,6 +85,10 @@ class Picture extends PureComponent {
 
   triggerChange = () => {
     this.props.onChange && this.props.onChange(this.state, this.props)
+    this.triggerBlur()
+  }
+
+  triggerBlur = () => {
     this.props.onBlur && this.props.onBlur({target: {value: this.state.value}}, this.props)
   }
 
@@ -93,7 +97,13 @@ class Picture extends PureComponent {
     const {value, url} = this.state
 
     return (
-      <StyledContainer validation={validation} error={error}>
+      <StyledContainer
+        id={`${id}-focus`}
+        error={error}
+        tabIndex={-1}
+        validation={validation}
+        onBlur={this.triggerBlur}
+      >
         {
           value ? (
             <Thumbnail

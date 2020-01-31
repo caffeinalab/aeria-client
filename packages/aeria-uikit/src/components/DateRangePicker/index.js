@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
+import klona from 'klona'
 
 import DayPicker, { DateUtils } from 'react-day-picker'
 import 'react-day-picker/lib/style.css'
@@ -96,20 +97,29 @@ class DateRangePicker extends PureComponent {
   }
 
   triggerChange = () => {
-    this.props.onChange && this.props.onChange(this.state, this.props)
-    this.props.onBlur && this.props.onBlur({target: {value: this.state.value}}, this.props)
+    this.props.onChange && this.props.onChange(klona(this.state), klona(this.props))
+    this.triggerBlur()
+  }
+
+  triggerBlur = () => {
+    this.props.onBlur && this.props.onBlur({target: {value: this.state.value}}, klona(this.props))
   }
 
   render() {
     const {id, validation, error} = this.props
-
     const { value, from, to, enteredTo } = this.state
     const modifiers = { start: from, end: enteredTo || to }
     const disabledDays = { before: this.state.from }
     const selectedDays = [from, { from, to: enteredTo || to }]
 
     return (
-      <StyledDateRangePicker id={`${id}`} validation={validation} error={error}>
+      <StyledDateRangePicker
+        id={`${id}-focus`}
+        error={error}
+        tabIndex={-1}
+        validation={validation}
+        onBlur={this.triggerBlur}
+      >
         <input type="hidden" hidden id={`${id}-from`} name={`${id}-from`} value={value[0] || ''} readOnly/>
         <input type="hidden" hidden id={`${id}-to`} name={`${id}-to`} value={value[1] || ''} readOnly/>
         <DayPicker
