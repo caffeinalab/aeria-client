@@ -1,6 +1,7 @@
 import React, {PureComponent, Fragment} from 'react'
 import PropTypes from 'prop-types'
 import klona from 'klona'
+import uuid from 'uuid/v4'
 
 import withLabel from '../../hoc/withLabel'
 import withValidation from '../../hoc/withValidation'
@@ -64,6 +65,8 @@ class Gallery extends PureComponent {
       value: this.props.value || this.props.children.length,
       children: this.props.children
     }
+
+    this.state.children.forEach(child => {child._key = uuid()})
   }
 
   onEdit = e => {
@@ -118,6 +121,7 @@ class Gallery extends PureComponent {
       <Fragment>
         <input
           type="hidden"
+          id={id}
           name={id}
           value={value}
           readOnly

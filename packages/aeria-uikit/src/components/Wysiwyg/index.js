@@ -88,17 +88,31 @@ class Wysiwyg extends PureComponent {
     this.quill.off('editor-change', this.onChange)
   }
 
+  isQuillEmpty() {
+    if ((this.quill.getContents().ops || []).length !== 1) { return false }
+    return this.quill.getText().trim().length === 0
+  }
+
   onChange = () => {
-    this.setState({ value: this.quill.root.innerHTML }, () => {
+    this.setState({ value: this.isQuillEmpty() ? '' : this.quill.root.innerHTML }, () => {
       this.props.onChange && this.props.onChange({value: this.state.value}, this.props)
     })
   }
 
+  onBlur = () =>{
+    this.props.onBlur && this.props.onBlur({target: {value: this.state.value}}, this.props)
+  }
+
   render() {
-    const { id, ...options } = this.props
+    const { id, validation } = this.props
 
     return (
-      <StyledWysiwyg {...options}>
+      <StyledWysiwyg
+        validation={validation}
+        id={`${id}-focus`}
+        tabIndex={0}
+        onBlur={this.onBlur}
+      >
         <div ref={this.quillRef} />
         <input id={id} name={id} type="hidden" value={this.state.value} />
       </StyledWysiwyg>

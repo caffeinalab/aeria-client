@@ -14,7 +14,7 @@ const StyledIndicator = styled.span`
   height: ${rem(`${(paddingSize * 2) + indicatorSize}px`)};
   padding: ${rem(`${paddingSize}px`)};
 
-  background-color: ${props => props.error ? props.theme.palette.errorMain : props.theme.palette.primaryLight};
+  background-color: ${props => props.validation ? props.theme.palette.errorMain : props.theme.palette.primaryLight};
   transition: background-color 0.3s;
   cursor: pointer;
 

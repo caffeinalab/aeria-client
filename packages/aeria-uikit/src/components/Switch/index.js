@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react'
+import React, {PureComponent, createRef} from 'react'
 import PropTypes from 'prop-types'
 
 import StyledCheck from './StyledCheck'
@@ -47,21 +47,34 @@ class Switch extends PureComponent {
     onChange: PropTypes.func,
   }
 
+  constructor() {
+    super()
+    this.ref = createRef()
+  }
+
   onChange = ({target}) => {
     this.props.onChange && this.props.onChange({value: target.checked}, this.props)
   }
 
+  onBlur = () =>{
+    this.props.onBlur && this.props.onBlur({target: {value: this.ref.current.checked}}, this.props)
+  }
+
   render() {
-    const {id, value, defaultValue} = this.props
+    const {id, value, defaultValue, validation} = this.props
 
     const defaultChecked = TRUE_VALUES.includes(value || defaultValue)
 
     return (
-      <StyledWrapper>
+      <StyledWrapper
+        id={`${id}-focus`}
+        tabIndex={0}
+        onBlur={this.onBlur}>
         <StyledCheck
           {...this.props}
           id={id}
           name={id}
+          ref={this.ref}
           type="checkbox"
           defaultChecked={defaultChecked}
           onChange={this.onChange}
@@ -69,8 +82,9 @@ class Switch extends PureComponent {
         <StyledLabel
           htmlFor={id}
           name={id}
+          validation={validation}
         >
-          <StyledIndicator/>
+          <StyledIndicator validation={validation}/>
         </StyledLabel>
       </StyledWrapper>
     )

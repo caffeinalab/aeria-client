@@ -14,6 +14,17 @@ export default function withValidation(WrappedComponent) {
       }
     }
 
+    getSnapshotBeforeUpdate(prevProps) {
+      const errorFromProps = this.props.error !== prevProps.error && this.props.error !== this.state.error
+      return errorFromProps ? {error: this.props.error } : null
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+      if (snapshot) {
+        this.setState(snapshot)
+      }
+    }
+
     checkErrors = ({value}) => {
       if (!this.validatorHelper) {
         this.validatorHelper = new Validator(this.props)

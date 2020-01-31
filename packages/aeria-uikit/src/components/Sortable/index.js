@@ -32,22 +32,21 @@ export default class Sortable extends PureComponent {
 
   getSnapshotBeforeUpdate(prevProps) {
     return {
-      shouldUpdateChildren: JSON.stringify(prevProps.children) !== JSON.stringify(this.props.children)
+      shouldUpdateChildren: JSON.stringify(this.state.children) !== JSON.stringify(this.props.children)
     }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (snapshot.shouldUpdateChildren) {
-      this.setState({
-        children: this.props.children
-      })
+    if (!snapshot.shouldUpdateChildren) {
+      return
     }
+    this.setState({ children: this.props.children })
   }
 
   get items() {
     return this.state.children.map((child, index) => (
       <SortableItem
-        key={index}
+        key={child._key || child.id + index}
         index={index}
         element={this.props.renderChild(child, index)}
       />

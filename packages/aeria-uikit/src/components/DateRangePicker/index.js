@@ -109,9 +109,9 @@ class DateRangePicker extends PureComponent {
     const selectedDays = [from, { from, to: enteredTo || to }]
 
     return (
-      <StyledDateRangePicker validation={validation} error={error}>
-        <input type="hidden" hidden name={`${id}-from`} value={value[0] || ''} readOnly/>
-        <input type="hidden" hidden name={`${id}-to`} value={value[1] || ''} readOnly/>
+      <StyledDateRangePicker id={`${id}`} validation={validation} error={error}>
+        <input type="hidden" hidden id={`${id}-from`} name={`${id}-from`} value={value[0] || ''} readOnly/>
+        <input type="hidden" hidden id={`${id}-to`} name={`${id}-to`} value={value[1] || ''} readOnly/>
         <DayPicker
           className="Range"
           numberOfMonths={2}

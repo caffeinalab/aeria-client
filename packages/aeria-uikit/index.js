@@ -24,8 +24,11 @@ export { default as Wysiwyg } from './src/components/Wysiwyg'
 export { default as withLabel } from './src/hoc/withLabel'
 export { default as withAccordion } from './src/hoc/withAccordion'
 export { default as withValidation } from './src/hoc/withValidation'
+// UTILS
+export { default as Validator } from './src/utils/validator'
 // MIXINS
 export { buttonMixin } from './src/mixins/button'
+
 export {
   headingLarge,
   headingMedium,

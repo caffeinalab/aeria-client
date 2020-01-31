@@ -14,7 +14,7 @@ const StyledWrapper = styled.label`
 
   input[name="${props => props.name}"]:checked + & {
     span{
-      background-color: ${props => props.error ? props.theme.palette.errorMain : props.theme.palette.primary};
+      background-color: ${props => props.validation ? props.theme.palette.errorMain : props.theme.palette.primary};
       &:before {
         transform: translateX(100%) rotate(90deg);
       }

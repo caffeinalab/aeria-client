@@ -58,7 +58,7 @@ class DatePicker extends PureComponent {
 
     return (
       <StyledDatePicker validation={validation} error={error}>
-        <input type="hidden" hidden name={id} value={value || ''} readOnly/>
+        <input type="hidden" hidden id={id} name={id} value={value || ''} readOnly/>
         <DayPicker
           onDayClick={this.onChange}
           selectedDays={value ? new Date(value) : null}

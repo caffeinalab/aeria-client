@@ -6,6 +6,7 @@ import { Button, Sortable, withLabel, Info } from '@aeria/uikit'
 import RepeaterRow from './RepeaterRow'
 import StyledContainerContent from './StyledContainerContent'
 import StyledContainerButton from './StyledContainerButton'
+import uuid from 'uuid'
 
 @withLabel
 class Repeater extends PureComponent {
@@ -72,15 +73,22 @@ class Repeater extends PureComponent {
   }
 
   getInitialChildren({ fields, children, min, max }) {
-    let ensuredChildren = klona(children)
+    let ensuredChildren = klona(children).map(child => this.wrapChild(child))
     for (let i = ensuredChildren.length; i < min; i++) {
-      ensuredChildren.push(klona(fields))
+      ensuredChildren.push(this.wrapChild(klona(fields)))
     }
 
     if (max < ensuredChildren.length) {
       ensuredChildren = ensuredChildren.slice(max - 1, ensuredChildren.length - 1)
     }
     return ensuredChildren
+  }
+
+  wrapChild(fields) {
+    return {
+      _key: uuid(),
+      fields
+    }
   }
 
   addChild = () => {
@@ -90,7 +98,7 @@ class Repeater extends PureComponent {
       return
     }
     const children = klona(this.state.children)
-    children.push(klona(this.props.fields))
+    children.push(this.wrapChild(klona(this.props.fields)))
     this.setState({value, children, sizeError: undefined}, this.triggerChange)
   }
 
@@ -109,9 +117,9 @@ class Repeater extends PureComponent {
     this.setState({value, children, sizeError: undefined}, this.triggerChange)
   }
 
-  onChildChange = (childState) => {
+  onChildChange = (childState, childProps) => {
     const children = klona(this.state.children)
-    children[childState.index] = childState.fields
+    children[childProps.index].fields = childState.fields
     this.setState({children}, this.triggerChange)
   }
 
@@ -119,11 +127,11 @@ class Repeater extends PureComponent {
     this.props.onChange && this.props.onChange(this.state, this.props)
   }
 
-  renderChild = (element, index) => (
+  renderChild = ({fields}, index) => (
     <RepeaterRow
       index={index}
       id={`${this.props.id}-${index}`}
-      fields={element}
+      fields={fields}
       onChange={this.onChildChange}
       onDeleteButton={this.removeChild}
     />

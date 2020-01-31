@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import throttle from 'lodash.throttle'
 
@@ -198,32 +198,37 @@ class Select extends PureComponent {
     const value = this.getSelectedValues()
     const maxReached = multiple && value.length >= max
 
-    if (this.props.ajax) {
-      return (
-        <StyledAsync
-          {...props}
-          defaultOptions
-          name={id}
-          isMulti={multiple}
-          value={value}
-          noOptionsMessage={this.noOptionsMessage}
-          onChange={this.onChange}
-          onBlur={this.triggerChange}
-          loadOptions={maxReached ? () => [] : this.loadOptions}
-        />
-      )
-    }
     return (
-      <StyledSelect
-        {...props}
-        options={maxReached ? [] : options}
-        name={id}
-        isMulti={multiple}
-        value={value}
-        noOptionsMessage={this.noOptionsMessage}
-        onChange={this.onChange}
-        onBlur={this.triggerChange}
-      />
+      <div
+        id={`${id}-focus`}
+        tabIndex={1}
+        onBlur={this.triggerChange}>
+        {
+          this.props.ajax
+            ? <StyledAsync
+              {...props}
+              defaultOptions
+              name={id}
+              isMulti={multiple}
+              value={value}
+              noOptionsMessage={this.noOptionsMessage}
+              onChange={this.onChange}
+              onBlur={this.triggerChange}
+              loadOptions={maxReached ? () => [] : this.loadOptions}
+            />
+            : <StyledSelect
+              {...props}
+              options={maxReached ? [] : options}
+
+              name={id}
+              isMulti={multiple}
+              value={value}
+              noOptionsMessage={this.noOptionsMessage}
+              onChange={this.onChange}
+              onBlur={this.triggerChange}
+            />
+        }
+      </div>
     )
   }
 }

@@ -4,7 +4,8 @@ import {headingLarge} from '@aeria/uikit'
 const StyledInputTitle = styled.input`
   input[type="text"]&{
     ${headingLarge}
-
+    line-height: 1;
+    min-height: auto;
     flex: 1 0 auto;
 
     border: none;

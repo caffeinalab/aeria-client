@@ -1,11 +1,11 @@
 import React, {PureComponent, Fragment} from 'react'
 import PropTypes from 'prop-types'
 import klona from 'klona'
+import uuid from 'uuid/v4'
 import { Sortable, withLabel } from '@aeria/uikit'
 import StyledContainerList from './StyledContainerList'
 import Cta from './Cta'
 import Section from './Section'
-
 @withLabel
 class Sections extends PureComponent {
   static propTypes = {
@@ -32,22 +32,27 @@ class Sections extends PureComponent {
 
   constructor(props) {
     super(props)
+
     this.state = {
-      value: props.value || [],
-      children: props.children || []
+      value: klona(props.value) || [],
+      children: klona(props.children) || []
     }
+    this.state.children.forEach(child => {child._key = uuid()})
   }
 
-  addChild = (e) => {
+  addChild = (child) => {
     const value = klona(this.state.value)
     const children = klona(this.state.children)
-    value.push(e.id)
-    children.push(e)
+    const newChild = klona(child)
+    newChild._key = uuid()
+    value.push(newChild.id)
+    children.push(newChild)
     this.setState({value, children}, this.triggerChange)
   }
 
   removeChild = (index) => {
-    const value = klona(this.state.value).splice(index, 1)
+    const value = klona(this.state.value)
+    value.splice(index, 1)
     const children = this.state.children.reduce((acc, c, i) => {
       i !== index && acc.push(klona(c))
       return acc
@@ -80,11 +85,11 @@ class Sections extends PureComponent {
     const {id} = this.props
     const {value, children} = this.state
     const inputValue = value && typeof value === 'object' ? value.join(',') : value
-
     return (
       <Fragment>
         <input
           type="hidden"
+          id={id}
           name={id}
           value={inputValue}
           readOnly
@@ -92,8 +97,8 @@ class Sections extends PureComponent {
         <StyledContainerList>
           <Sortable
             useDragHandle
-            renderChild={this.renderChild}
             children={children}
+            renderChild={this.renderChild}
           />
         </StyledContainerList>
         <Cta
