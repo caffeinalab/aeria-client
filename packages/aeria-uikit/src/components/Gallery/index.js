@@ -140,6 +140,7 @@ class Gallery extends PureComponent {
           type="grid"
           useDragHandle
           renderChild={this.renderChild}
+          onChange={this.onDataChange}
           children={children}
         />
         <StyledContainerButton>
