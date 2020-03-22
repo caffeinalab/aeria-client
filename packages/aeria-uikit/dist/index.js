@@ -10121,6 +10121,7 @@ function (_PureComponent) {
         type: "grid",
         useDragHandle: true,
         renderChild: this.renderChild,
+        onChange: this.onDataChange,
         children: children
       }), react_default.a.createElement(StyledContainerButton, null, react_default.a.createElement(components_Button, {
         onClick: this.onButton
