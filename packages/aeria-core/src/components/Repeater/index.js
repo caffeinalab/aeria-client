@@ -123,6 +123,10 @@ class Repeater extends PureComponent {
     this.setState({children}, this.triggerChange)
   }
 
+  onSortChange = ({children}) => {
+    this.setState({children}, this.triggerChange)
+  }
+
   triggerChange = () => {
     this.props.onChange && this.props.onChange(this.state, this.props)
   }
@@ -152,6 +156,7 @@ class Repeater extends PureComponent {
         <Sortable
           useDragHandle
           renderChild={this.renderChild}
+          onChange={this.onSortChange}
           children={children}
         />
       </StyledContainerContent>

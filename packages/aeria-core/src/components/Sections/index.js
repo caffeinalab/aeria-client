@@ -67,6 +67,10 @@ class Sections extends PureComponent {
     this.setState({children}, this.triggerChange)
   }
 
+  onSortChange = ({children}) => {
+    this.setState({children}, this.triggerChange)
+  }
+
   triggerChange = () => {
     this.props.onChange && this.props.onChange(this.state, this.props)
   }
@@ -98,6 +102,7 @@ class Sections extends PureComponent {
           <Sortable
             useDragHandle
             children={children}
+            onChange={this.onSortChange}
             renderChild={this.renderChild}
           />
         </StyledContainerList>
