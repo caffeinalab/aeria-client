@@ -100,6 +100,7 @@ class Sections extends PureComponent {
         />
         <StyledContainerList>
           <Sortable
+            id={id}
             useDragHandle
             children={children}
             onChange={this.onSortChange}

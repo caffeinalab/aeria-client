@@ -154,6 +154,7 @@ class Repeater extends PureComponent {
       />
       <StyledContainerContent>
         <Sortable
+          id={id}
           useDragHandle
           renderChild={this.renderChild}
           onChange={this.onSortChange}

@@ -32,7 +32,7 @@ export default class Sortable extends PureComponent {
 
   getSnapshotBeforeUpdate(prevProps) {
     return {
-      shouldUpdateChildren: JSON.stringify(this.state.children) !== JSON.stringify(this.props.children)
+      shouldUpdateChildren: JSON.stringify(this.state.children) !== JSON.stringify(this.props.children) || this.props.id !== prevProps.id
     }
   }
 

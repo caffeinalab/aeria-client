@@ -137,6 +137,7 @@ class Gallery extends PureComponent {
           readOnly
         />
         <Sortable
+          id={id}
           type="grid"
           useDragHandle
           renderChild={this.renderChild}
