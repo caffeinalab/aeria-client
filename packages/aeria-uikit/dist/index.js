@@ -9688,7 +9688,7 @@ function (_PureComponent) {
     key: "getSnapshotBeforeUpdate",
     value: function getSnapshotBeforeUpdate(prevProps) {
       return {
-        shouldUpdateChildren: JSON.stringify(this.state.children) !== JSON.stringify(this.props.children)
+        shouldUpdateChildren: JSON.stringify(this.state.children) !== JSON.stringify(this.props.children) || this.props.id !== prevProps.id
       };
     }
   }, {
@@ -10118,6 +10118,7 @@ function (_PureComponent) {
         value: value,
         readOnly: true
       }), react_default.a.createElement(Sortable_Sortable, {
+        id: id,
         type: "grid",
         useDragHandle: true,
         renderChild: this.renderChild,
