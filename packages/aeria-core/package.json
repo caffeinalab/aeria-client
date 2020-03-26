@@ -14,6 +14,7 @@
   "license": "MIT",
   "gitHead": "3c2f72824ea13a3d63436c3196c095809626e0c8",
   "dependencies": {
+    "@aeria/uikit": "^0.0.12",
     "@kunukn/react-collapse": "^2.2.7",
     "@react-google-maps/api": "^1.8.2",
     "array-move": "^2.2.1",
