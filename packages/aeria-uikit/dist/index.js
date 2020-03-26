@@ -9791,6 +9791,18 @@ var StyledImage = styled_components_browser_esm["d" /* default */].div.withConfi
   return props.img;
 });
 /* harmony default export */ var Thumbnail_StyledImage = (StyledImage);
+// CONCATENATED MODULE: ./packages/aeria-uikit/src/components/Thumbnail/StyledFileName.js
+
+
+var StyledFileName = styled_components_browser_esm["d" /* default */].div.withConfig({
+  displayName: "StyledFileName",
+  componentId: "sc-16aay5t-0"
+})(["position:absolute;bottom:0;left:0;right:0;overflow:hidden;border:1px solid ", ";background:", ";text-align:center;text-transform:uppercase;font-size:", ";"], function (props) {
+  return props.theme.palette.greyLight;
+}, function (props) {
+  return props.theme.palette.white;
+}, Object(polished_es["c" /* rem */])('12px'));
+/* harmony default export */ var Thumbnail_StyledFileName = (StyledFileName);
 // CONCATENATED MODULE: ./packages/aeria-uikit/src/components/Thumbnail/index.js
 
 
@@ -9821,6 +9833,7 @@ function Thumbnail_inherits(subClass, superClass) { if (typeof superClass !== "f
 function Thumbnail_setPrototypeOf(o, p) { Thumbnail_setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return Thumbnail_setPrototypeOf(o, p); }
 
 function Thumbnail_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -9875,6 +9888,10 @@ function (_Component) {
           id = _this$props.id,
           value = _this$props.value,
           url = _this$props.url,
+          _this$props$fileName = _this$props.fileName,
+          fileName = _this$props$fileName === void 0 ? '' : _this$props$fileName,
+          _this$props$showFilen = _this$props.showFilename,
+          showFilename = _this$props$showFilen === void 0 ? false : _this$props$showFilen,
           size = _this$props.size,
           editable = _this$props.editable,
           deletable = _this$props.deletable,
@@ -9891,7 +9908,7 @@ function (_Component) {
         name: id,
         value: value,
         readOnly: true
-      }), react_default.a.createElement(Thumbnail_StyledOverlay, {
+      }), showFilename && fileName && react_default.a.createElement(Thumbnail_StyledFileName, null, fileName), react_default.a.createElement(Thumbnail_StyledOverlay, {
         tabIndex: -1,
         show: (deletable || editable || expandable) && this.state.show
       }, deletable && react_default.a.createElement(Thumbnail_StyledAction, {
@@ -9975,9 +9992,12 @@ var StyledContainerButton_StyledContainer = styled_components_browser_esm["d" /*
 
 
 
+
 var Gallery_class, Gallery_class2, Gallery_temp;
 
 function Gallery_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Gallery_typeof = function _typeof(obj) { return typeof obj; }; } else { Gallery_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Gallery_typeof(obj); }
+
+function Gallery_extends() { Gallery_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Gallery_extends.apply(this, arguments); }
 
 function Gallery_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -10069,7 +10089,7 @@ function (_PureComponent) {
     });
 
     Gallery_defineProperty(Gallery_assertThisInitialized(_this), "renderChild", function (element, index) {
-      return react_default.a.createElement(Gallery_StyledPicture, null, react_default.a.createElement(DragHandle, null), react_default.a.createElement(components_Thumbnail, {
+      return react_default.a.createElement(Gallery_StyledPicture, null, react_default.a.createElement(DragHandle, null), react_default.a.createElement(components_Thumbnail, Gallery_extends({}, element, {
         editable: true,
         deletable: true,
         index: index,
@@ -10078,7 +10098,7 @@ function (_PureComponent) {
         id: "".concat(_this.props.id, "-").concat(index, "-picture"),
         onEdit: _this.onEdit,
         onDelete: _this.removeChild
-      }));
+      })));
     });
 
     _this.state = {
@@ -10876,9 +10896,12 @@ function (_Component) {
 
 
 
+
 var Picture_class, Picture_class2, Picture_temp;
 
 function Picture_typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Picture_typeof = function _typeof(obj) { return typeof obj; }; } else { Picture_typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Picture_typeof(obj); }
+
+function Picture_extends() { Picture_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Picture_extends.apply(this, arguments); }
 
 function Picture_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -10979,7 +11002,7 @@ function (_PureComponent) {
         tabIndex: -1,
         validation: validation,
         onBlur: this.triggerBlur
-      }, value ? react_default.a.createElement(components_Thumbnail, {
+      }, value ? react_default.a.createElement(components_Thumbnail, Picture_extends({}, this.props, {
         editable: true,
         deletable: true,
         expandable: true,
@@ -10988,7 +11011,7 @@ function (_PureComponent) {
         value: value,
         onEdit: this.onEdit,
         onDelete: this.onDelete
-      }) : react_default.a.createElement(components_Button, {
+      })) : react_default.a.createElement(components_Button, {
         onClick: this.onButton
       }, ctaLabel));
     }
@@ -16967,7 +16990,7 @@ var react_select_browser_esm_Async = react_select_browser_esm_makeAsyncSelect(Se
 
 
 
-var commonStyle = Object(styled_components_browser_esm["c" /* css */])([".AeriaSelect__control{", " &--is-focused,&:hover{outline:none;box-shadow:none;border-color:", ";}}.AeriaSelect__menu{z-index:3;}.AeriaSelect__option{cursor:pointer;&--is-focused,&:hover{color:", ";background-color:", ";}&--is-selected{color:", " !important;background-color:", "!important;}}.AeriaSelect__multi-value{background-color:", ";}"], solid, function (props) {
+var commonStyle = Object(styled_components_browser_esm["c" /* css */])([".AeriaSelect__value-container:not(.AeriaSelect__value-container--is-multi) input{border:0!important;box-shadow:none !important;}.AeriaSelect__control{", " &--is-focused,&:hover{outline:none;box-shadow:none;border-color:", ";}}.AeriaSelect__menu{z-index:3;}.AeriaSelect__option{cursor:pointer;&--is-focused,&:hover{color:", ";background-color:", ";}&--is-selected{color:", " !important;background-color:", "!important;}}.AeriaSelect__multi-value{background-color:", ";}"], solid, function (props) {
   return props.error ? props.theme.palette.errorMain : props.theme.palette.primary;
 }, function (props) {
   return props.theme.palette.black;
@@ -17125,7 +17148,7 @@ function (_PureComponent) {
       var value = _this.getSelectedValues();
 
       var maxReached = multiple && value.length >= max;
-      return maxReached ? _this.props.noOptionsMessage : _this.props.maxErrorMessage;
+      return maxReached ? _this.props.maxErrorMessage : _this.props.noOptionsMessage;
     });
 
     Select_defineProperty(Select_assertThisInitialized(_this), "onChange", function (value) {
@@ -17171,6 +17194,28 @@ function (_PureComponent) {
   }
 
   Select_createClass(Select, [{
+    key: "getSnapshotBeforeUpdate",
+    value: function getSnapshotBeforeUpdate(prevProps) {
+      return {
+        shouldUpdateOptions: JSON.stringify(prevProps.dependsOnField) !== JSON.stringify(this.props.dependsOnField)
+      };
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState, snapshot) {
+      var _this2 = this;
+
+      if (snapshot.shouldUpdateOptions) {
+        if (this.props.ajax) {
+          this.loadOptions('', function () {
+            _this2.setState({
+              value: _this2.props.multiple ? [] : ''
+            });
+          });
+        }
+      }
+    }
+  }, {
     key: "getSelectedValues",
     value: function getSelectedValues() {
       return this.props.multiple ? this.getMultipleValue() : this.getSingleValue();
@@ -17178,11 +17223,11 @@ function (_PureComponent) {
   }, {
     key: "getSingleValue",
     value: function getSingleValue() {
-      var _this2 = this;
+      var _this3 = this;
 
       return this.state.options.find(function (_ref) {
         var value = _ref.value;
-        return "".concat(value) === "".concat(_this2.state.value || _this2.state.defaultValue);
+        return "".concat(value) === "".concat(_this3.state.value);
       });
     }
   }, {
@@ -17193,9 +17238,8 @@ function (_PureComponent) {
       var stringValues = values.map(function (v) {
         return "".concat(v);
       });
-      return this.state.options.filter(function (_ref2) {
-        var value = _ref2.value;
-        return stringValues.includes("".concat(value));
+      return this.state.options.filter(function (option) {
+        return stringValues.includes("".concat(option.value));
       });
     }
   }, {
@@ -17209,8 +17253,9 @@ function (_PureComponent) {
       var _this$props3 = this.props,
           id = _this$props3.id,
           multiple = _this$props3.multiple,
+          dependsOn = _this$props3.dependsOn,
           max = _this$props3.max,
-          props = Select_objectWithoutProperties(_this$props3, ["id", "multiple", "max"]);
+          props = Select_objectWithoutProperties(_this$props3, ["id", "multiple", "dependsOn", "max"]);
 
       var options = this.state.options;
       var value = this.getSelectedValues();
@@ -17220,10 +17265,11 @@ function (_PureComponent) {
         tabIndex: 1,
         onBlur: this.triggerBlur
       }, this.props.ajax ? react_default.a.createElement(StyledAsync, Select_extends({}, props, {
-        defaultOptions: true,
+        defaultOptions: options,
+        cache: !dependsOn,
         name: id,
         isMulti: multiple,
-        value: value,
+        value: value || '',
         loadingMessage: this.loadingMessage,
         noOptionsMessage: this.noOptionsMessage,
         onChange: this.onChange,
