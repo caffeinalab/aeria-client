@@ -105,6 +105,7 @@ class Gallery extends PureComponent {
     <StyledPicture>
       <DragHandle />
       <Thumbnail
+        {...element}
         editable
         deletable
         index={index}

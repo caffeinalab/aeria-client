@@ -5,6 +5,11 @@ import Async from 'react-select/async'
 import { solidBorder} from '../../mixins/borders'
 
 const commonStyle = css`
+  .AeriaSelect__value-container:not(.AeriaSelect__value-container--is-multi) input{
+    border: 0!important;
+    box-shadow: none !important;
+  }
+
   .AeriaSelect__control {
     ${solidBorder}
 

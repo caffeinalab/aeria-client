@@ -119,6 +119,22 @@ class Select extends PureComponent {
     }
   }
 
+  getSnapshotBeforeUpdate(prevProps) {
+    return {
+      shouldUpdateOptions: JSON.stringify(prevProps.dependsOnField) !== JSON.stringify(this.props.dependsOnField)
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (snapshot.shouldUpdateOptions) {
+      if (this.props.ajax) {
+        this.loadOptions('', () => {
+          this.setState({value: this.props.multiple ? [] : ''})
+        })
+      }
+    }
+  }
+
   loadOptions = (s, callback) => {
     if (this.lastFetch && this.lastFetch.cancel) {
       this.lastFetch.cancel()
@@ -139,6 +155,7 @@ class Select extends PureComponent {
         })
 
         callback && callback(data)
+
         this.onDataChange({ options: data })
       })
   }
@@ -152,7 +169,7 @@ class Select extends PureComponent {
     const value = this.getSelectedValues()
     const maxReached = multiple && value.length >= max
 
-    return maxReached ? this.props.noOptionsMessage : this.props.maxErrorMessage
+    return maxReached ? this.props.maxErrorMessage : this.props.noOptionsMessage
   }
 
   getSelectedValues() {
@@ -161,7 +178,7 @@ class Select extends PureComponent {
 
   getSingleValue() {
     return this.state.options.find(({ value }) => (
-      `${value}` === `${this.state.value || this.state.defaultValue}`
+      `${value}` === `${this.state.value }`
     ))
   }
 
@@ -170,8 +187,8 @@ class Select extends PureComponent {
     const values = Array.isArray(value) ? value : value.split(',')
     const stringValues = values.map(v => `${v}`)
 
-    return this.state.options.filter(({ value }) => (
-      stringValues.includes(`${value}`)
+    return this.state.options.filter(option => (
+      stringValues.includes(`${option.value}`)
     ))
   }
 
@@ -201,7 +218,7 @@ class Select extends PureComponent {
   }
 
   render() {
-    const { id, multiple, max, ...props } = this.props
+    const { id, multiple, dependsOn, max, ...props } = this.props
     const { options } = this.state
     const value = this.getSelectedValues()
     const maxReached = multiple && value.length >= max
@@ -215,10 +232,11 @@ class Select extends PureComponent {
           this.props.ajax
             ? <StyledAsync
               {...props}
-              defaultOptions
+              defaultOptions={options}
+              cache={!dependsOn}
               name={id}
               isMulti={multiple}
-              value={value}
+              value={value || ''}
               loadingMessage={this.loadingMessage}
               noOptionsMessage={this.noOptionsMessage}
               onChange={this.onChange}

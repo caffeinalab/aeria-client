@@ -37,6 +37,24 @@ Use `Gallery` component when you need to add some text.
   </Story>
 </Preview>
 
+<Preview>
+  <Story name="Gallery With image and filename">
+      <Gallery
+        id="name"
+        name="name"
+        type="text"
+        required
+        label={text('Gallery Label2', 'Gallery with image')}
+        children={
+          [
+            {fileName:"image-1.jpeg", value:"0", url: "https://source.unsplash.com/random/200x200"},
+            {fileName:"image-2.jpeg", value:"1", url: "https://source.unsplash.com/random/400x200"}
+          ]
+        }
+      />
+  </Story>
+</Preview>
+
 <br /><br />
 
 #### Props definition

@@ -35,6 +35,21 @@ Use `Picture` component when you need to add some text.
   </Story>
 </Preview>
 
+<Preview>
+  <Story name="Picture with filename">
+    <Picture
+      id="name1"
+      name="name1"
+      fileName="image.jpg"
+      required
+      value="https://source.unsplash.com/random/200x200"
+      label={text('Picture Label1', 'Picture with value')}
+      onChange={action('onChange')}
+      onBlur={action('onBlur')}
+    />
+  </Story>
+</Preview>
+
 <br /><br />
 
 #### Props definition

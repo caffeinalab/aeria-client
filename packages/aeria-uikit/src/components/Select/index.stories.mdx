@@ -61,3 +61,20 @@ Use `Select` component when you need to add some text.
     />
   </Story>
 </Preview>
+
+#### Multiple select
+<Preview>
+  <Story name="No Options">
+    <Select
+      multiple
+      max={1}
+      id="vegetables"
+      name="vegetables"
+      type="text"
+      label={text('Select Label', 'Pick every vegetables')}
+      options={[]}
+      required
+      onChange={action('onChange')}
+    />
+  </Story>
+</Preview>

@@ -5,6 +5,7 @@ import StyledPicture from './StyledPicture'
 import StyledOverlay from './StyledOverlay'
 import StyledAction from './StyledAction'
 import StyledImage from './StyledImage'
+import StyledFileName from './StyledFileName'
 
 class Thumbnail extends Component {
   static propTypes = {
@@ -46,7 +47,7 @@ class Thumbnail extends Component {
   }
 
   render() {
-    const { id, value, url, size, editable, deletable, expandable} = this.props
+    const { id, value, url, fileName = '', showFilename = false, size, editable, deletable, expandable} = this.props
 
     return (
       <StyledPicture
@@ -63,6 +64,12 @@ class Thumbnail extends Component {
           value={value}
           readOnly
         />
+        {
+          showFilename && fileName &&
+            <StyledFileName>
+              {fileName}
+            </StyledFileName>
+        }
         <StyledOverlay
           tabIndex={-1}
           show={(deletable || editable || expandable) && this.state.show}

@@ -107,6 +107,7 @@ class Picture extends PureComponent {
         {
           value ? (
             <Thumbnail
+              {...this.props}
               editable
               deletable
               expandable
