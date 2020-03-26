@@ -1,6 +1,6 @@
 {
   "name": "@aeria/core",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "",
   "main": "dist/index.js",
   "module": "index.js",
@@ -14,7 +14,7 @@
   "license": "MIT",
   "gitHead": "3c2f72824ea13a3d63436c3196c095809626e0c8",
   "dependencies": {
-    "@aeria/uikit": "^0.0.12",
+    "@aeria/uikit": "^0.0.13",
     "@kunukn/react-collapse": "^2.2.7",
     "@react-google-maps/api": "^1.8.2",
     "array-move": "^2.2.1",
