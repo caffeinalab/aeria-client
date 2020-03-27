@@ -13,7 +13,7 @@ const StyledInput = styled.input`
     width: 100%;
     height: auto;
 
-		padding: ${rem('10px')} ${rem('15px')};
+		padding: ${rem('5px')} ${rem('10px')};
     outline: none;
 		box-shadow: none;
 

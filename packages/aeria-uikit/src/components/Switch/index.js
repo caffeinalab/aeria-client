@@ -64,7 +64,7 @@ class Switch extends PureComponent {
   render() {
     const {id, value, defaultValue, validation} = this.props
 
-    const defaultChecked = TRUE_VALUES.includes(value || defaultValue)
+    const defaultChecked = TRUE_VALUES.includes(value !== undefined ? value : defaultValue)
 
     return (
       <StyledWrapper

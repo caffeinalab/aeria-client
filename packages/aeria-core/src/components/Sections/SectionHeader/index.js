@@ -28,6 +28,12 @@ const SectionHeader = props => {
     props.fields.some(f => {
       if (f.id === inputId) {
         value = f.value || f.defaultValue || defaultValue
+        if (f.options) {
+          const selectedOption = f.options.find(option => option.value === value)
+          if (selectedOption) {
+            value = selectedOption.label
+          }
+        }
         return true
       }
       return false

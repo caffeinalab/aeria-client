@@ -70,21 +70,27 @@ class FieldGroup extends PureComponent {
     return <Grid>
       {
         fields
-          .filter(f => this.shouldShow(f, fields))
-          .map((field, key) => {
-            const { type } = field
+          .reduce((acc, field, key) => {
+            if (!this.shouldShow(field, fields)) {
+              return acc
+            }
 
+            const { type } = field
             const Element = FieldsManager.get(type)
-            return <Grid.Unit size={ this.getGridSize(field)} key={key}>
-              <Element
-                {...field}
-                index={key}
-                id={`${this.props.id}-${field.id}`}
-                onChange={this.onChildChange}
-                dependsOnField={this.getDependencyField(field, fields)}
-              />
-            </Grid.Unit>
-          })
+
+            acc.push(
+              <Grid.Unit size={ this.getGridSize(field)} key={key}>
+                <Element
+                  {...field}
+                  index={key}
+                  id={`${this.props.id}-${field.id}`}
+                  onChange={this.onChildChange}
+                  dependsOnField={this.getDependencyField(field, fields)}
+                />
+              </Grid.Unit>
+            )
+            return acc
+          }, [])
       }
     </Grid>
   }

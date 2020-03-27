@@ -117,6 +117,9 @@ class Select extends PureComponent {
       value: this.props.value || this.props.defaultValue || (this.props.multiple ? [] : ''),
       options: this.props.options || []
     }
+    if (this.props.ajax) {
+      this.loadOptions('')
+    }
   }
 
   getSnapshotBeforeUpdate(prevProps) {
@@ -129,7 +132,7 @@ class Select extends PureComponent {
     if (snapshot.shouldUpdateOptions) {
       if (this.props.ajax) {
         this.loadOptions('', () => {
-          this.setState({value: this.props.multiple ? [] : ''})
+          this.onChange(this.getSelectedValues())
         })
       }
     }

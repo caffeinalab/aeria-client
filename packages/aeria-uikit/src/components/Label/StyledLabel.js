@@ -10,6 +10,7 @@ const StyledLabel = styled.label`
   display: inline-block;
   margin: 0;
   padding-right: ${rem('10px')};
+  line-height: ${rem('20px')};
   color: ${props => props.theme.palette.black};
   cursor: pointer;
 `
