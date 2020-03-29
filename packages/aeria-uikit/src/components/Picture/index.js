@@ -94,7 +94,7 @@ class Picture extends PureComponent {
 
   render() {
     const {id, validation, error, ctaLabel} = this.props
-    const {value, url} = this.state
+    const {value, url, ...rest} = this.state
 
     return (
       <StyledContainer
@@ -108,6 +108,7 @@ class Picture extends PureComponent {
           value ? (
             <Thumbnail
               {...this.props}
+              {...rest}
               editable
               deletable
               expandable

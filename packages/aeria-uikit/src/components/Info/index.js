@@ -13,7 +13,7 @@ const StyledInfo = styled.div`
 
   padding: ${rem('20px')};
 	margin: 0 ${rem('10px')} ${rem('20px')} 0;
-
+	box-sizing: border-box;
 	font-size: 1rem;
 	border-color: ${props => props.type === 'error'	?
     props.theme.palette.errorMain : props.theme.palette.primaryLight};

@@ -47,7 +47,7 @@ class Thumbnail extends Component {
   }
 
   render() {
-    const { id, value, url, fileName = '', showFilename = false, size, editable, deletable, expandable} = this.props
+    const { id, value, url, fileName = '', showFilename = false, naturalSize = false, size, editable, deletable, expandable} = this.props
 
     return (
       <StyledPicture
@@ -77,7 +77,10 @@ class Thumbnail extends Component {
           {deletable && <StyledAction type="button" onClick={() => this.props.onDelete(this.props)}>Delete</StyledAction>}
           {editable && <StyledAction type="button" onClick={() => this.props.onEdit(this.props)}>Edit</StyledAction>}
         </StyledOverlay>
-        <StyledImage img={url} />
+        <StyledImage
+          naturalSize={naturalSize}
+          img={url}
+        />
       </StyledPicture>
     )
   }
