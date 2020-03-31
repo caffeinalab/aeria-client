@@ -17519,10 +17519,7 @@ function (_PureComponent) {
     value: function render() {
       var _this$props = this.props,
           id = _this$props.id,
-          value = _this$props.value,
-          defaultValue = _this$props.defaultValue,
           validation = _this$props.validation;
-      var defaultChecked = TRUE_VALUES.includes(value !== undefined ? value : defaultValue);
       return react_default.a.createElement(Switch_StyledWrapper, {
         id: "".concat(id, "-focus"),
         tabIndex: -1,
@@ -17532,7 +17529,7 @@ function (_PureComponent) {
         name: id,
         ref: this.ref,
         type: "checkbox",
-        defaultChecked: defaultChecked,
+        defaultChecked: this.checked,
         onChange: this.onChange
       })), react_default.a.createElement(Switch_StyledLabel, {
         htmlFor: id,
@@ -17541,6 +17538,14 @@ function (_PureComponent) {
       }, react_default.a.createElement(Switch_StyledIndicator, {
         validation: validation
       })));
+    }
+  }, {
+    key: "checked",
+    get: function get() {
+      var _this$props2 = this.props,
+          value = _this$props2.value,
+          defaultValue = _this$props2.defaultValue;
+      return TRUE_VALUES.includes(value !== undefined && value !== null ? value : defaultValue);
     }
   }]);
 
