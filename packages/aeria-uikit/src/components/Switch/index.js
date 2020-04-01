@@ -24,7 +24,7 @@ class Switch extends PureComponent {
     /**
      * Defines a label for the `<input>` element.
      */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
 
     /**
      * Specifies the value of the `<input>` element.
@@ -67,7 +67,7 @@ class Switch extends PureComponent {
   }
 
   render() {
-    const { id, validation } = this.props
+    const { id, validation, value, defaultValue, ...props } = this.props
 
     return (
       <StyledWrapper
@@ -75,7 +75,7 @@ class Switch extends PureComponent {
         tabIndex={-1}
         onBlur={this.onBlur}>
         <StyledCheck
-          {...this.props}
+          {...props}
           id={id}
           name={id}
           ref={this.ref}

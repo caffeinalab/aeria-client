@@ -46,16 +46,19 @@ class FieldGroup extends PureComponent {
   }
 
   shouldShow(field, fields) {
-    const { when = false} = field
+    const { when = false } = field
 
-    return !when || fields.some(f => (
-      when.id === f.id
-          && (
-            typeof when.value === 'string'
-              ? when.value === f.value
-              : when.value.includes(f.value)
-          )
-    ))
+    return !when || fields.some(f => {
+      const value = (f.value !== undefined && f.value !== null) ? f.value : f.defaultValue
+      return (
+        when.id === f.id
+            && (
+              typeof when.value === 'string'
+                ? when.value === value
+                : when.value.includes(value)
+            )
+      )
+    })
   }
 
   getDependencyField(field, fields) {

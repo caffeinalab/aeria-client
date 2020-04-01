@@ -34,7 +34,7 @@ class Select extends PureComponent {
     /**
      * Defines a label for the `<select>` element.
      */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
 
     /**
      * Specifies the value of the `<select>` element.

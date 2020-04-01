@@ -18,7 +18,7 @@ class Textarea extends PureComponent {
     /**
      * Defines a label for the <textarea> element.
      */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
 
     /**
      * Specifies the value of the <textarea> element.

@@ -9,9 +9,11 @@ export default function withLabel(WrappedField) {
     render() {
       return (
         <div style={{padding: '0.625rem'}}>
-          <StyledHeader>
-            <Label {...this.props} />
-          </StyledHeader>
+          {!!this.props.label && (
+            <StyledHeader>
+              <Label {...this.props} />
+            </StyledHeader>
+          )}
           <StyledContent>
             <WrappedField {...this.props} />
           </StyledContent>

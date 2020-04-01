@@ -18,7 +18,7 @@ class Checkbox extends PureComponent {
     /**
      * Defines a label for the `<input>` element.
      */
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
 
     /**
      * Specifies the value of the `<input>` element.
