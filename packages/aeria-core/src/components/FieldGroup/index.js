@@ -4,6 +4,7 @@ import klona from 'klona'
 
 import Grid from 'styled-components-grid'
 
+import isFieldEnabled from '../../utils/is-field-enabled'
 import FieldsManager from '../FieldsManager'
 
 const sizeAliases = {
@@ -45,22 +46,6 @@ class FieldGroup extends PureComponent {
     this.props.onChange({fields}, this.props)
   }
 
-  shouldShow(field, fields) {
-    const { when = false } = field
-
-    return !when || fields.some(f => {
-      const value = (f.value !== undefined && f.value !== null) ? f.value : f.defaultValue
-      return (
-        when.id === f.id
-            && (
-              typeof when.value === 'string'
-                ? when.value === value
-                : when.value.includes(value)
-            )
-      )
-    })
-  }
-
   getDependencyField(field, fields) {
     const { dependsOn = false} = field
 
@@ -70,32 +55,34 @@ class FieldGroup extends PureComponent {
   render() {
     const { fields = [] } = this.props
 
-    return <Grid>
-      {
-        fields
-          .reduce((acc, field, key) => {
-            if (!this.shouldShow(field, fields)) {
+    return (
+      <Grid>
+        {
+          fields
+            .reduce((acc, field, key) => {
+              if (!isFieldEnabled(field, fields)) {
+                return acc
+              }
+
+              const { type } = field
+              const Element = FieldsManager.get(type)
+
+              acc.push(
+                <Grid.Unit size={ this.getGridSize(field)} key={key}>
+                  <Element
+                    {...field}
+                    index={key}
+                    id={`${this.props.id}-${field.id}`}
+                    onChange={this.onChildChange}
+                    dependsOnField={this.getDependencyField(field, fields)}
+                  />
+                </Grid.Unit>
+              )
               return acc
-            }
-
-            const { type } = field
-            const Element = FieldsManager.get(type)
-
-            acc.push(
-              <Grid.Unit size={ this.getGridSize(field)} key={key}>
-                <Element
-                  {...field}
-                  index={key}
-                  id={`${this.props.id}-${field.id}`}
-                  onChange={this.onChildChange}
-                  dependsOnField={this.getDependencyField(field, fields)}
-                />
-              </Grid.Unit>
-            )
-            return acc
-          }, [])
-      }
-    </Grid>
+            }, [])
+        }
+      </Grid>
+    )
   }
 }
 
