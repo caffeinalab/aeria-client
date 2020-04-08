@@ -68,7 +68,8 @@ class Sections extends PureComponent {
   }
 
   onSortChange = ({children}) => {
-    this.setState({children}, this.triggerChange)
+    const value = children.map(child => child.id)
+    this.setState({value, children}, this.triggerChange)
   }
 
   triggerChange = () => {

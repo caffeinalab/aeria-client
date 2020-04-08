@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import {rem, lighten} from 'polished'
 
-import {headingLarge} from '../../mixins/typography'
+import {headingSmall} from '../../mixins/typography'
 import {solidBorder} from '../../mixins/borders'
 
 const StyledInput = styled.input`
   input[type]&{
-    ${headingLarge}
+    ${headingSmall}
     ${solidBorder}
 
 		display: block;
@@ -20,11 +20,11 @@ const StyledInput = styled.input`
     color: ${props => props.theme.palette.black};
     background: ${props => props.validation ? props.theme.palette.errorBg : props.theme.palette.white};
 
-    font-weight: 700;
+    font-weight: 400;
 		transition: border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
 
 		&:placeholder {
-      ${headingLarge}
+      ${headingSmall}
 
       font-weight: 400;
 
