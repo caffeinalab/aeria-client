@@ -160,7 +160,7 @@ function _inheritsLoose(subClass, superClass) {
 var getPrototypeOf = __webpack_require__(14);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
-var setPrototypeOf = __webpack_require__(50);
+var setPrototypeOf = __webpack_require__(51);
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/isNativeFunction.js
 function _isNativeFunction(fn) {
@@ -7925,7 +7925,7 @@ function possibleConstructorReturn_possibleConstructorReturn(self, call) {
 var getPrototypeOf = __webpack_require__(14);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
-var setPrototypeOf = __webpack_require__(50);
+var setPrototypeOf = __webpack_require__(51);
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/inherits.js
 
@@ -9582,7 +9582,7 @@ var v4 = __webpack_require__(79);
 var v4_default = /*#__PURE__*/__webpack_require__.n(v4);
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.map.js
-var es_array_map = __webpack_require__(52);
+var es_array_map = __webpack_require__(50);
 
 // EXTERNAL MODULE: ./node_modules/array-move/index.js
 var array_move = __webpack_require__(159);
@@ -10236,11 +10236,11 @@ var StyledInfo = styled_components_browser_esm["d" /* default */].div.withConfig
 var StyledInput = styled_components_browser_esm["d" /* default */].input.withConfig({
   displayName: "StyledInput",
   componentId: "sc-12zts4x-0"
-})(["input[type]&{", " ", " display:block;width:100%;height:auto;padding:", " ", ";outline:none;box-shadow:none;color:", ";background:", ";font-weight:700;transition:border-color 0.3s,background-color 0.3s,box-shadow 0.3s;&:placeholder{", " font-weight:400;color:", ";}&[disabled]{opacity:0.4;background-color:", ";}&[readonly]{border:none;}}"], heading_large, solid, Object(polished_es["c" /* rem */])('5px'), Object(polished_es["c" /* rem */])('10px'), function (props) {
+})(["input[type]&{", " ", " display:block;width:100%;height:auto;padding:", " ", ";outline:none;box-shadow:none;color:", ";background:", ";font-weight:400;transition:border-color 0.3s,background-color 0.3s,box-shadow 0.3s;&:placeholder{", " font-weight:400;color:", ";}&[disabled]{opacity:0.4;background-color:", ";}&[readonly]{border:none;}}"], heading_small, solid, Object(polished_es["c" /* rem */])('5px'), Object(polished_es["c" /* rem */])('10px'), function (props) {
   return props.theme.palette.black;
 }, function (props) {
   return props.validation ? props.theme.palette.errorBg : props.theme.palette.white;
-}, heading_large, function (props) {
+}, heading_small, function (props) {
   return Object(polished_es["b" /* lighten */])(0.7, props.theme.palette.black);
 }, function (props) {
   return Object(polished_es["b" /* lighten */])(0.7, props.theme.palette.black);
@@ -19139,7 +19139,7 @@ module.exports = {
 
 var $ = __webpack_require__(15);
 var $indexOf = __webpack_require__(90).indexOf;
-var arrayMethodIsStrict = __webpack_require__(51);
+var arrayMethodIsStrict = __webpack_require__(52);
 var arrayMethodUsesToLength = __webpack_require__(33);
 
 var nativeIndexOf = [].indexOf;
@@ -19421,38 +19421,6 @@ exports.default = {
 
 /***/ }),
 /* 50 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _setPrototypeOf; });
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var fails = __webpack_require__(17);
-
-module.exports = function (METHOD_NAME, argument) {
-  var method = [][METHOD_NAME];
-  return !!method && fails(function () {
-    // eslint-disable-next-line no-useless-call,no-throw-literal
-    method.call(null, argument || function () { throw 1; }, 1);
-  });
-};
-
-
-/***/ }),
-/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19474,6 +19442,38 @@ $({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT || !USES_TO_LENGT
     return $map(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
   }
 });
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _setPrototypeOf; });
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var fails = __webpack_require__(17);
+
+module.exports = function (METHOD_NAME, argument) {
+  var method = [][METHOD_NAME];
+  return !!method && fails(function () {
+    // eslint-disable-next-line no-useless-call,no-throw-literal
+    method.call(null, argument || function () { throw 1; }, 1);
+  });
+};
 
 
 /***/ }),
@@ -21656,7 +21656,7 @@ module.exports = String(test) === '[object z]';
 
 var $ = __webpack_require__(15);
 var $reduce = __webpack_require__(183).left;
-var arrayMethodIsStrict = __webpack_require__(51);
+var arrayMethodIsStrict = __webpack_require__(52);
 var arrayMethodUsesToLength = __webpack_require__(33);
 
 var STRICT_METHOD = arrayMethodIsStrict('reduce');
@@ -22604,7 +22604,7 @@ addToUnscopables('includes');
 var $ = __webpack_require__(15);
 var IndexedObject = __webpack_require__(54);
 var toIndexedObject = __webpack_require__(31);
-var arrayMethodIsStrict = __webpack_require__(51);
+var arrayMethodIsStrict = __webpack_require__(52);
 
 var nativeJoin = [].join;
 
@@ -23168,7 +23168,7 @@ module.exports = getBuiltIn('navigator', 'userAgent') || '';
 "use strict";
 
 var $forEach = __webpack_require__(46).forEach;
-var arrayMethodIsStrict = __webpack_require__(51);
+var arrayMethodIsStrict = __webpack_require__(52);
 var arrayMethodUsesToLength = __webpack_require__(33);
 
 var STRICT_METHOD = arrayMethodIsStrict('forEach');
@@ -38323,7 +38323,7 @@ hiddenKeys[METADATA] = true;
 
 var $ = __webpack_require__(15);
 var $every = __webpack_require__(46).every;
-var arrayMethodIsStrict = __webpack_require__(51);
+var arrayMethodIsStrict = __webpack_require__(52);
 var arrayMethodUsesToLength = __webpack_require__(33);
 
 var STRICT_METHOD = arrayMethodIsStrict('every');
