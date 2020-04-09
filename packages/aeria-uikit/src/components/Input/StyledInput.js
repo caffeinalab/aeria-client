@@ -21,12 +21,14 @@ const StyledInput = styled.input`
     background: ${props => props.validation ? props.theme.palette.errorBg : props.theme.palette.white};
 
     font-weight: 400;
+    text-transform: normal;
 		transition: border-color 0.3s, background-color 0.3s, box-shadow 0.3s;
 
 		&:placeholder {
       ${headingSmall}
 
       font-weight: 400;
+      text-transform: normal;
 
 			color: ${props => lighten(0.7, props.theme.palette.black)};
     }

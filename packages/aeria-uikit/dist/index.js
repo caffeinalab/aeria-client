@@ -10236,7 +10236,7 @@ var StyledInfo = styled_components_browser_esm["d" /* default */].div.withConfig
 var StyledInput = styled_components_browser_esm["d" /* default */].input.withConfig({
   displayName: "StyledInput",
   componentId: "sc-12zts4x-0"
-})(["input[type]&{", " ", " display:block;width:100%;height:auto;padding:", " ", ";outline:none;box-shadow:none;color:", ";background:", ";font-weight:400;transition:border-color 0.3s,background-color 0.3s,box-shadow 0.3s;&:placeholder{", " font-weight:400;color:", ";}&[disabled]{opacity:0.4;background-color:", ";}&[readonly]{border:none;}}"], heading_small, solid, Object(polished_es["c" /* rem */])('5px'), Object(polished_es["c" /* rem */])('10px'), function (props) {
+})(["input[type]&{", " ", " display:block;width:100%;height:auto;padding:", " ", ";outline:none;box-shadow:none;color:", ";background:", ";font-weight:400;text-transform:normal;transition:border-color 0.3s,background-color 0.3s,box-shadow 0.3s;&:placeholder{", " font-weight:400;text-transform:normal;color:", ";}&[disabled]{opacity:0.4;background-color:", ";}&[readonly]{border:none;}}"], heading_small, solid, Object(polished_es["c" /* rem */])('5px'), Object(polished_es["c" /* rem */])('10px'), function (props) {
   return props.theme.palette.black;
 }, function (props) {
   return props.validation ? props.theme.palette.errorBg : props.theme.palette.white;
