@@ -5572,7 +5572,7 @@ var getOwnPropertyDescriptorModule = __webpack_require__(44);
 var definePropertyModule = __webpack_require__(28);
 var propertyIsEnumerableModule = __webpack_require__(85);
 var createNonEnumerableProperty = __webpack_require__(32);
-var redefine = __webpack_require__(37);
+var redefine = __webpack_require__(39);
 var shared = __webpack_require__(89);
 var sharedKey = __webpack_require__(64);
 var hiddenKeys = __webpack_require__(57);
@@ -5981,7 +5981,7 @@ addToUnscopables('entries');
 /***/ (function(module, exports, __webpack_require__) {
 
 var TO_STRING_TAG_SUPPORT = __webpack_require__(98);
-var redefine = __webpack_require__(37);
+var redefine = __webpack_require__(39);
 var toString = __webpack_require__(180);
 
 // `Object.prototype.toString` method
@@ -6167,7 +6167,7 @@ function _getPrototypeOf(o) {
 var global = __webpack_require__(20);
 var getOwnPropertyDescriptor = __webpack_require__(44).f;
 var createNonEnumerableProperty = __webpack_require__(32);
-var redefine = __webpack_require__(37);
+var redefine = __webpack_require__(39);
 var setGlobal = __webpack_require__(87);
 var copyConstructorProperties = __webpack_require__(115);
 var isForced = __webpack_require__(107);
@@ -6742,7 +6742,7 @@ var lodash_isempty_default = /*#__PURE__*/__webpack_require__.n(lodash_isempty);
 var es_array_filter = __webpack_require__(41);
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.for-each.js
-var es_array_for_each = __webpack_require__(39);
+var es_array_for_each = __webpack_require__(37);
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.index-of.js
 var es_array_index_of = __webpack_require__(47);
@@ -6757,7 +6757,7 @@ var es_object_get_own_property_descriptors = __webpack_require__(43);
 var es_object_keys = __webpack_require__(30);
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
-var web_dom_collections_for_each = __webpack_require__(40);
+var web_dom_collections_for_each = __webpack_require__(38);
 
 // EXTERNAL MODULE: ./node_modules/axios/index.js
 var axios = __webpack_require__(80);
@@ -9896,12 +9896,12 @@ function (_Component) {
           showFilename = _this$props$showFilen === void 0 ? false : _this$props$showFilen,
           _this$props$naturalSi = _this$props.naturalSize,
           naturalSize = _this$props$naturalSi === void 0 ? false : _this$props$naturalSi,
-          size = _this$props.size,
+          thumbSize = _this$props.thumbSize,
           editable = _this$props.editable,
           deletable = _this$props.deletable,
           expandable = _this$props.expandable;
       return react_default.a.createElement(Thumbnail_StyledPicture, {
-        size: size,
+        size: thumbSize,
         onMouseEnter: this.onMouseEnter,
         onMouseLeave: this.handleLeave,
         onFocus: this.onMouseEnter,
@@ -9937,7 +9937,7 @@ function (_Component) {
 
 Thumbnail_defineProperty(Thumbnail_Thumbnail, "propTypes", {
   url: prop_types_default.a.string.isRequired,
-  size: prop_types_default.a.oneOf(['small', 'normal', 'big']),
+  thumbSize: prop_types_default.a.oneOf(['small', 'normal', 'big']),
   editable: prop_types_default.a.bool,
   deletable: prop_types_default.a.bool,
   expandable: prop_types_default.a.bool,
@@ -9947,7 +9947,7 @@ Thumbnail_defineProperty(Thumbnail_Thumbnail, "propTypes", {
 });
 
 Thumbnail_defineProperty(Thumbnail_Thumbnail, "defaultProps", {
-  size: 'normal',
+  thumbSize: 'normal',
   editable: false,
   deletable: false,
   expandable: false
@@ -18773,7 +18773,7 @@ var fails = __webpack_require__(17);
 var isArray = __webpack_require__(67);
 var isObject = __webpack_require__(22);
 var toObject = __webpack_require__(35);
-var toLength = __webpack_require__(38);
+var toLength = __webpack_require__(40);
 var createProperty = __webpack_require__(83);
 var arraySpeciesCreate = __webpack_require__(108);
 var arrayMethodHasSpeciesSupport = __webpack_require__(62);
@@ -18857,6 +18857,43 @@ module.exports = function (it) {
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+var $ = __webpack_require__(15);
+var forEach = __webpack_require__(124);
+
+// `Array.prototype.forEach` method
+// https://tc39.github.io/ecma262/#sec-array.prototype.foreach
+$({ target: 'Array', proto: true, forced: [].forEach != forEach }, {
+  forEach: forEach
+});
+
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__(20);
+var DOMIterables = __webpack_require__(130);
+var forEach = __webpack_require__(124);
+var createNonEnumerableProperty = __webpack_require__(32);
+
+for (var COLLECTION_NAME in DOMIterables) {
+  var Collection = global[COLLECTION_NAME];
+  var CollectionPrototype = Collection && Collection.prototype;
+  // some Chrome versions have non-configurable methods on DOMTokenList
+  if (CollectionPrototype && CollectionPrototype.forEach !== forEach) try {
+    createNonEnumerableProperty(CollectionPrototype, 'forEach', forEach);
+  } catch (error) {
+    CollectionPrototype.forEach = forEach;
+  }
+}
+
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var global = __webpack_require__(20);
 var createNonEnumerableProperty = __webpack_require__(32);
 var has = __webpack_require__(24);
@@ -18894,7 +18931,7 @@ var TEMPLATE = String(String).split('String');
 
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(66);
@@ -18906,43 +18943,6 @@ var min = Math.min;
 module.exports = function (argument) {
   return argument > 0 ? min(toInteger(argument), 0x1FFFFFFFFFFFFF) : 0; // 2 ** 53 - 1 == 9007199254740991
 };
-
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var $ = __webpack_require__(15);
-var forEach = __webpack_require__(124);
-
-// `Array.prototype.forEach` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.foreach
-$({ target: 'Array', proto: true, forced: [].forEach != forEach }, {
-  forEach: forEach
-});
-
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var global = __webpack_require__(20);
-var DOMIterables = __webpack_require__(130);
-var forEach = __webpack_require__(124);
-var createNonEnumerableProperty = __webpack_require__(32);
-
-for (var COLLECTION_NAME in DOMIterables) {
-  var Collection = global[COLLECTION_NAME];
-  var CollectionPrototype = Collection && Collection.prototype;
-  // some Chrome versions have non-configurable methods on DOMTokenList
-  if (CollectionPrototype && CollectionPrototype.forEach !== forEach) try {
-    createNonEnumerableProperty(CollectionPrototype, 'forEach', forEach);
-  } catch (error) {
-    CollectionPrototype.forEach = forEach;
-  }
-}
 
 
 /***/ }),
@@ -19067,7 +19067,7 @@ module.exports = function (it) {
 var bind = __webpack_require__(94);
 var IndexedObject = __webpack_require__(54);
 var toObject = __webpack_require__(35);
-var toLength = __webpack_require__(38);
+var toLength = __webpack_require__(40);
 var arraySpeciesCreate = __webpack_require__(108);
 
 var push = [].push;
@@ -21323,7 +21323,7 @@ var $ = __webpack_require__(15);
 var isObject = __webpack_require__(22);
 var isArray = __webpack_require__(67);
 var toAbsoluteIndex = __webpack_require__(106);
-var toLength = __webpack_require__(38);
+var toLength = __webpack_require__(40);
 var toIndexedObject = __webpack_require__(31);
 var createProperty = __webpack_require__(83);
 var wellKnownSymbol = __webpack_require__(18);
@@ -21460,7 +21460,7 @@ var store = __webpack_require__(114);
 /***/ (function(module, exports, __webpack_require__) {
 
 var toIndexedObject = __webpack_require__(31);
-var toLength = __webpack_require__(38);
+var toLength = __webpack_require__(40);
 var toAbsoluteIndex = __webpack_require__(106);
 
 // `Array.prototype.{ indexOf, includes }` methods implementation
@@ -22631,7 +22631,7 @@ var IS_PURE = __webpack_require__(56);
 var global = __webpack_require__(20);
 var getBuiltIn = __webpack_require__(48);
 var NativePromise = __webpack_require__(192);
-var redefine = __webpack_require__(37);
+var redefine = __webpack_require__(39);
 var redefineAll = __webpack_require__(193);
 var setToStringTag = __webpack_require__(69);
 var setSpecies = __webpack_require__(194);
@@ -23193,7 +23193,7 @@ var getPrototypeOf = __webpack_require__(97);
 var setPrototypeOf = __webpack_require__(164);
 var setToStringTag = __webpack_require__(69);
 var createNonEnumerableProperty = __webpack_require__(32);
-var redefine = __webpack_require__(37);
+var redefine = __webpack_require__(39);
 var wellKnownSymbol = __webpack_require__(18);
 var IS_PURE = __webpack_require__(56);
 var Iterators = __webpack_require__(59);
@@ -37525,7 +37525,7 @@ module.exports = function () {
 
 // TODO: Remove from `core-js@4` since it's moved to entry points
 __webpack_require__(109);
-var redefine = __webpack_require__(37);
+var redefine = __webpack_require__(39);
 var fails = __webpack_require__(17);
 var wellKnownSymbol = __webpack_require__(18);
 var regexpExec = __webpack_require__(70);
@@ -37996,7 +37996,7 @@ exports.isElement=function(a){return"object"===typeof a&&null!==a&&a.$$typeof===
 var aFunction = __webpack_require__(58);
 var toObject = __webpack_require__(35);
 var IndexedObject = __webpack_require__(54);
-var toLength = __webpack_require__(38);
+var toLength = __webpack_require__(40);
 
 // `Array.prototype.{ reduce, reduceRight }` methods implementation
 var createMethod = function (IS_RIGHT) {
@@ -38351,7 +38351,7 @@ module.exports = global.Promise;
 /* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var redefine = __webpack_require__(37);
+var redefine = __webpack_require__(39);
 
 module.exports = function (target, src, options) {
   for (var key in src) redefine(target, key, src[key], options);
@@ -38402,7 +38402,7 @@ module.exports = function (it, Constructor, name) {
 
 var anObject = __webpack_require__(26);
 var isArrayIteratorMethod = __webpack_require__(197);
-var toLength = __webpack_require__(38);
+var toLength = __webpack_require__(40);
 var bind = __webpack_require__(94);
 var getIteratorMethod = __webpack_require__(198);
 var callWithSafeIterationClosing = __webpack_require__(199);
@@ -42540,7 +42540,7 @@ var anObject = __webpack_require__(26);
 var requireObjectCoercible = __webpack_require__(45);
 var speciesConstructor = __webpack_require__(138);
 var advanceStringIndex = __webpack_require__(167);
-var toLength = __webpack_require__(38);
+var toLength = __webpack_require__(40);
 var callRegExpExec = __webpack_require__(168);
 var regexpExec = __webpack_require__(70);
 var fails = __webpack_require__(17);

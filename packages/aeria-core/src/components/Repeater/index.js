@@ -74,8 +74,9 @@ class Repeater extends PureComponent {
 
   getInitialChildren({ fields, children, min, max }) {
     let ensuredChildren = klona(children).map(child => this.wrapChild(child))
+
     for (let i = ensuredChildren.length; i < min; i++) {
-      ensuredChildren.push(this.wrapChild(klona(fields)))
+      ensuredChildren.push(this.wrapChild({ fields: klona(fields) }))
     }
 
     if (max < ensuredChildren.length) {
@@ -84,11 +85,8 @@ class Repeater extends PureComponent {
     return ensuredChildren
   }
 
-  wrapChild(fields) {
-    return {
-      _key: uuid(),
-      fields
-    }
+  wrapChild(child) {
+    return { ...child, _key: uuid() }
   }
 
   addChild = () => {
@@ -98,7 +96,7 @@ class Repeater extends PureComponent {
       return
     }
     const children = klona(this.state.children)
-    children.push(this.wrapChild(klona(this.props.fields)))
+    children.push(this.wrapChild({ fields: klona(this.props.fields) }))
     this.setState({value, children, sizeError: undefined}, this.triggerChange)
   }
 

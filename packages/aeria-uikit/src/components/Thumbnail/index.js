@@ -10,7 +10,7 @@ import StyledFileName from './StyledFileName'
 class Thumbnail extends Component {
   static propTypes = {
     url: PropTypes.string.isRequired,
-    size: PropTypes.oneOf([
+    thumbSize: PropTypes.oneOf([
       'small',
       'normal',
       'big'
@@ -24,7 +24,7 @@ class Thumbnail extends Component {
   }
 
   static defaultProps = {
-    size: 'normal',
+    thumbSize: 'normal',
     editable: false,
     deletable: false,
     expandable: false
@@ -47,11 +47,11 @@ class Thumbnail extends Component {
   }
 
   render() {
-    const { id, value, url, fileName = '', showFilename = false, naturalSize = false, size, editable, deletable, expandable} = this.props
+    const { id, value, url, fileName = '', showFilename = false, naturalSize = false, thumbSize, editable, deletable, expandable} = this.props
 
     return (
       <StyledPicture
-        size={size}
+        size={thumbSize}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.handleLeave}
         onFocus={this.onMouseEnter}
