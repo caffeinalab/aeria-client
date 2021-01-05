@@ -37,7 +37,7 @@
     "@kunukn/react-collapse": "^2.2.7",
     "@react-google-maps/api": "^1.8.2",
     "array-move": "^2.2.1",
-    "axios": "^0.19.1",
+    "axios": "^0.21.1",
     "body-scroll-lock": "^2.6.4",
     "focus-trap-react": "^6.0.0",
     "klona": "^1.1.1",
