@@ -115,10 +115,8 @@ class Select extends PureComponent {
     this.loadOptions = throttle(this.loadOptions, THROTTLE_TIME)
     this.state = {
       value: this.props.value || this.props.defaultValue || (this.props.multiple ? [] : ''),
-      options: this.props.options || []
-    }
-    if (this.props.ajax) {
-      this.loadOptions('')
+      options: this.props.options || [],
+      ajaxEndpoint: (this.props.ajax) ? this.props.ajax.endpoint : '/wp-json/aeria/search'
     }
   }
 
@@ -138,13 +136,28 @@ class Select extends PureComponent {
     }
   }
 
+  componentDidMount() {
+    this.initOptions()
+  }
+
+  initOptions() {
+    if (this.props.ajaxAdditionalParam) {
+      const el = document.querySelector(`input[name="${this.props.ajaxAdditionalParam}"]`)
+      this.updateEndpoint(el.value)
+    }
+
+    if (this.props.ajax) {
+      this.loadOptions('')
+    }
+  }
+
   loadOptions = (s, callback) => {
     if (this.lastFetch && this.lastFetch.cancel) {
       this.lastFetch.cancel()
     }
 
     const {ajax, dependsOn, dependsOnField = false} = this.props
-    const { endpoint = '/wp-json/aeria/search' } = ajax
+    const endpoint = this.state.ajaxEndpoint
     const params = { ...ajax, sender: 'SelectOptions', s }
 
     if (dependsOn && dependsOnField) {
@@ -161,6 +174,12 @@ class Select extends PureComponent {
 
         this.onDataChange({ options: data })
       })
+  }
+
+  updateEndpoint = (value) => {
+    if (value) {
+      this.state.ajaxEndpoint = `${this.props.ajax.endpoint}/${value}`
+    }
   }
 
   loadingMessage = () => {
