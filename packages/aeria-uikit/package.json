@@ -14,7 +14,7 @@
   "license": "MIT",
   "gitHead": "3499d2249e9791ae6c34b57b03e415f21b16464f",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
     "@kunukn/react-collapse": "^2.2.7",
