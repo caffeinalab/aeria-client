@@ -1,6 +1,6 @@
 {
   "name": "@aeria/core",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "",
   "main": "dist/index.js",
   "module": "index.js",
@@ -17,7 +17,7 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "@aeria/uikit": "^0.0.26",
+    "@aeria/uikit": "^0.0.27",
     "@kunukn/react-collapse": "^2.2.7",
     "@react-google-maps/api": "^1.8.2",
     "array-move": "^2.2.1",
