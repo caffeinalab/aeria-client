@@ -3,6 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caffeinalab/aeria-client.git",
+    "directory": "./"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "contributors": [
     "Andrea 'Fiad' Fiadone <andrea.fiadone@caffeina.com> (https://github.com/fiadone)",
     "Alberto Parziale <alberto.parziale@caffeina.com> (https://github.com/lavolpecheprogramma)",
@@ -72,7 +80,7 @@
     "build": "yarn run build:packages && yarn run build:storybook",
     "dev": "yarn run bootstrap && yarn storybook",
     "version": "yarn run build:packages",
-    "publish": "lerna publish from-package --no-verify-access --yes",
+    "publish": "lerna publish",
     "storybook": "NODE_ENV=development start-storybook -p 6006 -s ./stories/public"
   }
 }

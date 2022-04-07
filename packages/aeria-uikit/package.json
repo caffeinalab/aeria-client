@@ -13,6 +13,14 @@
     "Stefano Iachetta <stefano.iachetta@caffeina.com> (https://github.com/stfn00)"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caffeinalab/aeria-client.git",
+    "directory": "packages/aeria-uikit"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "gitHead": "3499d2249e9791ae6c34b57b03e415f21b16464f",
   "dependencies": {
     "@kunukn/react-collapse": "^2.2.7",
