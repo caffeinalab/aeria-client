@@ -7,10 +7,6 @@
     "Andrea 'Fiad' Fiadone <andrea.fiadone@caffeina.com> (https://github.com/fiadone)",
     "Alberto Parziale <alberto.parziale@caffeina.com> (https://github.com/lavolpecheprogramma)"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/caffeinalab/aeria-client.git"
-  },
   "workspaces": [
     "packages/*"
   ],
