@@ -72,7 +72,7 @@
     "build": "yarn run build:packages && yarn run build:storybook",
     "dev": "yarn run bootstrap && yarn storybook",
     "version": "yarn run build:packages",
-    "publish": "lerna publish",
+    "publish": "lerna publish --no-verify-access",
     "storybook": "NODE_ENV=development start-storybook -p 6006 -s ./stories/public"
   }
 }
