@@ -17,6 +17,9 @@
     "type": "git",
     "url": "https://github.com/caffeinalab/aeria-client/tree/master/packages/aeria-core"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "dependencies": {
     "@aeria/uikit": "^0.0.28",
     "@kunukn/react-collapse": "^2.2.7",
