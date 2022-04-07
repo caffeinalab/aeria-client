@@ -5,7 +5,8 @@
   "license": "MIT",
   "contributors": [
     "Andrea 'Fiad' Fiadone <andrea.fiadone@caffeina.com> (https://github.com/fiadone)",
-    "Alberto Parziale <alberto.parziale@caffeina.com> (https://github.com/lavolpecheprogramma)"
+    "Alberto Parziale <alberto.parziale@caffeina.com> (https://github.com/lavolpecheprogramma)",
+    "Stefano Iachetta <stefano.iachetta@caffeina.com> (https://github.com/stfn00)"
   ],
   "workspaces": [
     "packages/*"
