@@ -28,6 +28,14 @@ class FieldGroup extends PureComponent {
     fields: PropTypes.arrayOf(PropTypes.object),
   }
 
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      valueToFetch: null
+    }
+  }
+
   getGridSize({ size }) {
     const cleanSize = size && size.replace(/\s+/g, '')
 
@@ -72,9 +80,12 @@ class FieldGroup extends PureComponent {
                   <Element
                     {...field}
                     index={key}
+                    groupID={this.props.id}
                     id={`${this.props.id}-${field.id}`}
                     onChange={this.onChildChange}
                     dependsOnField={this.getDependencyField(field, fields)}
+                    valueToFetch={this.state.valueToFetch}
+                    updateValueToFetch={(value) => this.setState({valueToFetch: value})}
                   />
                 </Grid.Unit>
               )

@@ -115,14 +115,13 @@ class Select extends PureComponent {
     this.loadOptions = throttle(this.loadOptions, THROTTLE_TIME)
     this.state = {
       value: this.props.value || this.props.defaultValue || (this.props.multiple ? [] : ''),
-      options: this.props.options || [],
-      ajaxEndpoint: (this.props.ajax) ? this.props.ajax.endpoint : '/wp-json/aeria/search'
+      options: this.props.options || []
     }
   }
 
   getSnapshotBeforeUpdate(prevProps) {
     return {
-      shouldUpdateOptions: JSON.stringify(prevProps.dependsOnField) !== JSON.stringify(this.props.dependsOnField)
+      shouldUpdateOptions: (JSON.stringify(prevProps.dependsOnField) !== JSON.stringify(this.props.dependsOnField)) || prevProps.valueToFetch !== this.props.valueToFetch
     }
   }
 
@@ -137,15 +136,6 @@ class Select extends PureComponent {
   }
 
   componentDidMount() {
-    this.initOptions()
-  }
-
-  initOptions() {
-    if (this.props.ajaxAdditionalParam) {
-      const el = document.querySelector(`input[name="${this.props.ajaxAdditionalParam}"]`)
-      this.updateEndpoint(el.value)
-    }
-
     if (this.props.ajax) {
       this.loadOptions('')
     }
@@ -156,8 +146,11 @@ class Select extends PureComponent {
       this.lastFetch.cancel()
     }
 
+    const valueToFetch = this.props.valueToFetch ? this.props.valueToFetch : document.querySelector(`input[name="${this.props.groupID}-${this.props.dependsOn.id}"]`).value
+
     const {ajax, dependsOn, dependsOnField = false} = this.props
-    const endpoint = this.state.ajaxEndpoint
+    let endpoint = ajax.endpoint || '/wp-json/aeria/search'
+    if (valueToFetch && dependsOn.appendValueToEndpoint) endpoint += `/${valueToFetch}`
     const params = { ...ajax, sender: 'SelectOptions', s }
 
     if (dependsOn && dependsOnField) {
@@ -174,12 +167,6 @@ class Select extends PureComponent {
 
         this.onDataChange({ options: data })
       })
-  }
-
-  updateEndpoint = (value) => {
-    if (value) {
-      this.state.ajaxEndpoint = `${this.props.ajax.endpoint}/${value}`
-    }
   }
 
   loadingMessage = () => {
@@ -218,7 +205,10 @@ class Select extends PureComponent {
     if (!value) {
       this.onDataChange({ value: this.props.multiple ? [] : '' })
     } else {
-      this.props.multiple ? this.onChangeMultiple(value) : this.onDataChange({value: value.value})
+      this.props.multiple ? this.onChangeMultiple(value) : this.onDataChange({
+        value: value.value,
+      })
+      if (!this.props.ajax) this.props.updateValueToFetch(value.value)
     }
   }
 
