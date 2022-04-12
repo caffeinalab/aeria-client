@@ -146,7 +146,10 @@ class Select extends PureComponent {
       this.lastFetch.cancel()
     }
 
-    const valueToFetch = this.props.valueToFetch ? this.props.valueToFetch : document.querySelector(`input[name="${this.props.groupID}-${this.props.dependsOn.id}"]`).value
+    const inputName = (this.props.dependsOn) ? `${this.props.groupID}-${this.props.dependsOn.id}` : this.props.groupID
+    const inputEl = document.querySelector(`input[name="${inputName}"]`)
+
+    const valueToFetch = (this.props.valueToFetch) ? this.props.valueToFetch : (inputEl) ? inputEl.value : null
 
     const {ajax, dependsOn, dependsOnField = false} = this.props
     let endpoint = ajax.endpoint || '/wp-json/aeria/search'

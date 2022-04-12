@@ -16237,7 +16237,9 @@ var Select_Select = withLabel(Select_class = withValidation(Select_class = (Sele
         _this.lastFetch.cancel();
       }
 
-      var valueToFetch = _this.props.valueToFetch ? _this.props.valueToFetch : document.querySelector("input[name=\"".concat(_this.props.groupID, "-").concat(_this.props.dependsOn.id, "\"]")).value;
+      var inputName = _this.props.dependsOn ? "".concat(_this.props.groupID, "-").concat(_this.props.dependsOn.id) : _this.props.groupID;
+      var inputEl = document.querySelector("input[name=\"".concat(inputName, "\"]"));
+      var valueToFetch = _this.props.valueToFetch ? _this.props.valueToFetch : inputEl ? inputEl.value : null;
       var _this$props = _this.props,
           ajax = _this$props.ajax,
           dependsOn = _this$props.dependsOn,
